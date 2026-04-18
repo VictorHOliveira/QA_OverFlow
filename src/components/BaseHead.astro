@@ -16,6 +16,7 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
+const GA_ID = "G-F9NWQEL01S";
 ---
 
 <!-- Global Metadata -->
@@ -53,3 +54,28 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Google Analytics -->
+{import.meta.env.PROD && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '${GA_ID}');
+    </script>
+    
+    {/* Rastrear navegação entre páginas (para View Transitions) */}
+    <script is:inline>
+      document.addEventListener('astro:after-swap', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view', {
+            page_path: location.pathname,
+            page_location: location.href,
+          });
+        }
+      });
+    </script>
+  </>
+)}
