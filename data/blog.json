@@ -1,0 +1,87 @@
+{
+	"settings": {
+		"url": "www.qaoverflow.com",
+		"title": "QA Overflow",
+		"tagline": "Informa\u00e7\u00f5es e reviews sobre Qualidade de Software e Automa\u00e7\u00e3o de Testes",
+		"author": "Victor Oliveira",
+		"layout": "default",
+		"theme": "bootstrap.min.css",
+		"disqus": "",
+		"analytics": "",
+		"only_titles": ""
+	},
+	"customValues": [
+
+	],
+	"pages": [
+
+	],
+	"follow": [
+
+	],
+	"posts": [
+		{
+			"author": "Victor Oliveira",
+			"title": "Primeiro Post",
+			"tags": [
+				"automation",
+				"automa\u00e7\u00e3o"
+			],
+			"category": "Boas Praticas",
+			"body": "<p>Teste<\/p>",
+			"addpost": "addpost",
+			"dated": "April 22, 2026 05:37 PM",
+			"slug": "primeiro-post",
+			"categoryslug": "boas-praticas",
+			"status": "publised",
+			"summary": "\n<p>Teste<\/p>...\n",
+			"showbody": "1"
+		}
+	],
+	"latestPosts": [
+		{
+			"author": "Victor Oliveira",
+			"title": "Primeiro Post",
+			"tags": [
+				"automation",
+				"automa\u00e7\u00e3o"
+			],
+			"category": "Boas Praticas",
+			"body": "<p>Teste<\/p>",
+			"addpost": "addpost",
+			"dated": "April 22, 2026 05:37 PM",
+			"slug": "primeiro-post",
+			"categoryslug": "boas-praticas",
+			"status": "publised",
+			"summary": "\n<p>Teste<\/p>...\n",
+			"showbody": "1"
+		}
+	],
+	"homePosts": [
+		{
+			"author": "Victor Oliveira",
+			"title": "Primeiro Post",
+			"tags": [
+				"automation",
+				"automa\u00e7\u00e3o"
+			],
+			"category": "Boas Praticas",
+			"body": "<p>Teste<\/p>",
+			"addpost": "addpost",
+			"dated": "April 22, 2026 05:37 PM",
+			"slug": "primeiro-post",
+			"categoryslug": "boas-praticas",
+			"status": "publised",
+			"summary": "\n<p>Teste<\/p>...\n",
+			"showbody": "1"
+		}
+	],
+	"categories": [
+		{
+			"category": "Boas Praticas",
+			"categoryslug": "boas-praticas"
+		}
+	],
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"www.qaoverflow.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"www.qaoverflow.com\/tag\/automa\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automa<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"www.qaoverflow.com\/tag\/o\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">o<\/a>\n",
+	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"www.qaoverflow.com\/archive\/april-2026\">April 2026<\/a><\/li><\/ul>"
+}
