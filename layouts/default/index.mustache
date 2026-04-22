@@ -1,0 +1,65 @@
+{{> head}}
+<body>
+{{> nav}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 main-content">
+            {{#homePosts}}
+                {{> article}}
+            {{/homePosts}}
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    &nbsp;
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="{{settings.url}}/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+        </div>
+
+        {{> sidebar}}
+    </div>
+</div>
+
+{{> footer}}
+
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    var nextPost = data.posts[1];
+
+                    if (nextPost === undefined || nextPost === null) {
+                        // hide previous link if blog has only one post
+                        $nextPostSelector.hide();
+                    }
+                    else {
+                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                    }
+                }
+            },
+            error: function (e) {
+                $nextPostSelector.hide();
+            }
+        });
+
+    });
+</script>
