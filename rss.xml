@@ -7,8 +7,8 @@
 <language>en-us</language>
 <item>
 <title>Boas Práticas em Automação de Testes: Um Guia para 2026</title>
-<description><![CDATA[<p>Por Um QA Sênior com Mais de Uma Década na Trincheira
-Se há uma coisa que aprendi em mais de 13 anos de QA — testando desde aplicações monolíticas com C# até microsserviços efêmeros com Python e ferramentas de IA — é que automação não é sobre código, é sobre risco. Passei por projetos onde tínhamos mais de 5.000 scripts de automação, uma cobertura de 85%, e ainda assim bugs críticos escapavam para produção. O problema? Estávamos presos a “métricas de vaidade” e práticas que, embora populares, estavam nos afogando em dívida técnica.</p>
+<description><![CDATA[<h2><strong>Por Um QA Sênior com Mais de Uma Década na Trincheira</strong></h2>
+<p>Se há uma coisa que aprendi em mais de 13 anos de QA — testando desde aplicações monolíticas com C# até microsserviços efêmeros com Python e ferramentas de IA — é que automação não é sobre código, é sobre risco. Passei por projetos onde tínhamos mais de 5.000 scripts de automação, uma cobertura de 85%, e ainda assim bugs críticos escapavam para produção. O problema? Estávamos presos a “métricas de vaidade” e práticas que, embora populares, estavam nos afogando em dívida técnica.</p>
 <p>A boa notícia é que o cenário em 2026 mudou drasticamente. Com a ascensão da IA Agêntica e a maturidade do DevOps, temos a oportunidade de reescrever as regras. Este artigo não é sobre teoria; é um compêndio de boas práticas que eu gostaria de ter conhecido no início da minha carreira, atualizadas para a realidade de hoje.</p>
 <h2><strong>1. A Morte da “Febre da Cobertura” e o Nascimento da Automação Baseada em Risco</strong></h2>
 <p>Por muito tempo, fomos medidos por um número: cobertura de testes automatizados. Gestores pediam 80%, 90%, mas ninguém perguntava: esses testes protegem o que realmente importa?</p>
