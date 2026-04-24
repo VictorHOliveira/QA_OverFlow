@@ -5,12 +5,13 @@
 		"tagline": "Informa\u00e7\u00f5es e reviews sobre Qualidade de Software e Automa\u00e7\u00e3o de Testes",
 		"author": "Victor Oliveira",
 		"layout": "default",
-		"theme": "bootstrap.min.css",
+		"theme": "theme.css",
 		"disqus": "",
 		"analytics": "",
 		"only_titles": "",
 		"url_prod": "https:\/\/qaoverflow.com"
 	},
+	"isDarkTheme": true,
 	"customValues": [
 
 	],
