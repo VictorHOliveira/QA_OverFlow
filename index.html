@@ -10,6 +10,9 @@
 
     <title>QA Overflow</title>
 
+    <!-- jQuery - loaded first -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="http://localhost/QA_OverFlow/public/rss.xml"/>
 
@@ -84,16 +87,6 @@
                 
                         <hr>
                 </article>
-
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    &nbsp;
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
         </div>
 
         <div class="sidebar col-md-4">
@@ -167,14 +160,15 @@
     </div>
 </footer>
 
-<!-- Jquery and Bootstrap Script files -->
-<script src="http://localhost/QA_OverFlow/public/js/jquery-2.0.3.min.js"></script>
-<script src="http://localhost/QA_OverFlow/public/js/plugins/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+<!-- Bootstrap and other Script files -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://localhost/QA_OverFlow/public/js/plugins/highlight/highlight.pack.js"></script>
 <script src="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.js"></script>
 
 <script>
-    var __blogURL = 'http://localhost/QA_OverFlow/public';
+    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost/QA_OverFlow/public'
+        : 'https://qaoverflow.com';
 </script>
 
 <script src="http://localhost/QA_OverFlow/public/js/blog.js"></script>
@@ -183,36 +177,3 @@
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    var nextPost = data.posts[1];
-
-                    if (nextPost === undefined || nextPost === null) {
-                        // hide previous link if blog has only one post
-                        $nextPostSelector.hide();
-                    }
-                    else {
-                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                    }
-                }
-            },
-            error: function (e) {
-                $nextPostSelector.hide();
-            }
-        });
-
-    });
-</script>
