@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <rss version="2.0"><channel>
 <title>QA Overflow</title>
-<link>http://localhost/QA_OverFlow/public</link>
+<link>https://qaoverflow.com</link>
 <description>Informações e reviews sobre Qualidade de Software e Automação de Testes</description>
 <language>en-us</language>
 <item>
@@ -68,7 +68,7 @@
 </ol>
 <p>A automação em 2026 não é sobre cliques, é sobre inteligência. Pare de tentar automatizar o mundo e comece a proteger o que realmente agrega valor ao negócio. Afinal, se o teste não impede um bug crítico de chegar ao usuário, estamos apenas criando código morto.</p>
 <p>Vamos para a trincheira! 🚀</p>]]></description>
-<link>http://localhost/QA_OverFlow/public/post/boas-prticas-em-automao-de-testes-um-guia-para-2026</link>
+<link>https://qaoverflow.com/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026</link>
 <pubDate>Wed, 22 Apr 2026 17:37:00 +0500</pubDate>
 </item>
 </channel></rss>
