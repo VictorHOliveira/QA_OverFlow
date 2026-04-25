@@ -1,6 +1,24 @@
 [
 	{
 		"author": "Victor Oliveira",
+		"title": "QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA",
+		"tags": [
+			"qa",
+			"qaoverflow",
+			"ia",
+			"artificial-intelligence",
+			"blog",
+			"conhecimento"
+		],
+		"category": "Sobre",
+		"body": "## QA Overflow: Uma Nova Forma de Aprender e Compartilhar Qualidade de Software\r\n\r\nFala, comunidade de QA! \r\n\r\nEstou super animados em compartilhar com voces o **QA Overflow**, um projeto especial que criei para unir duas Paixoes: **Inteligencia Artificial** e **compartilhamento de conhecimento**.\r\n\r\n### O que e o QA Overflow?\r\n\r\nO QA Overflow e um blog especializado em **Qualidade de Software e Automacao de Testes**, onde combino minha experiencia de mais de 13 anos na area com a Forca da IA para:\r\n\r\n- Criar conteudos tecnicos de alta qualidade\r\n- Compartilhar boas praticas e design patterns\r\n- Explorar novas tendencias em automacao de testes\r\n- Ajudar outros QAs a evoluirem na carreira\r\n\r\n### Por que criar este projeto?\r\n\r\nComo QA senior, percebi que ha uma grande lacuna de conteudo em portugues sobre qualidade de software. Muitos profissionais ainda enfrentam desafios diarios e nao tem acesso a materiais de qualidade.\r\n\r\nCom o QA Overflow, minha missao e:\r\n\r\n1. **Democratizar o conhecimento** - Conteudo gratuito e acesso livre\r\n2. **Conectar profissionais** - Construir uma comunidade ativa\r\n3. **Inovar com IA** - Usar tecnologia para produzir melhor\r\n\r\n### Venha Conhecer!\r\n\r\nAcesse agora: **https://qaoverflow.com**\r\n\r\nLá você encontra:\r\n\r\n- Artigos sobre automacao de testes\r\n- Guias praticos para QAs\r\n- Design patterns e boas praticas\r\n- Insights sobre tendencias do mercado\r\n\r\nVamos construir essa comunidade juntos? \r\n\r\n#QAOverflow #QualidadeDeSoftware #AutomacaoDeTestes #Aprendizado #ComunidadeQA",
+		"addpost": "addpost",
+		"dated": "April 25, 2026 02:00 PM",
+		"slug": "qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa",
+		"categoryslug": "sobre",
+		"status": "published"
+	},
+		"author": "Victor Oliveira",
 		"title": "Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Pr\u00e1tico",
 		"tags": [
 			"automacao",
