@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <rss version="2.0"><channel>
 <title>QA Overflow</title>
-<link>http://localhost/QA_OverFlow/public</link>
+<link>https://qaoverflow.com</link>
 <description>Informações e reviews sobre Qualidade de Software e Automação de Testes</description>
 <language>en-us</language>
 <item>
@@ -233,8 +233,8 @@
 </ul>
 <p>A chave é: automatize menos, mas melhor. Escolha os testes certos, invista em uma boa estrutura (framework), e meça constantemente o retorno.</p>
 <p>E lembre-se: o melhor tester automatizado é aquele que sabe quando não automatizar.</p>]]></description>
-<link>http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico</link>
-<pubDate>Sat, 25 Apr 2026 10:00:00 +0500</pubDate>
+<link>https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico</link>
+<pubDate>Sat, 25 Apr 2026 10:00:00 +0200</pubDate>
 </item>
 <item>
 <title>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</title>
@@ -386,8 +386,8 @@ def get_user_menu_item(user_name):
 <p>A boa arquitetura não é imposta desde o dia 1 — ela emerge para resolver dores reais do time. E a melhor métrica de sucesso é simples: quanto tempo leva para você adicionar um teste para uma nova funcionalidade? Se a resposta for &quot;minutos&quot;, você acertou.</p>
 <p>Agora vá e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do próximo QA) vão te agradecer. 🧱</p>
 <p>— QA Sênior que já refatorou mais código de teste do que gostaria de admitir</p>]]></description>
-<link>http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos</link>
-<pubDate>Fri, 24 Apr 2026 20:35:00 +0500</pubDate>
+<link>https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos</link>
+<pubDate>Fri, 24 Apr 2026 20:35:00 +0200</pubDate>
 </item>
 <item>
 <title>Boas Práticas em Automação de Testes: Um Guia para 2026</title>
@@ -450,7 +450,7 @@ def get_user_menu_item(user_name):
 <li>Monitore a Confiança: Prefiro uma suíte com 50 testes super estáveis e relevantes do que 500 testes flaky.</li>
 </ul>
 <p>Vamos para a trincheira! 🚀</p>]]></description>
-<link>http://localhost/QA_OverFlow/public/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026</link>
-<pubDate>Wed, 22 Apr 2026 17:37:00 +0500</pubDate>
+<link>https://qaoverflow.com/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026</link>
+<pubDate>Wed, 22 Apr 2026 17:37:00 +0200</pubDate>
 </item>
 </channel></rss>

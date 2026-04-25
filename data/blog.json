@@ -1,6 +1,6 @@
 {
 	"settings": {
-		"url": "http:\/\/localhost\/QA_OverFlow\/public",
+		"url": "https:\/\/qaoverflow.com",
 		"title": "QA Overflow",
 		"tagline": "Informa\u00e7\u00f5es e reviews sobre Qualidade de Software e Automa\u00e7\u00e3o de Testes",
 		"author": "Victor Oliveira",
@@ -9,7 +9,7 @@
 		"disqus": "",
 		"analytics": "G-F9NWQEL01S",
 		"only_titles": "",
-		"url_prod": ""
+		"url_prod": "https:\/\/qaoverflow.com"
 	},
 	"isDarkTheme": true,
 	"customValues": [
@@ -225,6 +225,6 @@
 			"categoryslug": "boas-praticas"
 		}
 	],
-	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/2026\" title=\"2 total posts\">2026<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/automacao\" title=\"2 total posts\">automacao<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/automation\" title=\"2 total posts\">automation<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/automacao\" title=\"2 total posts\">automa\u00e7\u00e3o<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/automacao-de-testes\" title=\"2 total posts\">Automa\u00e7\u00e3o de Testes<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/boas-praticas\" title=\"2 total posts\">boas-praticas<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/boas-praticas\" title=\"2 total posts\">boas praticas<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/guia\" title=\"2 total posts\">guia<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/guia\" title=\"2 total posts\">Guia<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/manual-testing\" title=\"2 total posts\">manual-testing<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/qa\" title=\"2 total posts\">qa<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/qaoverflow\" title=\"2 total posts\">qaoverflow<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/testes\" title=\"2 total posts\">testes<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"\/tag\/web\" title=\"2 total posts\">web<\/a>\n",
-	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"\/archive\/april-2026\">April 2026<\/a><\/li><\/ul>"
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/2026\" title=\"2 total posts\">2026<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/automacao\" title=\"2 total posts\">automacao<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/automation\" title=\"2 total posts\">automation<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/automacao\" title=\"2 total posts\">automa\u00e7\u00e3o<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/automacao-de-testes\" title=\"2 total posts\">Automa\u00e7\u00e3o de Testes<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/boas-praticas\" title=\"2 total posts\">boas-praticas<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/boas-praticas\" title=\"2 total posts\">boas praticas<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/guia\" title=\"2 total posts\">guia<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/guia\" title=\"2 total posts\">Guia<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/manual-testing\" title=\"2 total posts\">manual-testing<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/qa\" title=\"2 total posts\">qa<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/qaoverflow\" title=\"2 total posts\">qaoverflow<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/testes\" title=\"2 total posts\">testes<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/qaoverflow.com\/tag\/web\" title=\"2 total posts\">web<\/a>\n",
+	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"https:\/\/qaoverflow.com\/archive\/april-2026\">April 2026<\/a><\/li><\/ul>"
 }
