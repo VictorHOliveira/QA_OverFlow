@@ -4,4 +4,453 @@
 <link>http://localhost/QA_OverFlow/public</link>
 <description>Informações e reviews sobre Qualidade de Software e Automação de Testes</description>
 <language>en-us</language>
+<item>
+<title>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</title>
+<description><![CDATA[<p>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático para QAs em 2026</p>
+<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p>
+<hr />
+<p>Introdução</p>
+<p>Após mais de 13 anos quebrando aplicações de forma organizada (e às vezes não tão organizada assim), aprendi que automação de testes não é sobre automatizar tudo — é sobre automatizar o certo.</p>
+<p>Ao longo da minha carreira, vi times gastarem meses automatizando cenários que nunca seriam executados novamente, enquanto testes críticos de regressão continuavam sendo executados manualmente, consumindo horas do dia de trabalho de alguém.</p>
+<p>Neste artigo, vou compartilhar uma abordagem prática e baseada em dados reais para identificar quais testes manuais merecem ser automatizados — e quais você deve deixar para trás.</p>
+<p>O Problema com a &quot;Febre da Automação&quot;</p>
+<p>É tentador. O manager pede &quot;80% de cobertura automatizada&quot;. Você começa a automatizar tudo. Seis meses depois, você tem 500 scripts de automação, mas:</p>
+<ul>
+<li>30% estão quebrados por mudanças de UI</li>
+<li>Você passa mais tempo consertando testes do que encontrando bugs</li>
+<li>O ROI (Retorno Sobre Investimento) é próximo de zero</li>
+</ul>
+<p>O resultado? Dívida técnica, equipe frustrada, e ninguém quer mais saber de automação.</p>
+<p>A solução? Uma estratégia baseada em risco, focada em impacto de negócio.</p>
+<p>Critérios para Identificar Testes que Podem Ser Automatizados</p>
+<ol>
+<li>Repetição Frequente (Alta Prioridade)</li>
+</ol>
+<p>Testes executados em todas as builds ou todos os releases são candidatos ideais para automação:</p>
+<ul>
+<li>Smoke Tests: Validação básica que precisa rodar em cada deploy</li>
+<li>Regression Tests: Suite que verifica funcionalidades já testadas</li>
+<li>Build Verification Tests (BVT): Checkpoints antes de passar para o próximo ambiente</li>
+</ul>
+<p>Dados de 2025-2026: Times que automatizam testes de regressão reduzem o tempo de testing em até 70%.</p>
+<ol>
+<li>Alto Impacto no Negócio</li>
+</ol>
+<p>Priorize testes que verificam fluxos críticos para o negócio:</p>
+<ul>
+<li>Login/Autenticação: Se o usuário não consegue logar, nada funciona</li>
+<li>Processo de Checkout: Para e-commerce, cada falha custa dinheiro direto</li>
+<li>Integração com pagamentos: Precisão é obrigatória</li>
+<li>Cadastro/Update de dados críticos: Dados errados podem causar problemas legais</li>
+</ul>
+<ol>
+<li>Testes Propensos a Erro Humano</li>
+</ol>
+<p>Algumas tarefas são tediosas demais para serem feitas manualmente sem erro:</p>
+<ul>
+<li>Validação de grandes volumes de dados</li>
+<li>Verificação de múltiplas combinações de dados (data-driven)</li>
+<li>Checks em múltiplos navegadores/dispositivos</li>
+</ul>
+<ol>
+<li>Testes de API e Integração</li>
+</ol>
+<p>APIs são excelente candidato para automação porque:</p>
+<ul>
+<li>São estáveis (não mudam tanto quanto UI)</li>
+<li>Retornam respostas claras (pass/fail)</li>
+<li>Podem ser executados rapidamente</li>
+<li>Úteis para validar backend em cada build</li>
+</ul>
+<ol>
+<li>Testes de Performance e Carga</li>
+</ol>
+<p>Impossível fazer manualmente:</p>
+<ul>
+<li>Stress testing com milhares de requisições simultâneas</li>
+<li>Load testing simulando picos de acesso</li>
+<li>Testes de endurance (execução prolongada)</li>
+</ul>
+<ol>
+<li>Testes com Dados Massivos</li>
+</ol>
+<p>Se seu teste envolve:</p>
+<ul>
+<li>Centenas de combinações de entrada</li>
+<li>Validação de dados de diferentes fontes</li>
+<li>Verificação de relatórios grandes</li>
+</ul>
+<p>Automatize. Isso é tedioso e propenso a erros manuais.</p>
+<p>Critérios para Manter Testes Manuais</p>
+<p>Nem tudo deve ser automatizado. Alguns testes são melhor feitos por humanos:</p>
+<ol>
+<li>Testes Exploratórios</li>
+</ol>
+<p>O tester navegando pela aplicação, achando bugs que ninguém esperava. Isso não se programa.</p>
+<ol>
+<li>Testes de UX/UI (Subjetivos)</li>
+</ol>
+<ul>
+<li>&quot;A cor está boa?&quot;</li>
+<li>&quot;O espaçamento está agradável?&quot;</li>
+<li>&quot;A experiência faz sentido?&quot;</li>
+</ul>
+<p>O olho humano é insubstituível aqui.</p>
+<ol>
+<li>Funcionalidades em Constante Mudança</li>
+</ol>
+<p>Aplicação ainda em desenvolvimento ativo? Muita coisa mudando todo dia?</p>
+<ul>
+<li>Cada mudança quebra scripts de automação</li>
+<li>O custo de manutenção supera o benefício</li>
+<li>Melhor esperar estabilizar</li>
+</ul>
+<ol>
+<li>Testes de Accessibilidade</li>
+</ol>
+<p>Validar se a aplicação é acessível para pessoas com deficiência — requer avaliação humana.</p>
+<ol>
+<li>Funcionalidades Anti-Automação</li>
+</ol>
+<ul>
+<li>CAPTCHA, autenticação biométrica, OTPs</li>
+<li>Testes de segurança que simulam ataques</li>
+</ul>
+<p>Matriz de Decisão: O Que Automatizar?</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Recomendação</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teste executado em toda build</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Regression suite grande</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Login, checkout, pagamento</td>
+<td>Automatizar</td>
+<td>Crítica</td>
+</tr>
+<tr>
+<td>Validação com múltiplos dados</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>API e serviços</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Performance/stress</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>UX/UI subjetivo</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Funcionalidade nova instável</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Exploratório</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>one-off (executado 1x)</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Como Priorizar: Abordagem Prática</p>
+<p>Passo 1: Mapeie Seus Testes</p>
+<p>Liste todos os testes manuais existentes e categorize:</p>
+<ul>
+<li>Frequência de execução</li>
+<li>Tempo para executar manualmente</li>
+<li>Impacto se falhar</li>
+</ul>
+<p>Passo 2: Calcule o ROI</p>
+<p>ROI = (Tempo salvo por automação) - (Custo para criar/manter automação)</p>
+<p>Se um teste leva 1 hora para executar manualmente e rodamos 2x por semana:</p>
+<ul>
+<li>Por mês: 8 horas</li>
+<li>Em 6 meses: 48 horas</li>
+</ul>
+<p>Se lever 2 dias para automatizar, já compensa.</p>
+<p>Passo 3: Comece Pequeno</p>
+<p>Não tente automatizar tudo de uma vez. Comece com:</p>
+<ol>
+<li>Smoke Test: 5-10 cenários críticos</li>
+<li>Regression básica: 20-30 cenários principais</li>
+<li>API Tests: Validate principais endpoints</li>
+</ol>
+<p>Passo 4: Métricas para Acompanhar</p>
+<ul>
+<li>Tempo economizado por semana</li>
+<li>Número de bugs encontrados por automação vs manual</li>
+<li>Taxa de &quot;flaky tests&quot; (testes que falham aleatoriamente)</li>
+<li>Tempo gasto mantendo scripts</li>
+</ul>
+<p>Armadilhas Fatais (Aprendi da Forma Difícil)</p>
+<ol>
+<li>
+<p>Não automatizar testes que mudam muito: UI instável = manutenção constante</p>
+</li>
+<li>
+<p>Ignorar a regra 80/20: 20% dos testes cobrem 80% dos bugs. Encontre esses 20%.</p>
+</li>
+<li>
+<p>Escrever testes frágeis: &quot;Se o usuário clicou em A, então B, então C...&quot; — simplifique</p>
+</li>
+<li>
+<p>Não ter estratégia de dados: Dados inconsistentes = testes falham mesmo sem bug</p>
+</li>
+<li>Esquecer da documentação: Se só você entende seu script, você tem um problema</li>
+</ol>
+<p>Conclusão</p>
+<p>Automatizar testes não é sobre transformar QA em programação. É sobre:</p>
+<ul>
+<li>Liberar tempo do time para tarefas de maior valor</li>
+<li>Aumentar a confiança em releases frequentes</li>
+<li>Reduzir erros humanos em tarefas repetitivas</li>
+</ul>
+<p>A chave é: automatize menos, mas melhor. Escolha os testes certos, invista em uma boa estrutura (framework), e meça constantemente o retorno.</p>
+<p>E lembre-se: o melhor tester automatizado é aquele que sabe quando não automatizar.</p>]]></description>
+<link>http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico</link>
+<pubDate>Sat, 25 Apr 2026 10:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</title>
+<description><![CDATA[<p>Por um QA Sênior — 13 anos quebrando coisas de forma organizada</p>
+<p>Ao longo de quase uma década e meia construindo e reconstruindo suítes de automação, testemunhei um padrão (sem trocadilho) repetido à exaustão: projetos começam lindos, organizados, promissores. Seis meses depois, são um Frankenstein de código duplicado, lógica de negócio vazando para os testes e manutenção que consome 70% do tempo do time.</p>
+<p>O problema raramente é a ferramenta (Cypress, Playwright, Selenium, o que vier amanhã). O problema é arquitetural. E a boa notícia é que os Design Patterns de teste — bem aplicados — são imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organização, não técnicos de sintaxe.</p>
+<p>Vamos ao que interessa: os padrões que realmente entregam valor em 2026, com exemplos práticos e armadilhas fatais.</p>
+<ol>
+<li>Page Object Model (POM) — Clássico, Mas Nem Todo Mundo Sabe Usar</li>
+</ol>
+<p>O POM é o avô dos patterns de automação. Todo mundo conhece, mas poucos aplicam corretamente. O princípio é simples: cada página ou componente da UI é representado por uma classe que expõe apenas ações de alto nível.</p>
+<p>Exemplo do que NÃO fazer (anti-pattern visto semanalmente):</p>
+<h1>Mau uso: Page Object virou localizador glorificado</h1>
+<p>class LoginPage:
+username_input = &quot;#username&quot;
+password_input = &quot;#password&quot;
+login_button = &quot;#login&quot;</p>
+<pre><code>def type_username(self, text):
+         driver.find_element(self.username_input).send_keys(text)</code></pre>
+<p>Isso não é um Page Object, é um repositório de seletores com métodos anêmicos. O verdadeiro POM encapsula comportamento, não elementos.</p>
+<p>Exemplo correto:</p>
+<h1>Page Object comportamental</h1>
+<p>class LoginPage:
+def <strong>init</strong>(self, page):
+self.page = page</p>
+<pre><code>def login_as(self, user_type):
+    """Ação de alto nível que encapsula toda a sequência"""
+    if user_type == "standard":
+        self._fill_credentials("standard_user", "secret_sauce")
+    elif user_type == "locked":
+        self._fill_credentials("locked_user", "secret_sauce")
+
+    self.click_login()
+    return InventoryPage(self.page)
+
+def get_error_message(self):
+    return self.page.locator("[data-test='error']").text_content()
+
+def _fill_credentials(self, username, password):
+    self.page.fill("#user-name", username)
+    self.page.fill("#password", password)
+
+def click_login(self):
+    self.page.click("#login-button")</code></pre>
+<p>A regra de ouro: Um método no Page Object deve retornar outro Page Object (fluxo feliz) ou dados (extração de informação). Nunca expor elementos ou ações cruas.</p>
+<ol>
+<li>Test Data Factory — O Pattern Mais Subestimado</li>
+</ol>
+<p>O assassino silenciador da produtividade: testes que dependem de dados hardcoded.</p>
+<h1>Dados espalhados e frágeis</h1>
+<p>def test_login():
+user = &quot;john.doe@example.com&quot;
+password = &quot;Test@123&quot;</p>
+<h1>Data Factory</h1>
+<p>class UserFactory:
+@staticmethod
+def standard_user():
+return User(
+email = f&quot;test+{uuid4()}@example.com&quot;,
+password = &quot;P@ssw0rd!&quot;,
+role = &quot;customer&quot;
+)</p>
+<pre><code>@staticmethod
+def admin_user():
+    return User(
+        email = f"admin+{uuid4()}@example.com",
+        password = "Admin@456",
+        role = "admin",
+        permissions = ["read", "write", "delete"]
+    )</code></pre>
+<ol>
+<li>Builder Pattern — Para Cenários de Dados Complexos</li>
+</ol>
+<p>Quando sua entidade tem 15+ campos opcionais, o Builder impede a explosão de construtores.</p>
+<p>class OrderBuilder:
+def <strong>init</strong>(self):
+self.order = {&quot;customer_id&quot;: 1, &quot;items&quot;: []}</p>
+<pre><code>def with_items(self, items):
+    self.order["items"] = items
+    return self
+def with_coupon(self, code):
+    self.order["coupon_code"] = code
+    return self
+def build(self):
+    return self.order</code></pre>
+<h1>Uso fluente e legível</h1>
+<p>order = (OrderBuilder()
+.with_items([product1, product2])
+.with_coupon(&quot;BLACKFRIDAY&quot;)
+.build())</p>
+<ol>
+<li>Facade Pattern — Orquestrando Múltiplos Page Objects</li>
+</ol>
+<p>class CheckoutFacade:
+def <strong>init</strong>(self, page):
+self.cart = CartPage(page)
+self.checkout = CheckoutPage(page)</p>
+<pre><code>def complete_purchase(self, user, cart_items):
+    self.cart.add_items(cart_items)
+    self.checkout.fill_shipping(user.address)
+    return self.confirmation.get_order_number()</code></pre>
+<h1>Teste limpo e focado em negócio</h1>
+<p>def test_guest_checkout():
+facade = CheckoutFacade(page)
+order_id = facade.complete_purchase(user, products)
+assert order_id is not None</p>
+<ol>
+<li>Strategy Pattern — Lidando com Múltiplos Contextos</li>
+</ol>
+<p>class AuthenticationStrategy(ABC):
+@abstractmethod
+def login(self, credentials): pass</p>
+<p>class WebAuthStrategy(AuthenticationStrategy):
+def login(self, credentials):
+self.page.goto(&quot;/login&quot;)
+self.page.fill(&quot;#email&quot;, credentials.email)</p>
+<p>class APIAuthStrategy(AuthenticationStrategy):
+def login(self, credentials):
+response = self.api_client.post(&quot;/auth/login&quot;, json=credentials)
+self.token = response.json()[&quot;token&quot;]</p>
+<h1>Mesmo teste com diferentes estratégias</h1>
+<p>def test_user_profile(auth_strategy):
+auth_strategy.login(test_user)</p>
+<ol>
+<li>Singleton Pattern (Com Moderação) — Para Recursos Caros</li>
+</ol>
+<p>class DriverManager:
+_instance = None
+def <strong>new</strong>(cls):
+if cls._instance is None:
+cls._instance = super().<strong>new</strong>(cls)
+cls._instance._initialize()
+return cls._instance</p>
+<p>Cuidado: Singleton pode esconder problemas de paralelização. Prefira injeção de dependência quando possível.</p>
+<ol>
+<li>Repository Pattern — Centralizando Seletores</li>
+</ol>
+<p>class LoginRepository:
+USERNAME_INPUT = &quot;input[data-test='username']&quot;
+PASSWORD_INPUT = &quot;input[data-test='password']&quot;
+LOGIN_BUTTON = &quot;input[data-test='login-button']&quot;</p>
+<pre><code>@staticmethod
+def get_user_menu_item(user_name):
+    return f"div.user-menu:has-text('{user_name}')"</code></pre>
+<p>Vantagem: Quando um dev renomeia data-testid, você altera em UM lugar.</p>
+<p>Conclusão: Padrões Não São Receita de Bolo</p>
+<p>Aprendi da pior maneira: aplicar todos os padrões de uma vez é tão ruim quanto aplicar nenhum. O segredo é evolução incremental.</p>
+<p>Comece com POM. Quando sentir dor de dados repetidos, adicione Factory. Quando os testes ficarem muito longos, introduza Facade.</p>
+<p>A boa arquitetura não é imposta desde o dia 1 — ela emerge para resolver dores reais do time. E a melhor métrica de sucesso é simples: quanto tempo leva para você adicionar um teste para uma nova funcionalidade? Se a resposta for &quot;minutos&quot;, você acertou.</p>
+<p>Agora vá e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do próximo QA) vão te agradecer. 🧱</p>
+<p>— QA Sênior que já refatorou mais código de teste do que gostaria de admitir</p>]]></description>
+<link>http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos</link>
+<pubDate>Fri, 24 Apr 2026 20:35:00 +0500</pubDate>
+</item>
+<item>
+<title>Boas Práticas em Automação de Testes: Um Guia para 2026</title>
+<description><![CDATA[<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p>
+<p>Se há uma coisa que aprendi em mais de 13 anos de QA — testando desde aplicações monolíticas com C# até microsserviços efêmeros com Python e ferramentas de IA — é que automação não é sobre código, é sobre risco. Passei por projetos onde tínhamos mais de 5.000 scripts de automação, uma cobertura de 85%, e ainda assim bugs críticos escapavam para produção. O problema? Estávamos presos a &quot;métricas de vaidade&quot; e práticas que, embora populares, estavam nos afogando em dívida técnica.</p>
+<p>A boa notícia é que o cenário em 2026 mudou drasticamente. Com a ascensão da IA Agêntica e a maturidade do DevOps, temos a oportunidade de reescrever as regras. Este artigo não é sobre teoria; é um compêndio de boas práticas que eu gostaria de ter conhecido no início da minha carreira, atualizadas para a realidade de hoje.</p>
+<ol>
+<li>A Morte da &quot;Febre da Cobertura&quot; e o Nascimento da Automação Baseada em Risco</li>
+</ol>
+<p>Por muito tempo, fomos medidos por um número: cobertura de testes automatizados. Gestores pediam 80%, 90%, mas ninguém perguntava: esses testes protegem o que realmente importa?</p>
+<p>Na minha experiência, uma suíte de automação inchada se torna um passivo, não um ativo. Você gasta mais tempo consertando testes quebrados por mudanças de layout do que encontrando bugs reais. Estudos recentes de 2026 confirmam que quando a cobertura ultrapassa 80%, cada 1% adicional consome 30% mais recursos, com retorno decrescente.</p>
+<p>Boas Práticas em 2026:</p>
+<ul>
+<li>Adote a Abordagem Baseada em Risco (RBT): Antes de automatizar, pergunte: &quot;Qual o custo disso quebrar em produção?&quot; Fluxos de pagamento, autenticação e regras fiscais vêm primeiro. Testes de &quot;footer&quot; ou cores de botão não precisam estar na esteira de CI.</li>
+<li>Abandonas as Métricas de Vaidade: Número total de casos de teste automatizados é irrelevante. Foque em Defect Escape Rate (taxa de fuga de defeitos) e Signal-to-Noise Ratio (quantos testes falham por bug real vs. falso positivo).</li>
+</ul>
+<ol>
+<li>O Fim dos Seletores Frágeis: Automação com Intenção e Self-Healing</li>
+</ol>
+<p>Quantas horas perdemos consertando XPaths quebrados porque o dev mudou um id? A automação tradicional é brittle (frágil) por natureza. Em 2026, escrever scripts baseados puramente em localizadores DOM é uma prática condenada.</p>
+<p>A indústria está migrando em massa para a automação intencional (Intent-Driven) e visual.</p>
+<p>Self-Healing (Autocura): Ferramentas modernas identificam que um elemento mudou e automaticamente corrigem o seletor em tempo de execução. Testes que antes quebravam em toda refatoração de UI agora se adaptam sozinhos.</p>
+<p>Testes Visuais com AI: Ao invés de assertions textuais vagas, usamos modelos de visão computacional (VLM) para validar layout e comportamento.</p>
+<ol>
+<li>A Revolução Agêntica: Da Instrução (Step) para a Intenção (Intent)</li>
+</ol>
+<p>A maior mudança de paradigma nos últimos 2 anos é a chegada da IA Agêntica. No passado, escrevíamos &quot;Clique no botão X, espere Y, digite Z&quot;. Hoje, dizemos ao sistema: &quot;Finalize a compra do produto X com cartão inválido e verifique a mensagem de erro&quot;.</p>
+<p>O que isso muda na prática?</p>
+<ul>
+<li>Manutenção Zero: O agente entende a semântica da página. Se o botão &quot;Finalizar&quot; mudar de lugar, ele encontra.</li>
+<li>Teste entre Plataformas: O mesmo comando em linguagem natural funciona para Web, iOS e Android.</li>
+</ul>
+<ol>
+<li>Arquitetura de Testes: O Modelo &quot;Honeycomb&quot; e a Pirâmide Invertida</li>
+</ol>
+<p>Com a popularização dos microsserviços e da Integração Contínua, a pirâmide está cedendo lugar para o Modelo Honeycomb.</p>
+<ul>
+<li>Testes de Contrato (Pact/OpenAPI): Cruciais para garantir que o Serviço A não quebre o Serviço B.</li>
+<li>Testes de Integração: Médio volume, alto impacto.</li>
+<li>Testes E2E (UI): Apenas para os happy paths críticos e fluxos de jornada do usuário.</li>
+</ul>
+<ol>
+<li>Dados e Ambientes como Código (EaC)</li>
+</ol>
+<p>Teste flaky geralmente é culpa de ambiente ou dado, não do código. Em 2026, não há desculpa para ambientes inconsistentes.</p>
+<ul>
+<li>Ambiente como Código: Use ferramentas como Terraform ou Docker Compose para subir seu ambiente de teste com um comando.</li>
+<li>Dados Gerenciados: Hard-Coding de dados é a receita do desastre. Pratique Data Seeding controlado ou use Geração de Dados Sintéticos com IA.</li>
+</ul>
+<ol>
+<li>A Integração Contínua (CI) Inteligente</li>
+</ol>
+<p>Rodar todos os testes para qualquer commit é coisa do passado. As boas práticas atuais envolvem Test Impact Analysis (TIA).</p>
+<p>Configure esteiras para rodar testes específicos baseados no diff do código.</p>
+<p>Resumo para o Líder Técnico (Checklist 2026)</p>
+<ul>
+<li>Governança é Life: Código de teste é código de produção.</li>
+<li>IA é sua Ferramenta, não seu Dono: Use IA para gerar o esqueleto do teste, mas mantenha o controle sobre as regras de negócio.</li>
+<li>Ambiente Imutável: Se não conseguir subir o ambiente com um script, sua automação vai falhar.</li>
+<li>Monitore a Confiança: Prefiro uma suíte com 50 testes super estáveis e relevantes do que 500 testes flaky.</li>
+</ul>
+<p>Vamos para a trincheira! 🚀</p>]]></description>
+<link>http://localhost/QA_OverFlow/public/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026</link>
+<pubDate>Wed, 22 Apr 2026 17:37:00 +0500</pubDate>
+</item>
 </channel></rss>
