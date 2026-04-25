@@ -31,74 +31,49 @@
 
 session_start();
 
-// autoload dependencies automatically via magical composer autoload
 require_once __DIR__ . '/vendor/autoload.php';
-
-// website configuration file
 require_once 'config.php';
+require_once 'files/functions.php';
 
-// set default timezone
 date_default_timezone_set('Asia/Karachi');
 
-// set error reporting
 if ($config['mode'] === 'development') {
     ini_set('display_errors', true);
     error_reporting(1);
 }
 
-// path to save logs to
 $logWriter = new \Slim\LogWriter(fopen($config['log_path'] . 'applog.log', 'a+'));
 
-// instantiate slim framework
-$options = array(
-   'debug' => $config['debug'],
-   'templates.path' => 'views/',
-   'mode' => $config['mode'],
-   'log.writer' => $logWriter,
-   'cookies.encrypt' => true,
-   'cookies.cipher' => MCRYPT_RIJNDAEL_256,
-   'cookies.secret_key' => md5('@!secret!@'),
-   'cookies.lifetime' => '20 minutes'
-);
+$app = new \Slim\Slim([
+    'debug' => $config['debug'],
+    'templates.path' => 'views/',
+    'mode' => $config['mode'],
+    'log.writer' => $logWriter,
+    'cookies.encrypt' => false,
+    'cookies.secret_key' => md5('@!secret!@'),
+    'cookies.lifetime' => '20 minutes'
+]);
 
-$app = new \Slim\Slim($options);
-$app->setName($config['appname']); // later in view for example: $app->getName()
+$app->setName($config['appname']);
 
-$app->hook(
-   'slim.before.router',
-   function () use ($app, $config) {
+$app->hook('slim.before.router', function () use ($app, $config) {
+    $setting = new \BloggerCMS\Setting();
+    $app->view()->setData('app', $app);
+    $app->view()->setData('root', ltrim(dirname($_SERVER['SCRIPT_NAME']), '\\'));
+    $app->view()->setData('layoutsDir', dirname(__FILE__) . '/layouts/');
+    $app->view()->setData('dateFormat', $config['dateFormat']);
+    $app->view()->setData('blogURL', $setting->getBlogURL());
+});
 
-       $setting = new \BloggerCMS\Setting();
-
-       $app->view()->setData('app', $app); // we can now use $app in views
-       $app->view()->setData('root', ltrim(dirname($_SERVER['SCRIPT_NAME']), '\\'));
-       $app->view()->setData('layoutsDir', dirname(__FILE__) . '/layouts/');
-       $app->view()->setData('dateFormat', $config['dateFormat']);
-       $app->view()->setData('blogURL', $setting->getBlogURL());
-   }
-);
-
-// slim environment
-$environment = \Slim\Environment::getInstance();
-
-// logging
 $log = $app->getLog();
 $log->setEnabled(false);
 
 if ($config['mode'] === 'development') {
-    $app->configureMode(
-       'development',
-       function () use ($log) {
-            /*
-           $log->setLevel(\Slim\Log::DEBUG);
-           $log->setEnabled(true);
-           $log->debug("Application Started...");
-           */
-       }
-    );
+    $app->configureMode('development', function () use ($log) {
+        // $log->setLevel(\Slim\Log::DEBUG);
+        // $log->setEnabled(true);
+    });
 }
 
-// routes file
 require_once 'routes.php';
-
 $app->run();

@@ -1,94 +1,17 @@
 <?php
-/**
- * BloggerCMS - Easiest Static Blog Generator
- *
- * @author      Sarfraz Ahmed <sarfraznawaz2005@gmail.com>
- * @copyright   2015 Sarfraz Ahmed
- * @link        https://bloggercms.github.io
- * @version     1.0.0
- *
- * MIT LICENSE
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
 
-///////////////////////////////////////////////////////////
-//  utility functions
-///////////////////////////////////////////////////////////
-
-/**
- * pretty_print
- *
- * Prints an array in easy to read format
- *
- * @param array $array
- * @param bool $exit
- * @return mixed
- */
-function pretty_print(array $array, $exit = true)
+if (!function_exists('arrayFlatten')) {
+function arrayFlatten($array)
 {
-    if (!$array) {
-        return false;
-    }
-
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-
-    if ($exit) {
-        exit;
-    }
+    $return = [];
+    array_walk_recursive($array, function ($a) use (&$return) {
+        $return[] = $a;
+    });
+    return $return;
+}
 }
 
-/**
- * dd
- *
- * var_dumps given data and dies
- *
- * @param $data
- * @return mixed
- */
-function dd($data)
-{
-    if (!$data) {
-        return false;
-    }
-
-    echo '<pre>';
-    var_dump($data);
-    echo '</pre>';
-
-    exit;
-}
-
-/**
- * logConsole
- *
- * Logs messages/variables/data to browser console from within php
- *
- * @param $name
- * @param null $data
- * @param bool $jsEval
- * @return bool
- * @author Sarfraz
- */
+if (!function_exists('logConsole')) {
 function logConsole($name, $data = null, $jsEval = false)
 {
     if (!$name) {
@@ -105,7 +28,6 @@ function logConsole($name, $data = null, $jsEval = false)
         $data = json_encode($data);
     }
 
-    # sanitalize
     $data = $data ? $data : '';
     $search_array = array("#'#", '#""#', "#''#", "#\n#", "#\r\n#");
     $replace_array = array('"', '', '', '\\n', '\\n');
@@ -114,272 +36,19 @@ function logConsole($name, $data = null, $jsEval = false)
     $data = $isevaled ? $data : ($data[0] === "'") ? $data : "'" . $data . "'";
 
     $js = <<<JSCODE
-\n<script>
-     // fallback - to deal with IE (or browsers that don't have console)
-     if (! window.console) console = {};
-     console.log = console.log || function(name, data){};
-     // end of fallback
-
-     console.log('$name');
-     console.log('------------------------------------------');
-     console.log('$type');
-     console.log($data);
-     console.log('\\n');
+<script>
+console.log('$name', $data);
 </script>
 JSCODE;
 
-    //echo @$js;
+    return $js;
+}
 }
 
-/**
- * varLog
- *
- * Logs messages/variables/data to browser by creating custom console/floating window at bottom
- *
- * @param $name
- * @param $data
- * @author Sarfraz
- */
-function varLog($name, $data)
-{
-    $type = ($data || gettype($data)) ? gettype($data) : '';
-
-    $output = $data;
-    if (is_array($data) || is_object($data)) {
-        $output = '<table style="color:#fff; font-size:14px;" width="100%"><tr><td width="100" style="border:1px solid #ccc; border-bottom:0;"><strong>Propery</strong></td><td width="100" style="border:1px solid #ccc; border-bottom:0;"><strong>Value</strong></td></tr>';
-
-        foreach ($data as $key => $value) {
-            $key = preg_replace('~[\r\n]+~', '', $key);
-            $value = preg_replace('~[\r\n]+~', '', $value);
-
-            $output .= '<table style="color:#fff; font-size:13px;" width="100%"><tr><td width="100" style="border:1px solid #ccc; border-bottom:0;">' . $key . '</td><td width="100" style="border:1px solid #ccc; border-bottom:0;">' . $value . '</td></tr></table>';
-        }
-    }
-
-    $js = <<< JSCODE
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        (function () {
-            var varlog = document.createElement('div');
-            var stylesObject = {
-                "position": "fixed",
-                "bottom": "5px",
-                "right": "0",
-                "left": "0",
-                "min-height": "100px",
-                "height": "auto",
-                "width": "75%",
-                "margin": "auto",
-                "overflow": "auto",
-                "background": "rgba(11,22,33, 0.7)",
-                "box-shadow": "0 0 5px 5px gray",
-                "color":"#fff",
-                "padding": "5px",
-                "font-family": "tahoma",
-                "font-size": "12px",
-                "border-radius": "10px",
-                "border": "1px solid white"
-            };
-
-            // set styles
-            for (var style in stylesObject) {
-                if (stylesObject.hasOwnProperty(style)) {
-                    varlog.style[style] = stylesObject[style];
-                }
-            }
-
-            // set content
-            varlog.innerHTML = '<strong style="font-size:16px;">$name (type: $type)</strong><hr style="margin:0;"><br>';
-            varlog.innerHTML += '$output';
-
-            // show now
-            document.body.appendChild(varlog);
-
-        }());
-    });
-
-    </script>
-JSCODE;
-
-    echo $js;
-}
-
-function getTimeDate()
-{
-    return date('Y-m-d h:i:s');
-}
-
-function in_multiarray($elem, $array)
-{
-    $top = sizeof($array) - 1;
-    $bottom = 0;
-    while ($bottom <= $top) {
-        if ($array[$bottom] == $elem) {
-            return true;
-        } else {
-            if (is_array($array[$bottom])) {
-                if (in_multiarray($elem, ($array[$bottom]))) {
-                    return true;
-                }
-            }
-        }
-
-        $bottom ++;
-    }
-
-    return false;
-}
-
-function dateFormat($date, $addTime = false)
-{
-    if (strtotime($date)) {
-
-        if ($addTime) {
-            return date('F d, Y h:i', strtotime($date));
-        }
-
-        return date('F d, Y', strtotime($date));
-    }
-
-    return '';
-}
-
-function getMysqlDate($date)
-{
-    if (!$date) {
-        return false;
-    }
-
-    return date('Y-m-d', strtotime($date));
-}
-
-function getMysqlDateTime($datetime)
-{
-    return date('Y-m-d h:i:s', strtotime($datetime));
-}
-
-function checkDateInRange($startDate, $endDate, $userDate)
-{
-    $start_ts = strtotime($startDate);
-    $end_ts = strtotime($endDate);
-    $user_ts = strtotime($userDate);
-
-    return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
-}
-
-function arrayFlatten(array $array)
-{
-    $flat = array(); // initialize return array
-    $stack = array_values($array); // initialize stack
-    while ($stack) // process stack until done
-    {
-        $value = array_shift($stack);
-        if (is_array($value)) // a value to further process
-        {
-            $stack = array_merge(array_values($value), $stack);
-        } else // a value to take
-        {
-            $flat[] = $value;
-        }
-    }
-
-    return $flat;
-}
-
-function fullURL()
-{
-    $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
-    $sp = strtolower($_SERVER["SERVER_PROTOCOL"]);
-    $protocol = substr($sp, 0, strpos($sp, "/")) . $s;
-    $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
-
-    return $protocol . "://" . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
-}
-
-function toggleEncryption($text, $key = '')
-{
-    // return text unaltered if the key is blank
-    if ($key == '') {
-        $key = '!@a7z%^&*|+';
-    }
-
-    // remove the spaces in the key
-    $key = str_replace(' ', '', $key);
-    if (strlen($key) < 8) {
-        exit('key error');
-    }
-    // set key length to be no more than 32 characters
-    $key_len = strlen($key);
-    if ($key_len > 32) {
-        $key_len = 32;
-    }
-
-    $k = array(); // key array
-    // fill key array with the bitwise AND of the ith key character and 0x1F
-    for ($i = 0; $i < $key_len; ++ $i) {
-        $k[$i] = ord($key{$i}) & 0x1F;
-    }
-
-    // perform encryption/decryption
-    for ($i = 0; $i < strlen($text); ++ $i) {
-        $e = ord($text{$i});
-        // if the bitwise AND of this character and 0xE0 is non-zero
-        // set this character to the bitwise XOR of itself
-        // and the ith key element, wrapping around key length
-        // else leave this character alone
-        if ($e & 0xE0) {
-            $text{$i} = chr($e ^ $k[$i % $key_len]);
-        }
-    }
-
-    return $text;
-}
-
-/*
-    // usage example
-    $results = array();
-    $results[] = benchmark('myfunc', 'arg1', 10);
-    $results[] = benchmark('myfunc2', array('arg1', 'arg2'));
-    $results[] = benchmark('myfunc3');
-    print_r($results);
-
- */
-function benchmark($function, $args = null, $iterations = 1, $timeout = 0)
-{
-    set_time_limit($timeout);
-
-    if (is_callable($function) === true) {
-        list($usec, $sec) = explode(" ", microtime());
-        $start = ((float) $usec + (float) $sec);
-
-        for ($i = 1; $i <= $iterations; ++ $i) {
-            call_user_func_array($function, (array) $args);
-        }
-
-        list($usec, $sec) = explode(" ", microtime());
-        $end = ((float) $usec + (float) $sec);
-
-        return round(($end - $start), 4);
-    }
-
-    return false;
-}
-
-function getFilterData($array)
-{
-    $data = '';
-
-    $array = arrayFlatten($array);
-
-    foreach ($array as $value) {
-        $data .= '"' . $value . '",';
-    }
-
-    return rtrim($data, ',');
-}
-
+if (!function_exists('getSlugName')) {
 function getSlugName($string)
 {
+    $string = remove_accents($string);
     $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $string);
     $clean = strtolower(trim($clean, '-'));
     $clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
@@ -387,7 +56,31 @@ function getSlugName($string)
 
     return $clean;
 }
+}
 
+if (!function_exists('remove_accents')) {
+function remove_accents($string)
+{
+    $transliteration = array(
+        'Á' => 'A', 'À' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A',
+        'á' => 'a', 'à' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a',
+        'É' => 'E', 'È' => 'E', 'Ê' => 'E', 'Ë' => 'E',
+        'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e',
+        'Í' => 'I', 'Ì' => 'I', 'Î' => 'I', 'Ï' => 'I',
+        'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i',
+        'Ó' => 'O', 'Ò' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O',
+        'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o',
+        'Ú' => 'U', 'Ù' => 'U', 'Û' => 'U', 'Ü' => 'U',
+        'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u',
+        'Ç' => 'C', 'ç' => 'c',
+        'Ñ' => 'N', 'ñ' => 'n'
+    );
+
+    return strtr($string, $transliteration);
+}
+}
+
+if (!function_exists('copy_directory')) {
 function copy_directory($source, $destination)
 {
     if (is_dir($source)) {
@@ -404,19 +97,20 @@ function copy_directory($source, $destination)
 
             if (is_dir($PathDir)) {
                 copy_directory($PathDir, $destination . '/' . $readdirectory);
-                continue;
-            }
+            } else {
 
-            copy($PathDir, $destination . '/' . $readdirectory);
+                copy($PathDir, $destination . '/' . $readdirectory);
+            }
         }
 
         $directory->close();
-
     } else {
         copy($source, $destination);
     }
 }
+}
 
+if (!function_exists('rrmdir')) {
 function rrmdir($dir)
 {
     if (is_dir($dir)) {
@@ -433,4 +127,191 @@ function rrmdir($dir)
         reset($objects);
         rmdir($dir);
     }
+}
+}
+
+if (!function_exists('getFilterData')) {
+function getFilterData($array)
+{
+    $data = '';
+
+    $array = arrayFlatten($array);
+
+    foreach ($array as $value) {
+        $data .= '"' . $value . '",';
+    }
+
+return rtrim($data, ',');
+}
+}
+
+if (!function_exists('get_client_ip')) {
+function get_client_ip($proxy = false)
+{
+    if ($proxy) {
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+
+            return trim($ips[count($ips) - 1]);
+        }
+
+        if (isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        }
+    }
+
+    return (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+}
+}
+
+if (!function_exists('get_client_browser')) {
+function get_client_browser()
+{
+    $browser = 'Unknown';
+
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+
+        if (preg_match('/MSIE/i', $ua) && !preg_match('/Opera/i', $ua)) {
+            $browser = 'IE';
+        } elseif (preg_match('/Firefox/i', $ua)) {
+            $browser = 'Firefox';
+        } elseif (preg_match('/Chrome/i', $ua)) {
+            $browser = 'Chrome';
+        } elseif (preg_match('/Safari/i', $ua)) {
+            $browser = 'Safari';
+        } elseif (preg_match('/Opera/i', $ua)) {
+            $browser = 'Opera';
+        } elseif (preg_match('/Netscape/i', $ua)) {
+            $browser = 'Netscape';
+        }
+    }
+
+    return $browser;
+}
+}
+
+if (!function_exists('is_bot')) {
+function is_bot()
+{
+    $bot = false;
+
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+
+        $bots = array('Googlebot', 'Googlebot-Image', 'Mediapartners-Google', 'AdsBot-Google', 'Yahoo! Slurp', 'YahooSeeker', 'Yandex', 'bingbot', 'Inktomi', 'Slurp', 'WebCrawler', 'Heraclix', 'alexa', 'ask jeeves', 'baidu', 'webmechanic');
+
+        foreach ($bots as $b) {
+            if (preg_match('/' . $b . '/i', $ua)) {
+                $bot = true;
+
+                break;
+            }
+        }
+    }
+
+    return $bot;
+}
+}
+
+if (!function_exists('get_image')) {
+function get_image($url, $save_to)
+{
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_XOAUTH2_BEARER, $save_to);
+
+    $fp = fopen($save_to, 'w+');
+
+    curl_setopt($ch, CURLOPT_FILE, $fp);
+
+    curl_exec($ch);
+    curl_close($ch);
+
+    fclose($fp);
+
+    $image = getimagesize($save_to);
+
+    if (!$image) {
+        unlink($save_to);
+
+        return false;
+    }
+
+    return true;
+}
+}
+
+if (!function_exists('time_ago')) {
+function time_ago($time, $offset = null)
+{
+    $time = is_numeric($time) ? $time : strtotime($time);
+    $offset = is_numeric($offset) ? $offset : strtotime($offset);
+
+    $text = '';
+
+    $curr = !$offset ? time() : $offset;
+    $dif = $curr - $time;
+
+    $periods = array(
+        'second' => 60,
+        'minute' => 60,
+        'hour' => 24,
+        'day' => 7,
+        'week' => 4,
+        'month' => 12,
+        'year' => 10
+    );
+
+    if ($dif < 15) {
+        $text = 'just now';
+    } else {
+        foreach ($periods as $period => $value) {
+            if ($dif >= $value) {
+                $time = floor($dif / $value);
+                $dif = floor($dif % $value);
+            } else {
+                break;
+            }
+        }
+
+        $text = "$time $period" . ($time > 1 ? 's' : '');
+    }
+
+    return $text;
+}
+}
+
+if (!function_exists('is_serialized')) {
+function is_serialized($data)
+{
+    $data = trim($data);
+
+    if ($data === 'b:0;' || $data === 'B:0;') {
+        return true;
+    }
+
+    return (bool) preg_match('/^([sbaOdi]):/', $data);
+}
+}
+
+if (!function_exists('request')) {
+function request($key, $default = false)
+{
+    $value = $default;
+
+    if (isset($_GET[$key])) {
+        $value = $_GET[$key];
+    } elseif (isset($_POST[$key])) {
+        $value = $_POST[$key];
+    } elseif (isset($_REQUEST[$key])) {
+        $value = $_REQUEST[$key];
+    }
+
+    return $value;
+}
 }

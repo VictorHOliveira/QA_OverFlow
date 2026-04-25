@@ -31,11 +31,21 @@
                             <form action="<?php echo $root; ?>/update_setting" method="post">
                                 <div class="row">
                                     <div class="form-group col-lg-4">
-                                        <label for="url">Blog URL</label>
+                                        <label for="url">Blog URL (Local)</label>
                                         <input required type="text" id="url" name="url" class="form-control" value="<?php echo $data['url']; ?>">
 
-                                        <p class="help-block">This will be used for linking. Example:
-                                            http://www.myblog.com</p>
+                                        <p class="help-block">Local URL for development. Example:
+                                            http://localhost/QA_OverFlow/public</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label for="url_prod">Blog URL (Produção)</label>
+                                        <input type="text" id="url_prod" name="url_prod" class="form-control" value="<?php echo $data['url_prod'] ?? ''; ?>">
+
+                                        <p class="help-block">Production URL. Example:
+                                            https://qaoverflow.com</p>
                                     </div>
                                 </div>
 
@@ -107,19 +117,13 @@
                                             <option <?php echo $data['theme'] === 'united.min.css' ? 'selected' : '' ?> value="united.min.css">
                                                 United
                                             </option>
+                                            <option <?php echo $data['theme'] === 'theme.css' ? 'selected' : '' ?> value="theme.css">
+                                                Dark Custom
+                                            </option>
                                         </select>
 
                                         <p class="help-block">The theme to be used for blog. Only applicable for default
                                             theme.</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-lg-4">
-                                        <label for="disqus">Disqus Shortname</label>
-                                        <input type="text" id="disqus" name="disqus" class="form-control" value="<?php echo $data['disqus']; ?>">
-
-                                        <p class="help-block">This will be used to add Disqus commenting to posts.</p>
                                     </div>
                                 </div>
 
@@ -190,8 +194,7 @@
 
                             <p class="text-justify text-primary" style="font-size: 14px;">
                                 <i class="fa fa-info-circle"></i> With custom values, you can add any arbitrary
-                                custom values such
-                                as Google search, Stackoverflow flair, Disqus commenting code or ANY text or html you
+                                custom values such as Google search, Stackoverflow flair, or ANY text or html you
                                 want.
                             </p>
 

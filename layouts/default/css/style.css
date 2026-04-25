@@ -14,3 +14,35 @@ body {
 footer {
     margin: 10px 0;
 }
+
+/* Toast notification */
+.toast-notification {
+    visibility: hidden;
+    min-width: 300px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    right: 20px;
+    top: 100px;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.toast-notification.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@keyframes fadein {
+    from {top: 70px; opacity: 0; right: -300px;}
+    to {top: 100px; opacity: 1; right: 20px;}
+}
+
+@keyframes fadeout {
+    from {top: 100px; opacity: 1; right: 20px;}
+    to {top: 70px; opacity: 0; right: -300px;}
+}

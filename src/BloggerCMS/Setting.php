@@ -52,6 +52,7 @@ class Setting implements Crud
 
         $post['only_titles'] = isset($post['only_titles']) ? 'true' : '';
         $post['url'] = rtrim(trim($post['url']), '/');
+        $post['url_prod'] = !empty($post['url_prod']) ? rtrim(trim($post['url_prod']), '/') : '';
 
         MetaDataWriter::updateFileData($this->metaFile, $post);
 

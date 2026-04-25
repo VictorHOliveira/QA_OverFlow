@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="QA Overflow" />
+    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
+    <meta name="author" content="Victor Oliveira">
+
+    <title>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático :: QA Overflow</title>
+
+    <!-- jQuery - loaded first -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- rss feed url -->
+    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="https://qaoverflow.com/rss.xml"/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="https://qaoverflow.com/favicon.ico"/>
+
+    <!-- Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://qaoverflow.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+
+    <!-- syntax highlighter css file -->
+    <link href="https://qaoverflow.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+
+    <!-- lightbox for images -->
+    <link href="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+
+    <!-- blog custom CSS file -->
+    <link href="https://qaoverflow.com/css/style.css" rel="stylesheet"/>
+    <link href="https://qaoverflow.com/css/theme.css" rel="stylesheet"/>
+</head><body>
+<!-- Header -->
+<header class="navbar navbar-default
+ navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="https://qaoverflow.com" class="navbar-brand">QA Overflow</a>
+        </div>
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <div class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="searchQuery form-control" placeholder="Search Posts">
+                </div>
+
+                <button type="button" class="searchButton btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                    Pesquisar
+                </button>
+            </div>
+
+            <ul class="nav navbar-nav page-links">
+            </ul>
+
+        </nav>
+    </div>
+</header>
+<!-- Toast notification -->
+<div id="toast" class="toast-notification"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 main-content">
+            <article>
+                <h3>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</h3>
+                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> April 25, 2026 10:00 AM
+                <hr>
+
+                <p class="post-content"><p>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático para QAs em 2026</p>
+<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p>
+<hr />
+<p>Introdução</p>
+<p>Após mais de 13 anos quebrando aplicações de forma organizada (e às vezes não tão organizada assim), aprendi que automação de testes não é sobre automatizar tudo — é sobre automatizar o certo.</p>
+<p>Ao longo da minha carreira, vi times gastarem meses automatizando cenários que nunca seriam executados novamente, enquanto testes críticos de regressão continuavam sendo executados manualmente, consumindo horas do dia de trabalho de alguém.</p>
+<p>Neste artigo, vou compartilhar uma abordagem prática e baseada em dados reais para identificar quais testes manuais merecem ser automatizados — e quais você deve deixar para trás.</p>
+<p>O Problema com a &quot;Febre da Automação&quot;</p>
+<p>É tentador. O manager pede &quot;80% de cobertura automatizada&quot;. Você começa a automatizar tudo. Seis meses depois, você tem 500 scripts de automação, mas:</p>
+<ul>
+<li>30% estão quebrados por mudanças de UI</li>
+<li>Você passa mais tempo consertando testes do que encontrando bugs</li>
+<li>O ROI (Retorno Sobre Investimento) é próximo de zero</li>
+</ul>
+<p>O resultado? Dívida técnica, equipe frustrada, e ninguém quer mais saber de automação.</p>
+<p>A solução? Uma estratégia baseada em risco, focada em impacto de negócio.</p>
+<p>Critérios para Identificar Testes que Podem Ser Automatizados</p>
+<ol>
+<li>Repetição Frequente (Alta Prioridade)</li>
+</ol>
+<p>Testes executados em todas as builds ou todos os releases são candidatos ideais para automação:</p>
+<ul>
+<li>Smoke Tests: Validação básica que precisa rodar em cada deploy</li>
+<li>Regression Tests: Suite que verifica funcionalidades já testadas</li>
+<li>Build Verification Tests (BVT): Checkpoints antes de passar para o próximo ambiente</li>
+</ul>
+<p>Dados de 2025-2026: Times que automatizam testes de regressão reduzem o tempo de testing em até 70%.</p>
+<ol>
+<li>Alto Impacto no Negócio</li>
+</ol>
+<p>Priorize testes que verificam fluxos críticos para o negócio:</p>
+<ul>
+<li>Login/Autenticação: Se o usuário não consegue logar, nada funciona</li>
+<li>Processo de Checkout: Para e-commerce, cada falha custa dinheiro direto</li>
+<li>Integração com pagamentos: Precisão é obrigatória</li>
+<li>Cadastro/Update de dados críticos: Dados errados podem causar problemas legais</li>
+</ul>
+<ol>
+<li>Testes Propensos a Erro Humano</li>
+</ol>
+<p>Algumas tarefas são tediosas demais para serem feitas manualmente sem erro:</p>
+<ul>
+<li>Validação de grandes volumes de dados</li>
+<li>Verificação de múltiplas combinações de dados (data-driven)</li>
+<li>Checks em múltiplos navegadores/dispositivos</li>
+</ul>
+<ol>
+<li>Testes de API e Integração</li>
+</ol>
+<p>APIs são excelente candidato para automação porque:</p>
+<ul>
+<li>São estáveis (não mudam tanto quanto UI)</li>
+<li>Retornam respostas claras (pass/fail)</li>
+<li>Podem ser executados rapidamente</li>
+<li>Úteis para validar backend em cada build</li>
+</ul>
+<ol>
+<li>Testes de Performance e Carga</li>
+</ol>
+<p>Impossível fazer manualmente:</p>
+<ul>
+<li>Stress testing com milhares de requisições simultâneas</li>
+<li>Load testing simulando picos de acesso</li>
+<li>Testes de endurance (execução prolongada)</li>
+</ul>
+<ol>
+<li>Testes com Dados Massivos</li>
+</ol>
+<p>Se seu teste envolve:</p>
+<ul>
+<li>Centenas de combinações de entrada</li>
+<li>Validação de dados de diferentes fontes</li>
+<li>Verificação de relatórios grandes</li>
+</ul>
+<p>Automatize. Isso é tedioso e propenso a erros manuais.</p>
+<p>Critérios para Manter Testes Manuais</p>
+<p>Nem tudo deve ser automatizado. Alguns testes são melhor feitos por humanos:</p>
+<ol>
+<li>Testes Exploratórios</li>
+</ol>
+<p>O tester navegando pela aplicação, achando bugs que ninguém esperava. Isso não se programa.</p>
+<ol>
+<li>Testes de UX/UI (Subjetivos)</li>
+</ol>
+<ul>
+<li>&quot;A cor está boa?&quot;</li>
+<li>&quot;O espaçamento está agradável?&quot;</li>
+<li>&quot;A experiência faz sentido?&quot;</li>
+</ul>
+<p>O olho humano é insubstituível aqui.</p>
+<ol>
+<li>Funcionalidades em Constante Mudança</li>
+</ol>
+<p>Aplicação ainda em desenvolvimento ativo? Muita coisa mudando todo dia?</p>
+<ul>
+<li>Cada mudança quebra scripts de automação</li>
+<li>O custo de manutenção supera o benefício</li>
+<li>Melhor esperar estabilizar</li>
+</ul>
+<ol>
+<li>Testes de Accessibilidade</li>
+</ol>
+<p>Validar se a aplicação é acessível para pessoas com deficiência — requer avaliação humana.</p>
+<ol>
+<li>Funcionalidades Anti-Automação</li>
+</ol>
+<ul>
+<li>CAPTCHA, autenticação biométrica, OTPs</li>
+<li>Testes de segurança que simulam ataques</li>
+</ul>
+<p>Matriz de Decisão: O Que Automatizar?</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Recomendação</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teste executado em toda build</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Regression suite grande</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Login, checkout, pagamento</td>
+<td>Automatizar</td>
+<td>Crítica</td>
+</tr>
+<tr>
+<td>Validação com múltiplos dados</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>API e serviços</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Performance/stress</td>
+<td>Automatizar</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>UX/UI subjetivo</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Funcionalidade nova instável</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Exploratório</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+<tr>
+<td>one-off (executado 1x)</td>
+<td>Manual</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Como Priorizar: Abordagem Prática</p>
+<p>Passo 1: Mapeie Seus Testes</p>
+<p>Liste todos os testes manuais existentes e categorize:</p>
+<ul>
+<li>Frequência de execução</li>
+<li>Tempo para executar manualmente</li>
+<li>Impacto se falhar</li>
+</ul>
+<p>Passo 2: Calcule o ROI</p>
+<p>ROI = (Tempo salvo por automação) - (Custo para criar/manter automação)</p>
+<p>Se um teste leva 1 hora para executar manualmente e rodamos 2x por semana:</p>
+<ul>
+<li>Por mês: 8 horas</li>
+<li>Em 6 meses: 48 horas</li>
+</ul>
+<p>Se lever 2 dias para automatizar, já compensa.</p>
+<p>Passo 3: Comece Pequeno</p>
+<p>Não tente automatizar tudo de uma vez. Comece com:</p>
+<ol>
+<li>Smoke Test: 5-10 cenários críticos</li>
+<li>Regression básica: 20-30 cenários principais</li>
+<li>API Tests: Validate principais endpoints</li>
+</ol>
+<p>Passo 4: Métricas para Acompanhar</p>
+<ul>
+<li>Tempo economizado por semana</li>
+<li>Número de bugs encontrados por automação vs manual</li>
+<li>Taxa de &quot;flaky tests&quot; (testes que falham aleatoriamente)</li>
+<li>Tempo gasto mantendo scripts</li>
+</ul>
+<p>Armadilhas Fatais (Aprendi da Forma Difícil)</p>
+<ol>
+<li>
+<p>Não automatizar testes que mudam muito: UI instável = manutenção constante</p>
+</li>
+<li>
+<p>Ignorar a regra 80/20: 20% dos testes cobrem 80% dos bugs. Encontre esses 20%.</p>
+</li>
+<li>
+<p>Escrever testes frágeis: &quot;Se o usuário clicou em A, então B, então C...&quot; — simplifique</p>
+</li>
+<li>
+<p>Não ter estratégia de dados: Dados inconsistentes = testes falham mesmo sem bug</p>
+</li>
+<li>Esquecer da documentação: Se só você entende seu script, você tem um problema</li>
+</ol>
+<p>Conclusão</p>
+<p>Automatizar testes não é sobre transformar QA em programação. É sobre:</p>
+<ul>
+<li>Liberar tempo do time para tarefas de maior valor</li>
+<li>Aumentar a confiança em releases frequentes</li>
+<li>Reduzir erros humanos em tarefas repetitivas</li>
+</ul>
+<p>A chave é: automatize menos, mas melhor. Escolha os testes certos, invista em uma boa estrutura (framework), e meça constantemente o retorno.</p>
+<p>E lembre-se: o melhor tester automatizado é aquele que sabe quando não automatizar.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://qaoverflow.com/category/boas-praticas">Boas Praticas</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://qaoverflow.com/tag/automacao">automacao</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/testes">testes</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/qa">qa</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/guia">guia</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/boas-praticas">boas-praticas</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/automation">automation</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/manual-testing">manual-testing</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="https://qaoverflow.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+        </div>
+
+        <div class="sidebar col-md-4">
+        
+            <!-- Follow Panel -->
+        
+            <!-- Custom Values from Settings page -->
+        
+            <!-- Latest Posts -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Latest Posts</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Práticas em Automação de Testes: Um Guia para 2026</a></li>
+                </ul>
+            </div>
+        
+            <!-- Categories -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Categories</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="https://qaoverflow.com/category/boas-praticas">Boas Praticas</a></li>
+                </ul>
+            </div>
+        
+            <!-- Archives -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Archives</strong>
+                    </div>
+        
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://qaoverflow.com/archive/april-2026">April 2026</a></li></ul>
+                </div>
+        
+            <!-- Tags -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Tags Cloud</strong>
+                    </div>
+        
+                    <div class="panel-body">
+                        <ul class="list-inline">
+                            <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/2026" title="2 total posts">2026</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automacao</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automation" title="2 total posts">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automação</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas-praticas</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas praticas</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">guia</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">Guia</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/manual-testing" title="2 total posts">manual-testing</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qa" title="2 total posts">qa</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qaoverflow" title="2 total posts">qaoverflow</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/testes" title="2 total posts">testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/web" title="2 total posts">web</a>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <hr/>
+        <p class="text-center">Published by <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
+    </div>
+</footer>
+
+<!-- Bootstrap and other Script files -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js"></script>
+<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+
+<script>
+    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost/QA_OverFlow/public'
+        : 'https://qaoverflow.com';
+</script>
+
+<script src="https://qaoverflow.com/js/blog.js"></script>
+<script src="https://qaoverflow.com/js/search.js"></script>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F9NWQEL01S');
+</script>
+
+</body>
+</html>
+<!-- for pagination -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var $prevPostSelector = $('.prevpost');
+            var $nextPostSelector = $('.nextpost');
+
+            var pageArray = document.location.href.split('/');
+            var currentPageSlug = pageArray[pageArray.length - 1];
+
+            if (!currentPageSlug) {
+                currentPageSlug = pageArray[pageArray.length - 2];
+            }
+
+            $.ajax({
+                url: __blogURL + "/data/blog.json",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (data.posts !== undefined && data.posts !== null) {
+                        $.each(data.posts, function (i, post) {
+                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                                var prevPost = data.posts[i - 1];
+                                var nextPost = data.posts[i + 1];
+
+                                if (prevPost === undefined || prevPost === null) {
+                                    $prevPostSelector.hide();
+                                    showToast('Você está no primeiro post');
+                                }
+                                else {
+                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                                }
+
+                                if (nextPost === undefined || nextPost === null) {
+                                    $nextPostSelector.hide();
+                                    showToast('Você está no último post');
+                                }
+                                else {
+                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                                }
+
+                                return false;
+                            }
+                        });
+                    }
+                },
+                error: function (e) {
+                    $prevPostSelector.hide();
+                    $nextPostSelector.hide();
+                }
+            });
+        }, 100);
+
+        function showToast(message) {
+            var toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "toast-notification show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
+        }
+    });
+</script>

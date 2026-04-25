@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="QA Overflow" />
+    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
+    <meta name="author" content="Victor Oliveira">
+
+    <title>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow</title>
+
+    <!-- jQuery - loaded first -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- rss feed url -->
+    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="http://localhost/QA_OverFlow/public/rss.xml"/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="http://localhost/QA_OverFlow/public/favicon.ico"/>
+
+    <!-- Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+
+    <!-- syntax highlighter css file -->
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+
+    <!-- lightbox for images -->
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+
+    <!-- blog custom CSS file -->
+    <link href="http://localhost/QA_OverFlow/public/css/style.css" rel="stylesheet"/>
+    <link href="http://localhost/QA_OverFlow/public/css/theme.css" rel="stylesheet"/>
+</head><body>
+<!-- Header -->
+<header class="navbar navbar-default
+ navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Alternar navegacao</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="http://localhost/QA_OverFlow/public" class="navbar-brand">QA Overflow</a>
+        </div>
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <div class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="searchQuery form-control" placeholder="Pesquisar artigos">
+                </div>
+
+                <button type="button" class="searchButton btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                    Pesquisar
+                </button>
+            </div>
+
+            <ul class="nav navbar-nav page-links">
+            </ul>
+
+        </nav>
+    </div>
+</header>
+<!-- Toast notification -->
+<div id="toast" class="toast-notification"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 main-content">
+            <article>
+                <h3>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</h3>
+                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> April 24, 2026 08:35 PM
+                <hr>
+
+                <p class="post-content"><p>Por um QA Sênior — 13 anos quebrando coisas de forma organizada</p>
+<p>Ao longo de quase uma década e meia construindo e reconstruindo suítes de automação, testemunhei um padrão (sem trocadilho) repetido à exaustão: projetos começam lindos, organizados, promissores. Seis meses depois, são um Frankenstein de código duplicado, lógica de negócio vazando para os testes e manutenção que consome 70% do tempo do time.</p>
+<p>O problema raramente é a ferramenta (Cypress, Playwright, Selenium, o que vier amanhã). O problema é arquitetural. E a boa notícia é que os Design Patterns de teste — bem aplicados — são imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organização, não técnicos de sintaxe.</p>
+<p>Vamos ao que interessa: os padrões que realmente entregam valor em 2026, com exemplos práticos e armadilhas fatais.</p>
+<ol>
+<li>Page Object Model (POM) — Clássico, Mas Nem Todo Mundo Sabe Usar</li>
+</ol>
+<p>O POM é o avô dos patterns de automação. Todo mundo conhece, mas poucos aplicam corretamente. O princípio é simples: cada página ou componente da UI é representado por uma classe que expõe apenas ações de alto nível.</p>
+<p>Exemplo do que NÃO fazer (anti-pattern visto semanalmente):</p>
+<h1>Mau uso: Page Object virou localizador glorificado</h1>
+<p>class LoginPage:
+username_input = &quot;#username&quot;
+password_input = &quot;#password&quot;
+login_button = &quot;#login&quot;</p>
+<pre><code>def type_username(self, text):
+         driver.find_element(self.username_input).send_keys(text)</code></pre>
+<p>Isso não é um Page Object, é um repositório de seletores com métodos anêmicos. O verdadeiro POM encapsula comportamento, não elementos.</p>
+<p>Exemplo correto:</p>
+<h1>Page Object comportamental</h1>
+<p>class LoginPage:
+def <strong>init</strong>(self, page):
+self.page = page</p>
+<pre><code>def login_as(self, user_type):
+    """Ação de alto nível que encapsula toda a sequência"""
+    if user_type == "standard":
+        self._fill_credentials("standard_user", "secret_sauce")
+    elif user_type == "locked":
+        self._fill_credentials("locked_user", "secret_sauce")
+
+    self.click_login()
+    return InventoryPage(self.page)
+
+def get_error_message(self):
+    return self.page.locator("[data-test='error']").text_content()
+
+def _fill_credentials(self, username, password):
+    self.page.fill("#user-name", username)
+    self.page.fill("#password", password)
+
+def click_login(self):
+    self.page.click("#login-button")</code></pre>
+<p>A regra de ouro: Um método no Page Object deve retornar outro Page Object (fluxo feliz) ou dados (extração de informação). Nunca expor elementos ou ações cruas.</p>
+<ol>
+<li>Test Data Factory — O Pattern Mais Subestimado</li>
+</ol>
+<p>O assassino silenciador da produtividade: testes que dependem de dados hardcoded.</p>
+<h1>Dados espalhados e frágeis</h1>
+<p>def test_login():
+user = &quot;john.doe@example.com&quot;
+password = &quot;Test@123&quot;</p>
+<h1>Data Factory</h1>
+<p>class UserFactory:
+@staticmethod
+def standard_user():
+return User(
+email = f&quot;test+{uuid4()}@example.com&quot;,
+password = &quot;P@ssw0rd!&quot;,
+role = &quot;customer&quot;
+)</p>
+<pre><code>@staticmethod
+def admin_user():
+    return User(
+        email = f"admin+{uuid4()}@example.com",
+        password = "Admin@456",
+        role = "admin",
+        permissions = ["read", "write", "delete"]
+    )</code></pre>
+<ol>
+<li>Builder Pattern — Para Cenários de Dados Complexos</li>
+</ol>
+<p>Quando sua entidade tem 15+ campos opcionais, o Builder impede a explosão de construtores.</p>
+<p>class OrderBuilder:
+def <strong>init</strong>(self):
+self.order = {&quot;customer_id&quot;: 1, &quot;items&quot;: []}</p>
+<pre><code>def with_items(self, items):
+    self.order["items"] = items
+    return self
+def with_coupon(self, code):
+    self.order["coupon_code"] = code
+    return self
+def build(self):
+    return self.order</code></pre>
+<h1>Uso fluente e legível</h1>
+<p>order = (OrderBuilder()
+.with_items([product1, product2])
+.with_coupon(&quot;BLACKFRIDAY&quot;)
+.build())</p>
+<ol>
+<li>Facade Pattern — Orquestrando Múltiplos Page Objects</li>
+</ol>
+<p>class CheckoutFacade:
+def <strong>init</strong>(self, page):
+self.cart = CartPage(page)
+self.checkout = CheckoutPage(page)</p>
+<pre><code>def complete_purchase(self, user, cart_items):
+    self.cart.add_items(cart_items)
+    self.checkout.fill_shipping(user.address)
+    return self.confirmation.get_order_number()</code></pre>
+<h1>Teste limpo e focado em negócio</h1>
+<p>def test_guest_checkout():
+facade = CheckoutFacade(page)
+order_id = facade.complete_purchase(user, products)
+assert order_id is not None</p>
+<ol>
+<li>Strategy Pattern — Lidando com Múltiplos Contextos</li>
+</ol>
+<p>class AuthenticationStrategy(ABC):
+@abstractmethod
+def login(self, credentials): pass</p>
+<p>class WebAuthStrategy(AuthenticationStrategy):
+def login(self, credentials):
+self.page.goto(&quot;/login&quot;)
+self.page.fill(&quot;#email&quot;, credentials.email)</p>
+<p>class APIAuthStrategy(AuthenticationStrategy):
+def login(self, credentials):
+response = self.api_client.post(&quot;/auth/login&quot;, json=credentials)
+self.token = response.json()[&quot;token&quot;]</p>
+<h1>Mesmo teste com diferentes estratégias</h1>
+<p>def test_user_profile(auth_strategy):
+auth_strategy.login(test_user)</p>
+<ol>
+<li>Singleton Pattern (Com Moderação) — Para Recursos Caros</li>
+</ol>
+<p>class DriverManager:
+_instance = None
+def <strong>new</strong>(cls):
+if cls._instance is None:
+cls._instance = super().<strong>new</strong>(cls)
+cls._instance._initialize()
+return cls._instance</p>
+<p>Cuidado: Singleton pode esconder problemas de paralelização. Prefira injeção de dependência quando possível.</p>
+<ol>
+<li>Repository Pattern — Centralizando Seletores</li>
+</ol>
+<p>class LoginRepository:
+USERNAME_INPUT = &quot;input[data-test='username']&quot;
+PASSWORD_INPUT = &quot;input[data-test='password']&quot;
+LOGIN_BUTTON = &quot;input[data-test='login-button']&quot;</p>
+<pre><code>@staticmethod
+def get_user_menu_item(user_name):
+    return f"div.user-menu:has-text('{user_name}')"</code></pre>
+<p>Vantagem: Quando um dev renomeia data-testid, você altera em UM lugar.</p>
+<p>Conclusão: Padrões Não São Receita de Bolo</p>
+<p>Aprendi da pior maneira: aplicar todos os padrões de uma vez é tão ruim quanto aplicar nenhum. O segredo é evolução incremental.</p>
+<p>Comece com POM. Quando sentir dor de dados repetidos, adicione Factory. Quando os testes ficarem muito longos, introduza Facade.</p>
+<p>A boa arquitetura não é imposta desde o dia 1 — ela emerge para resolver dores reais do time. E a melhor métrica de sucesso é simples: quanto tempo leva para você adicionar um teste para uma nova funcionalidade? Se a resposta for &quot;minutos&quot;, você acertou.</p>
+<p>Agora vá e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do próximo QA) vão te agradecer. 🧱</p>
+<p>— QA Sênior que já refatorou mais código de teste do que gostaria de admitir</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://localhost/QA_OverFlow/public/category/boas-praticas">Boas Praticas</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/2026">2026</a>&nbsp;&nbsp;
+                        <a href="http://localhost/QA_OverFlow/public/tag/automation">automation</a>&nbsp;&nbsp;
+                        <a href="http://localhost/QA_OverFlow/public/tag/automação">automação</a>&nbsp;&nbsp;
+                        <a href="http://localhost/QA_OverFlow/public/tag/boas praticas">boas praticas</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Post Anterior</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://localhost/QA_OverFlow/public/"><i class="fa fa-navicon"></i> Ver Todos
+                        os Posts</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary">Proximo Post <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+
+            <hr/>
+            
+        </div>
+
+        <div class="sidebar col-md-4">
+        
+            <!-- Follow Panel -->
+        
+            <!-- Custom Values from Settings page -->
+        
+            <!-- Postagens Recentes -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Postagens Recentes</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Práticas em Automação de Testes: Um Guia para 2026</a></li>
+                </ul>
+            </div>
+        
+            <!-- Categorias -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Categorias</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/boas-praticas">Boas Praticas</a></li>
+                </ul>
+            </div>
+        
+            <!-- Arquivos -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Arquivos</strong>
+                    </div>
+        
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="/archive/april-2026">April 2026</a></li></ul>
+                </div>
+        
+            <!-- Tags -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Tags</strong>
+                    </div>
+        
+                    <div class="panel-body">
+                        <ul class="list-inline">
+                            <a style="font-size: 12px" class="tag_cloud" href="/tag/2026" title="2 total posts">2026</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automacao</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automation" title="2 total posts">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automação</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas-praticas</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas praticas</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">guia</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">Guia</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/manual-testing" title="2 total posts">manual-testing</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/qa" title="2 total posts">qa</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/qaoverflow" title="2 total posts">qaoverflow</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/testes" title="2 total posts">testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="/tag/web" title="2 total posts">web</a>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <hr/>
+        <p class="text-center">Publicado por <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
+    </div>
+</footer>
+
+<!-- Bootstrap and other Script files -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://localhost/QA_OverFlow/public/js/plugins/highlight/highlight.pack.js"></script>
+<script src="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+
+<script>
+    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost/QA_OverFlow/public'
+        : 'https://qaoverflow.com';
+</script>
+
+<script src="http://localhost/QA_OverFlow/public/js/blog.js"></script>
+<script src="http://localhost/QA_OverFlow/public/js/search.js"></script>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F9NWQEL01S');
+</script>
+
+</body>
+</html>
+<!-- for pagination -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var $prevPostSelector = $('.prevpost');
+            var $nextPostSelector = $('.nextpost');
+
+            var pageArray = document.location.href.split('/');
+            var currentPageSlug = pageArray[pageArray.length - 1];
+
+            if (!currentPageSlug) {
+                currentPageSlug = pageArray[pageArray.length - 2];
+            }
+
+            $.ajax({
+                url: __blogURL + "/data/blog.json",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (data.posts !== undefined && data.posts !== null) {
+                        $.each(data.posts, function (i, post) {
+                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                                var prevPost = data.posts[i - 1];
+                                var nextPost = data.posts[i + 1];
+
+                                if (prevPost === undefined || prevPost === null) {
+                                    $prevPostSelector.hide();
+                                    showToast('Você está no primeiro post');
+                                }
+                                else {
+                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                                }
+
+                                if (nextPost === undefined || nextPost === null) {
+                                    $nextPostSelector.hide();
+                                    showToast('Você está no último post');
+                                }
+                                else {
+                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                                }
+
+                                return false;
+                            }
+                        });
+                    }
+                },
+                error: function (e) {
+                    $prevPostSelector.hide();
+                    $nextPostSelector.hide();
+                }
+            });
+        }, 100);
+
+        function showToast(message) {
+            var toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "toast-notification show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
+        }
+    });
+</script>

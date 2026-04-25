@@ -65,34 +65,6 @@
                         </div>
                     </div>
 
-                    <div class="pull-left col-lg-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <i class="fa fa-edit"></i> Latest BloggerCMS Blog Posts
-                            </div>
-                            <div class="panel-body" style="padding: 0 !important;">
-                                <table class="table table-responsive nodatatable">
-                                    <thead>
-                                    <tr>
-                                        <th><strong>Latest Post</strong></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php foreach ($data['articles'] as $article) { ?>
-                                        <tr>
-                                            <td>
-                                                <a href="<?php echo $article['link'] ?>"><?php echo $article['title'] ?></a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

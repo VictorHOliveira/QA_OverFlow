@@ -34,7 +34,7 @@
 //////////////////////////////////////////////
 
 
-$config['appname'] = 'BloggerCMS';
+$config['appname'] = 'QA Overflow';
 
 // date format used for posts and pages
 $config['dateFormat'] = 'F d, Y h:i A';

@@ -31,7 +31,7 @@
  */
 class Post
 {
-    const STATUS_PUBLISHED = 'publised';
+    const STATUS_PUBLISHED = 'published';
     const STATUS_DRAFT = 'draft';
     const STATUS_TRASH = 'trashed';
 
@@ -39,6 +39,57 @@ class Post
     private $categoriesFile = 'data/categories.json';
     private $tagsFile = 'data/tags.json';
     private $settingsFile = 'data/settings.json';
+
+    private function getAndSortPosts()
+    {
+        $data = MetaDataWriter::getFileData($this->metaFile);
+        $dates = [];
+        foreach ($data as $key => $value) {
+            $dates[] = strtotime($value['dated']);
+        }
+        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
+        return $data;
+    }
+
+    private function writePosts($data)
+    {
+        return MetaDataWriter::writeData($this->metaFile, $data);
+    }
+
+    private function flashAndRedirect($message)
+    {
+        global $app;
+        $app->flash('info', $message);
+        $app->redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    private function getCurrentId()
+    {
+        global $app;
+        $params = $app->router()->getCurrentRoute()->getParams();
+        return $params['param'];
+    }
+
+    private function preparePostData($post, $dateFormat)
+    {
+        return [
+            'dated' => date($dateFormat),
+            'slug' => getSlugName($post['title']),
+            'categoryslug' => getSlugName($post['category']),
+            'summary' => $this->getSummary($post['body'], 300)
+        ];
+    }
+
+    private function updateCategoriesAndTags($category, $tags)
+    {
+        $categoryArray = arrayFlatten([MetaDataWriter::getFileData($this->categoriesFile), $category]);
+        $categoryArray = array_unique($categoryArray);
+        MetaDataWriter::writeData($this->categoriesFile, $categoryArray);
+
+        $tagArray = arrayFlatten([MetaDataWriter::getFileData($this->tagsFile), $tags]);
+        $tagArray = array_unique($tagArray);
+        MetaDataWriter::writeData($this->tagsFile, $tagArray);
+    }
 
     public function getAdd()
     {
@@ -49,98 +100,52 @@ class Post
         $data['tags'] = MetaDataWriter::getFileData($this->tagsFile);
         sort($data['tags']);
 
-        $setttings = MetaDataWriter::getFileData($this->settingsFile);
-        $data['author'] = $setttings['author'];
+        $settings = MetaDataWriter::getFileData($this->settingsFile);
+        $data['author'] = $settings['author'];
 
-        $app->render('addpost.php', array('title' => 'Add Post', 'data' => $data));
+        $app->render('addpost.php', ['title' => 'Add Post', 'data' => $data]);
     }
 
     public function add()
     {
         global $app;
         $post = $app->request()->post();
-
-        if (isset($post['addpost'])) {
-            $this->addPost(self::STATUS_PUBLISHED);
-        } else {
-            $this->addPost(self::STATUS_DRAFT);
-        }
-
+        $status = isset($post['addpost']) ? self::STATUS_PUBLISHED : self::STATUS_DRAFT;
+        $this->addPost($status);
     }
 
     protected function addPost($status)
     {
         global $app;
         $post = $app->request()->post();
+        $dateFormat = $app->view()->getData('dateFormat');
 
-        // add post
-        $post['dated'] = date($app->view()->getData('dateFormat'));
-        $post['slug'] = getSlugName($post['title']);
-        $post['categoryslug'] = getSlugName($post['category']);
-        $post['status'] = $status;
-        $post['summary'] = $this->getSummary($post['body'], 300);
+        $postData = array_merge($post, $this->preparePostData($post, $dateFormat));
+        $postData['status'] = $status;
 
-        MetaDataWriter::updateFileData($this->metaFile, $post, true);
+        MetaDataWriter::updateFileData($this->metaFile, $postData, true);
+        $this->updateCategoriesAndTags($post['category'], $post['tags']);
 
-        // update categories
-        $array[] = MetaDataWriter::getFileData($this->categoriesFile);
-        $array[] = $post['category'];
-
-        $array = arrayFlatten($array);
-        $array = array_unique($array);
-
-        MetaDataWriter::writeData($this->categoriesFile, $array);
-
-        // also write tags file
-        $array[] = MetaDataWriter::getFileData($this->tagsFile);
-        $array[] = $post['tags'];
-
-        $array = arrayFlatten($array);
-        $array = array_unique($array);
-
-        MetaDataWriter::writeData($this->tagsFile, $array);
-
-        $app->flash('info', 'Saved Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->flashAndRedirect('Saved Successfully');
     }
 
     public function get()
     {
         global $app;
 
-        $data = MetaDataWriter::getFileData($this->metaFile);
-        //pretty_print($data, 0);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
+        $data = $this->getAndSortPosts();
         $data['categories'] = MetaDataWriter::getFileData($this->categoriesFile);
         sort($data['categories']);
 
-        $app->render('posts.php', array('title' => 'View Posts', 'data' => $data));
+        $app->render('posts.php', ['title' => 'View Posts', 'data' => $data]);
     }
 
     public function edit()
     {
         global $app;
 
-        $data = MetaDataWriter::getFileData($this->metaFile);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
+        $data = $this->getAndSortPosts();
+        $id = $this->getCurrentId();
 
         $data[$id]['categories'] = MetaDataWriter::getFileData($this->categoriesFile);
         sort($data['categories']);
@@ -148,43 +153,25 @@ class Post
         $allTags = MetaDataWriter::getFileData($this->tagsFile);
         $postTags = $data[$id]['tags'];
 
-        $data[$id]['tagsAll'] = $allTags + $postTags;
-        $data[$id]['tagsAll'] = array_unique($data[$id]['tagsAll']);
+        $data[$id]['tagsAll'] = array_unique(array_merge($allTags, $postTags));
         sort($data[$id]['tagsAll']);
 
-        //pretty_print($data[$id]);
-
-        $app->render('editpost.php', array('title' => 'Edit Post', 'data' => $data[$id], 'id' => $id));
+        $app->render('editpost.php', ['title' => 'Edit Post', 'data' => $data[$id], 'id' => $id]);
     }
 
     public function update()
     {
         global $app;
 
-        $data = MetaDataWriter::getFileData($this->metaFile);
+        $data = $this->getAndSortPosts();
         $post = $app->request()->post();
+        $id = $this->getCurrentId();
 
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
-
-        // update values
         foreach ($post as $key => $value) {
             $data[$id][$key] = $value;
         }
 
-        // reset post published date if it was draft before and now published
-        if (
-           $post['status'] === self::STATUS_PUBLISHED &&
-           $post['prevStatus'] === self::STATUS_DRAFT
-        ) {
+        if ($post['status'] === self::STATUS_PUBLISHED && $post['prevStatus'] === self::STATUS_DRAFT) {
             $data[$id]['dated'] = date($app->view()->getData('dateFormat'));
         }
 
@@ -192,135 +179,60 @@ class Post
         $data[$id]['categoryslug'] = getSlugName($post['category']);
         $data[$id]['summary'] = $this->getSummary($post['body'], 300);
 
-        MetaDataWriter::writeData($this->metaFile, $data);
+        $this->writePosts($data);
+        $this->updateCategoriesAndTags($post['category'], $post['tags']);
 
-        // update categories
-        $array[] = MetaDataWriter::getFileData($this->categoriesFile);
-        $array[] = $post['category'];
-
-        $array = arrayFlatten($array);
-        $array = array_unique($array);
-
-        MetaDataWriter::writeData($this->categoriesFile, $array);
-
-        // also write tags file
-        $array[] = MetaDataWriter::getFileData($this->tagsFile);
-        $array[] = $post['tags'];
-
-        $array = arrayFlatten($array);
-        $array = array_unique($array);
-
-        MetaDataWriter::writeData($this->tagsFile, $array);
-
-        $app->flash('info', 'Saved Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->flashAndRedirect('Saved Successfully');
     }
 
     public function remove()
     {
-        global $app;
-
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
-
-        $data = MetaDataWriter::getFileData($this->metaFile);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
+        $data = $this->getAndSortPosts();
+        $id = $this->getCurrentId();
         $data[$id]['status'] = self::STATUS_TRASH;
-
-        MetaDataWriter::writeData($this->metaFile, $data);
-
-        $app->flash('info', 'Deleted Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->writePosts($data);
+        $this->flashAndRedirect('Deleted Successfully');
     }
 
     public function restore()
     {
-        global $app;
-
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
-
-        $data = MetaDataWriter::getFileData($this->metaFile);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
+        $data = $this->getAndSortPosts();
+        $id = $this->getCurrentId();
         $data[$id]['status'] = self::STATUS_DRAFT;
-
-        MetaDataWriter::writeData($this->metaFile, $data);
-
-        $app->flash('info', 'Restored Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->writePosts($data);
+        $this->flashAndRedirect('Restored Successfully');
     }
 
     public function publish()
     {
         global $app;
 
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
-
-        $data = MetaDataWriter::getFileData($this->metaFile);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
+        $data = $this->getAndSortPosts();
+        $id = $this->getCurrentId();
 
         $data[$id]['dated'] = date($app->view()->getData('dateFormat'));
         $data[$id]['slug'] = getSlugName($data[$id]['title']);
         $data[$id]['categoryslug'] = getSlugName($data[$id]['category']);
         $data[$id]['status'] = self::STATUS_PUBLISHED;
 
-        MetaDataWriter::writeData($this->metaFile, $data);
-
-        $app->flash('info', 'Restored Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->writePosts($data);
+        $this->flashAndRedirect('Restored Successfully');
     }
 
     public function removeTrashed()
     {
         global $app;
 
-        $params = $app->router()->getCurrentRoute()->getParams();
-        $id = $params['param'];
+        $data = $this->getAndSortPosts();
+        $id = $this->getCurrentId();
 
-        $data = MetaDataWriter::getFileData($this->metaFile);
-
-        // sort posts by latest first
-        $dates = array();
-        foreach ($data as $key => $value) {
-            $dates[] = strtotime($value['dated']);
-        }
-
-        array_multisort($dates, SORT_DESC, SORT_NUMERIC, $data);
-
-        // remove post from disk
         $postPath = 'public/post/' . getSlugName($data[$id]['title']);
         @rrmdir($postPath);
 
         unset($data[$id]);
+        $this->writePosts($data);
 
-        MetaDataWriter::writeData($this->metaFile, $data);
-
-        $app->flash('info', 'Restored Successfully');
-        $app->redirect($_SERVER['HTTP_REFERER']);
+        $this->flashAndRedirect('Restored Successfully');
     }
 
     public function getTotalPostsCount()
@@ -331,57 +243,31 @@ class Post
 
     public function getTotalPostsCountPublished()
     {
-        $counter = 0;
         $data = MetaDataWriter::getFileData($this->metaFile);
-
-        foreach ($data as $post) {
-            if ($post['status'] === self::STATUS_PUBLISHED) {
-                $counter ++;
-            }
-        }
-
-        return $counter;
+        return count(array_filter($data, fn($post) => $post['status'] === self::STATUS_PUBLISHED));
     }
 
     public function getTotalPostsCountDrafts()
     {
-        $counter = 0;
         $data = MetaDataWriter::getFileData($this->metaFile);
-
-        foreach ($data as $post) {
-            if ($post['status'] === self::STATUS_DRAFT) {
-                $counter ++;
-            }
-        }
-
-        return $counter;
+        return count(array_filter($data, fn($post) => $post['status'] === self::STATUS_DRAFT));
     }
 
     protected function getSummary($html, $maxChars)
     {
-        // convert markdown to html
         $parser = new \Parsedown();
         $html = $parser->text($html);
 
-        // make excerpt
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8");
         $html = mb_substr($html, 0, $maxChars, 'UTF-8') . '...';
 
-        // fix broken tags //
-        
-        // suppress DOM parsing errors
         libxml_use_internal_errors(TRUE);
-        // avoid strict error checking
 
         $dom = new \DOMDocument;
         $dom->strictErrorChecking = FALSE;
-        
         $dom->loadHTML($html);
         $summary = $dom->saveHTML();
-        
-        $summary = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $summary));        
 
-        return $summary;
+        return preg_replace('/^<!DOCTYPE.+?>/', '', str_replace(['<html>', '</html>', '<body>', '</body>'], ['', '', '', ''], $summary));
     }
-
 }

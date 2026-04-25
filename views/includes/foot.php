@@ -1,5 +1,5 @@
 <footer>
-  <p class="text-center"><strong><a target="_blank" href="https://github.com/sarfraznawaz2005/BloggerCMS">BloggerCMS</a></strong></p>
+  <p class="text-center"><strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
 </footer>
 
 <script src="<?php echo $root; ?>/assets/js/jquery-1.11.0.js"></script>

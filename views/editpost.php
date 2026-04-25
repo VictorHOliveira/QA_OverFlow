@@ -80,7 +80,7 @@
                             <div class="form-group col-lg-2">
                                 <label for="status">Post Status</label>
                                 <select required name="status" id="status" class="form-control">
-                                    <option <?php echo $data['status'] === 'publised' ? 'selected' : ''; ?> value="publised">
+                                    <option <?php echo $data['status'] === 'published' ? 'selected' : ''; ?> value="published">
                                         Publised
                                     </option>
                                     <option <?php echo $data['status'] === 'draft' ? 'selected' : ''; ?> value="draft">

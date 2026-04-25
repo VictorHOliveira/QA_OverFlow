@@ -41,7 +41,7 @@
                                 <?php
                                 foreach ($data as $key => $post) {
 
-                                    if ($post['status'] !== 'publised') {
+                                    if ($post['status'] !== 'published') {
                                         continue;
                                     }
 

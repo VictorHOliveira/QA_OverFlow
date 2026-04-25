@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-<loc>http://localhost/QA_OverFlow/public/post/primeiro-post/</loc>
-<lastmod>2026-04-22T17:37:00+05:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico/</loc><lastmod>2026-04-25T10:00:00+05:00</lastmod><changefreq>daily</changefreq><priority>1.00</priority></url>
+<url><loc>http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos/</loc><lastmod>2026-04-24T20:35:00+05:00</lastmod><changefreq>daily</changefreq><priority>1.00</priority></url>
+<url><loc>http://localhost/QA_OverFlow/public/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026/</loc><lastmod>2026-04-22T17:37:00+05:00</lastmod><changefreq>daily</changefreq><priority>1.00</priority></url>
 </urlset>
