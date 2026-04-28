@@ -1,43 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://qaoverflow.com">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="QA Overflow" />
-    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
+    <meta name="description" content="Sobre o QA Overflow - Blog de Qualidade de Software e Automação de Testes por Victor Oliveira">
     <meta name="author" content="Victor Oliveira">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sobre :: QA Overflow" />
+    <meta property="og:description" content="Conheça o QA Overflow - Blog de Qualidade de Software e Automação de Testes por Victor Oliveira" />
+    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
+    <meta property="og:url" content="https://qaoverflow.com/category/sobre/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QA Overflow" />
+    <meta property="og:locale" content="pt_BR" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sobre :: QA Overflow" />
+    <meta name="twitter:description" content="Conheça o QA Overflow - Blog de Qualidade de Software e Automação de Testes por Victor Oliveira" />
+    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
 
-    <title>QA Overflow</title>
+    <title>Sobre :: QA Overflow</title>
 
-    <!-- jQuery - loaded first -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
 
     <!-- rss feed url -->
-    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="http://localhost/QA_OverFlow/public/rss.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="https://qaoverflow.com/rss.xml"/>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="/favicon.ico"/>
-    <link rel="shortcut icon" href="http://localhost/QA_OverFlow/public/favicon.ico"/>
+    <link rel="shortcut icon" href="https://qaoverflow.com/favicon.ico"/>
 
     <!-- Bootstrap CSS file -->
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://qaoverflow.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
 
     <!-- syntax highlighter css file -->
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+    <link href="https://qaoverflow.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
 
     <!-- lightbox for images -->
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+    <link href="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
 
     <!-- blog custom CSS file -->
-    <link href="http://localhost/QA_OverFlow/public/css/style.css" rel="stylesheet"/>
-    <link href="http://localhost/QA_OverFlow/public/css/theme.css" rel="stylesheet"/>
+    <link href="https://qaoverflow.com/css/style.css" rel="stylesheet"/>
+    <link href="https://qaoverflow.com/css/theme.css" rel="stylesheet"/>
 </head><body>
 <!-- Header -->
 <header class="navbar navbar-default
- navbar-fixed-top bs-docs-nav" role="banner">
+ navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
     <div class="container">
 
         <div class="navbar-header">
@@ -48,16 +64,19 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a href="http://localhost/QA_OverFlow/public" class="navbar-brand">QA Overflow</a>
+            <a href="https://qaoverflow.com" class="navbar-brand">QA Overflow</a>
         </div>
+        <ul class="nav navbar-nav page-links">
+            <li><a href="https://qaoverflow.com/category/sobre/">Sobre</a></li>
+        </ul>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <div class="navbar-form navbar-right" role="search">
+            <div class="navbar-form navbar-right" role="search" aria-label="Busca no site">
                 <div class="form-group">
-                    <input type="text" class="searchQuery form-control" placeholder="Pesquisar artigos">
+                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
                 </div>
 
-                <button type="button" class="searchButton btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
                     Pesquisar
                 </button>
             </div>
@@ -71,19 +90,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Category Posts</h1>
-            <hr/>
-            <br/>
-
-                <h3><a href="http://localhost/QA_OverFlow/public/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa">QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</a></h3>
-                <span class="glyphicon glyphicon-time"></span> April 25, 2026 02:00 PM
+            <article>
+                <h2>Sobre o QA Overflow</h2>
+                <hr>
+                <p>O <strong>QA Overflow</strong> é um blog dedicado a compartilhar conhecimento sobre Qualidade de Software e Automação de Testes.</p>
+                
+                <h3>Sobre o Autor</h3>
+                <p><strong>Victor Oliveira</strong> é um QA Sênior com mais de 13 anos de experiência em testes e qualidade de software.</p>
+                <p>Ao longo da carreira, trabalhou com aplicações monolíticas em C#, microsserviços com Python, e ferramentas modernas de automação incluindo Cypress, Playwright e Selenium.</p>
+                <p>Especialista em implementar estratégias de testes baseadas em risco e arquitetura de automação escalável.</p>
+                
+                <h3>Missão</h3>
+                <p>Compartilhar conhecimento prático e real sobre:</p>
+                <ul>
+                    <li>Automação de Testes (UI, API, Performance)</li>
+                    <li>Design Patterns para testes</li>
+                    <li>Estratégias de QA para times ágeis</li>
+                    <li>Uso de IA em testes de software</li>
+                    <li>Boas práticas e tendências de 2026</li>
+                </ul>
+                
+                <h3>Contato</h3>
+                <p>Visite o repositório no GitHub: <a href="https://github.com/VictorHOliveira/QA_OverFlow" target="_blank">VictorHOliveira/QA_OverFlow</a></p>
+            </article>
         </div>
 
         <div class="sidebar col-md-4">
-        
-            <!-- Follow Panel -->
-        
-            <!-- Custom Values from Settings page -->
         
             <!-- Postagens Recentes -->
             <div class="panel panel-primary">
@@ -92,10 +124,9 @@
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa">QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Práticas em Automação de Testes: Um Guia para 2026</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Práticas em Automação de Testes: Um Guia para 2026</a></li>
                 </ul>
             </div>
         
@@ -106,8 +137,7 @@
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/boas-praticas">Boas Praticas</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/sobre">Sobre</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/category/boas-praticas">Boas Praticas</a></li>
                 </ul>
             </div>
         
@@ -117,7 +147,7 @@
                         <strong>Arquivos</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="/archive/april-2026">April 2026</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://qaoverflow.com/archive/april-2026">April 2026</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -128,24 +158,17 @@
         
                     <div class="panel-body">
                         <ul class="list-inline">
-                            <a style="font-size: 12px" class="tag_cloud" href="/tag/2026" title="2 total posts">2026</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/artificial-intelligence" title="2 total posts">artificial-intelligence</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automacao</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automation" title="2 total posts">automation</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automação</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/blog" title="2 total posts">blog</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas-praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/conhecimento" title="2 total posts">conhecimento</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">Guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/ia" title="2 total posts">ia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/manual-testing" title="2 total posts">manual-testing</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/qa" title="2 total posts">qa</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/qaoverflow" title="2 total posts">qaoverflow</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/testes" title="2 total posts">testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/web" title="2 total posts">web</a>
+                            <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/2026" title="2 total posts">2026</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automacao</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automation" title="2 total posts">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas-praticas</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">guia</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/manual-testing" title="2 total posts">manual-testing</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qa" title="2 total posts">qa</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qaoverflow" title="2 total posts">qaoverflow</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/testes" title="2 total posts">testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/web" title="2 total posts">web</a>
 
                         </ul>
                     </div>
@@ -163,9 +186,9 @@
 </footer>
 
 <!-- Bootstrap and other Script files -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://localhost/QA_OverFlow/public/js/plugins/highlight/highlight.pack.js"></script>
-<script src="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js" defer></script>
+<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
 
 <script>
     var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -173,8 +196,8 @@
         : 'https://qaoverflow.com';
 </script>
 
-<script src="http://localhost/QA_OverFlow/public/js/blog.js"></script>
-<script src="http://localhost/QA_OverFlow/public/js/search.js"></script>
+<script src="https://qaoverflow.com/js/blog.js" defer></script>
+<script src="https://qaoverflow.com/js/search.js" defer></script>
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>

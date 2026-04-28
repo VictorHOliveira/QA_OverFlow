@@ -1,17 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://qaoverflow.com">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="QA Overflow" />
-    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
+    <meta name="description" content="InformaÃ§Ãµes e reviews sobre Qualidade de Software e AutomaÃ§Ã£o de Testes">
     <meta name="author" content="Victor Oliveira">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow" />
+    <meta property="og:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
+    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
+    <meta property="og:url" content="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="QA Overflow" />
+    <meta property="og:locale" content="pt_BR" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow" />
+    <meta name="twitter:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
+    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
 
-    <title>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow</title>
+    <title>Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow</title>
 
     <!-- jQuery - loaded first -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="https://qaoverflow.com/rss.xml"/>
@@ -22,7 +38,7 @@
 
     <!-- Bootstrap CSS file -->
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://qaoverflow.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
 
     <!-- syntax highlighter css file -->
@@ -34,10 +50,33 @@
     <!-- blog custom CSS file -->
     <link href="https://qaoverflow.com/css/style.css" rel="stylesheet"/>
     <link href="https://qaoverflow.com/css/theme.css" rel="stylesheet"/>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos",
+        "datePublished": "2026-04-25",
+        "author": {
+            "@type": "Person",
+            "name": "Victor Oliveira"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "QA Overflow",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://qaoverflow.com/favicon.ico"
+            }
+        },
+        "url": "https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos/",
+        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testes"
+    }
+    </script>
 </head><body>
 <!-- Header -->
 <header class="navbar navbar-default
- navbar-fixed-top bs-docs-nav" role="banner">
+ navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
     <div class="container">
 
         <div class="navbar-header">
@@ -50,14 +89,17 @@
 
             <a href="https://qaoverflow.com" class="navbar-brand">QA Overflow</a>
         </div>
+        <ul class="nav navbar-nav page-links">
+            <li><a href="https://qaoverflow.com/category/sobre/">Sobre</a></li>
+        </ul>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <div class="navbar-form navbar-right" role="search">
+            <div class="navbar-form navbar-right" role="search" aria-label="Busca no site" role="search">
                 <div class="form-group">
-                    <input type="text" class="searchQuery form-control" placeholder="Pesquisar artigos">
+                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
                 </div>
 
-                <button type="button" class="searchButton btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
                     Pesquisar
                 </button>
             </div>
@@ -75,21 +117,21 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</h3>
+                <h3>Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos</h3>
                 <span class="glyphicon glyphicon-user"></span> Victor Oliveira
                 &nbsp;&nbsp;
                 <span class="glyphicon glyphicon-time"></span> April 24, 2026 08:35 PM
                 <hr>
 
-                <p class="post-content"><p>Por um QA Sênior — 13 anos quebrando coisas de forma organizada</p>
-<p>Ao longo de quase uma década e meia construindo e reconstruindo suítes de automação, testemunhei um padrão (sem trocadilho) repetido à exaustão: projetos começam lindos, organizados, promissores. Seis meses depois, são um Frankenstein de código duplicado, lógica de negócio vazando para os testes e manutenção que consome 70% do tempo do time.</p>
-<p>O problema raramente é a ferramenta (Cypress, Playwright, Selenium, o que vier amanhã). O problema é arquitetural. E a boa notícia é que os Design Patterns de teste — bem aplicados — são imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organização, não técnicos de sintaxe.</p>
-<p>Vamos ao que interessa: os padrões que realmente entregam valor em 2026, com exemplos práticos e armadilhas fatais.</p>
+                <p class="post-content"><p>Por um QA SÃªnior â€” 13 anos quebrando coisas de forma organizada</p>
+<p>Ao longo de quase uma dÃ©cada e meia construindo e reconstruindo suÃ­tes de automaÃ§Ã£o, testemunhei um padrÃ£o (sem trocadilho) repetido Ã  exaustÃ£o: projetos comeÃ§am lindos, organizados, promissores. Seis meses depois, sÃ£o um Frankenstein de cÃ³digo duplicado, lÃ³gica de negÃ³cio vazando para os testes e manutenÃ§Ã£o que consome 70% do tempo do time.</p>
+<p>O problema raramente Ã© a ferramenta (Cypress, Playwright, Selenium, o que vier amanhÃ£). O problema Ã© arquitetural. E a boa notÃ­cia Ã© que os Design Patterns de teste â€” bem aplicados â€” sÃ£o imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organizaÃ§Ã£o, nÃ£o tÃ©cnicos de sintaxe.</p>
+<p>Vamos ao que interessa: os padrÃµes que realmente entregam valor em 2026, com exemplos prÃ¡ticos e armadilhas fatais.</p>
 <ol>
-<li>Page Object Model (POM) — Clássico, Mas Nem Todo Mundo Sabe Usar</li>
+<li>Page Object Model (POM) â€” ClÃ¡ssico, Mas Nem Todo Mundo Sabe Usar</li>
 </ol>
-<p>O POM é o avô dos patterns de automação. Todo mundo conhece, mas poucos aplicam corretamente. O princípio é simples: cada página ou componente da UI é representado por uma classe que expõe apenas ações de alto nível.</p>
-<p>Exemplo do que NÃO fazer (anti-pattern visto semanalmente):</p>
+<p>O POM Ã© o avÃ´ dos patterns de automaÃ§Ã£o. Todo mundo conhece, mas poucos aplicam corretamente. O princÃ­pio Ã© simples: cada pÃ¡gina ou componente da UI Ã© representado por uma classe que expÃµe apenas aÃ§Ãµes de alto nÃ­vel.</p>
+<p>Exemplo do que NÃƒO fazer (anti-pattern visto semanalmente):</p>
 <h1>Mau uso: Page Object virou localizador glorificado</h1>
 <p>class LoginPage:
 username_input = &quot;#username&quot;
@@ -97,14 +139,14 @@ password_input = &quot;#password&quot;
 login_button = &quot;#login&quot;</p>
 <pre><code>def type_username(self, text):
          driver.find_element(self.username_input).send_keys(text)</code></pre>
-<p>Isso não é um Page Object, é um repositório de seletores com métodos anêmicos. O verdadeiro POM encapsula comportamento, não elementos.</p>
+<p>Isso nÃ£o Ã© um Page Object, Ã© um repositÃ³rio de seletores com mÃ©todos anÃªmicos. O verdadeiro POM encapsula comportamento, nÃ£o elementos.</p>
 <p>Exemplo correto:</p>
 <h1>Page Object comportamental</h1>
 <p>class LoginPage:
 def <strong>init</strong>(self, page):
 self.page = page</p>
 <pre><code>def login_as(self, user_type):
-    """Ação de alto nível que encapsula toda a sequência"""
+    """AÃ§Ã£o de alto nÃ­vel que encapsula toda a sequÃªncia"""
     if user_type == "standard":
         self._fill_credentials("standard_user", "secret_sauce")
     elif user_type == "locked":
@@ -122,12 +164,12 @@ def _fill_credentials(self, username, password):
 
 def click_login(self):
     self.page.click("#login-button")</code></pre>
-<p>A regra de ouro: Um método no Page Object deve retornar outro Page Object (fluxo feliz) ou dados (extração de informação). Nunca expor elementos ou ações cruas.</p>
+<p>A regra de ouro: Um mÃ©todo no Page Object deve retornar outro Page Object (fluxo feliz) ou dados (extraÃ§Ã£o de informaÃ§Ã£o). Nunca expor elementos ou aÃ§Ãµes cruas.</p>
 <ol>
-<li>Test Data Factory — O Pattern Mais Subestimado</li>
+<li>Test Data Factory â€” O Pattern Mais Subestimado</li>
 </ol>
 <p>O assassino silenciador da produtividade: testes que dependem de dados hardcoded.</p>
-<h1>Dados espalhados e frágeis</h1>
+<h1>Dados espalhados e frÃ¡geis</h1>
 <p>def test_login():
 user = &quot;john.doe@example.com&quot;
 password = &quot;Test@123&quot;</p>
@@ -149,9 +191,9 @@ def admin_user():
         permissions = ["read", "write", "delete"]
     )</code></pre>
 <ol>
-<li>Builder Pattern — Para Cenários de Dados Complexos</li>
+<li>Builder Pattern â€” Para CenÃ¡rios de Dados Complexos</li>
 </ol>
-<p>Quando sua entidade tem 15+ campos opcionais, o Builder impede a explosão de construtores.</p>
+<p>Quando sua entidade tem 15+ campos opcionais, o Builder impede a explosÃ£o de construtores.</p>
 <p>class OrderBuilder:
 def <strong>init</strong>(self):
 self.order = {&quot;customer_id&quot;: 1, &quot;items&quot;: []}</p>
@@ -163,13 +205,13 @@ def with_coupon(self, code):
     return self
 def build(self):
     return self.order</code></pre>
-<h1>Uso fluente e legível</h1>
+<h1>Uso fluente e legÃ­vel</h1>
 <p>order = (OrderBuilder()
 .with_items([product1, product2])
 .with_coupon(&quot;BLACKFRIDAY&quot;)
 .build())</p>
 <ol>
-<li>Facade Pattern — Orquestrando Múltiplos Page Objects</li>
+<li>Facade Pattern â€” Orquestrando MÃºltiplos Page Objects</li>
 </ol>
 <p>class CheckoutFacade:
 def <strong>init</strong>(self, page):
@@ -179,13 +221,13 @@ self.checkout = CheckoutPage(page)</p>
     self.cart.add_items(cart_items)
     self.checkout.fill_shipping(user.address)
     return self.confirmation.get_order_number()</code></pre>
-<h1>Teste limpo e focado em negócio</h1>
+<h1>Teste limpo e focado em negÃ³cio</h1>
 <p>def test_guest_checkout():
 facade = CheckoutFacade(page)
 order_id = facade.complete_purchase(user, products)
 assert order_id is not None</p>
 <ol>
-<li>Strategy Pattern — Lidando com Múltiplos Contextos</li>
+<li>Strategy Pattern â€” Lidando com MÃºltiplos Contextos</li>
 </ol>
 <p>class AuthenticationStrategy(ABC):
 @abstractmethod
@@ -198,11 +240,11 @@ self.page.fill(&quot;#email&quot;, credentials.email)</p>
 def login(self, credentials):
 response = self.api_client.post(&quot;/auth/login&quot;, json=credentials)
 self.token = response.json()[&quot;token&quot;]</p>
-<h1>Mesmo teste com diferentes estratégias</h1>
+<h1>Mesmo teste com diferentes estratÃ©gias</h1>
 <p>def test_user_profile(auth_strategy):
 auth_strategy.login(test_user)</p>
 <ol>
-<li>Singleton Pattern (Com Moderação) — Para Recursos Caros</li>
+<li>Singleton Pattern (Com ModeraÃ§Ã£o) â€” Para Recursos Caros</li>
 </ol>
 <p>class DriverManager:
 _instance = None
@@ -211,9 +253,9 @@ if cls._instance is None:
 cls._instance = super().<strong>new</strong>(cls)
 cls._instance._initialize()
 return cls._instance</p>
-<p>Cuidado: Singleton pode esconder problemas de paralelização. Prefira injeção de dependência quando possível.</p>
+<p>Cuidado: Singleton pode esconder problemas de paralelizaÃ§Ã£o. Prefira injeÃ§Ã£o de dependÃªncia quando possÃ­vel.</p>
 <ol>
-<li>Repository Pattern — Centralizando Seletores</li>
+<li>Repository Pattern â€” Centralizando Seletores</li>
 </ol>
 <p>class LoginRepository:
 USERNAME_INPUT = &quot;input[data-test='username']&quot;
@@ -222,13 +264,13 @@ LOGIN_BUTTON = &quot;input[data-test='login-button']&quot;</p>
 <pre><code>@staticmethod
 def get_user_menu_item(user_name):
     return f"div.user-menu:has-text('{user_name}')"</code></pre>
-<p>Vantagem: Quando um dev renomeia data-testid, você altera em UM lugar.</p>
-<p>Conclusão: Padrões Não São Receita de Bolo</p>
-<p>Aprendi da pior maneira: aplicar todos os padrões de uma vez é tão ruim quanto aplicar nenhum. O segredo é evolução incremental.</p>
+<p>Vantagem: Quando um dev renomeia data-testid, vocÃª altera em UM lugar.</p>
+<p>ConclusÃ£o: PadrÃµes NÃ£o SÃ£o Receita de Bolo</p>
+<p>Aprendi da pior maneira: aplicar todos os padrÃµes de uma vez Ã© tÃ£o ruim quanto aplicar nenhum. O segredo Ã© evoluÃ§Ã£o incremental.</p>
 <p>Comece com POM. Quando sentir dor de dados repetidos, adicione Factory. Quando os testes ficarem muito longos, introduza Facade.</p>
-<p>A boa arquitetura não é imposta desde o dia 1 — ela emerge para resolver dores reais do time. E a melhor métrica de sucesso é simples: quanto tempo leva para você adicionar um teste para uma nova funcionalidade? Se a resposta for &quot;minutos&quot;, você acertou.</p>
-<p>Agora vá e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do próximo QA) vão te agradecer. 🧱</p>
-<p>— QA Sênior que já refatorou mais código de teste do que gostaria de admitir</p></p>
+<p>A boa arquitetura nÃ£o Ã© imposta desde o dia 1 â€” ela emerge para resolver dores reais do time. E a melhor mÃ©trica de sucesso Ã© simples: quanto tempo leva para vocÃª adicionar um teste para uma nova funcionalidade? Se a resposta for &quot;minutos&quot;, vocÃª acertou.</p>
+<p>Agora vÃ¡ e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do prÃ³ximo QA) vÃ£o te agradecer. ðŸ§±</p>
+<p>â€” QA SÃªnior que jÃ¡ refatorou mais cÃ³digo de teste do que gostaria de admitir</p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -240,7 +282,7 @@ def get_user_menu_item(user_name):
 
                         <a href="https://qaoverflow.com/tag/2026">2026</a>&nbsp;&nbsp;
                         <a href="https://qaoverflow.com/tag/automation">automation</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/automação">automação</a>&nbsp;&nbsp;
+                        <a href="https://qaoverflow.com/tag/automaÃ§Ã£o">automaÃ§Ã£o</a>&nbsp;&nbsp;
                         <a href="https://qaoverflow.com/tag/boas praticas">boas praticas</a>&nbsp;&nbsp;
                 </div>
 
@@ -277,9 +319,9 @@ def get_user_menu_item(user_name):
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Práticas em Automação de Testes: Um Guia para 2026</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia PrÃ¡tico</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para AutomaÃ§Ã£o de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas PrÃ¡ticas em AutomaÃ§Ã£o de Testes: Um Guia para 2026</a></li>
                 </ul>
             </div>
         
@@ -314,8 +356,8 @@ def get_user_menu_item(user_name):
                             <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/2026" title="2 total posts">2026</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automacao</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automation" title="2 total posts">automation</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automação</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automaÃ§Ã£o</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testes" title="2 total posts">AutomaÃ§Ã£o de Testes</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas-praticas</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas praticas</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">guia</a>
@@ -335,6 +377,32 @@ def get_user_menu_item(user_name):
 </div>
 
 <!-- Footer -->
+                <div class="row">
+            <div class="col-md-8 main-content">
+                <div id="comments" class="panel panel-primary" style="margin-top: 30px;">
+                    <div class="panel-heading">
+                        <strong>Comentários</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div id="giscus-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="row">
+            <div class="col-md-8 main-content">
+                <div id="related-posts" class="panel panel-primary" style="margin-top: 30px;">
+                    <div class="panel-heading">
+                        <strong>Posts Relacionados</strong>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="related-posts-list" class="list-unstyled">
+                            <!-- Related posts will be loaded here by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 <footer>
     <div class="container">
         <hr/>
@@ -343,9 +411,9 @@ def get_user_menu_item(user_name):
 </footer>
 
 <!-- Bootstrap and other Script files -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js"></script>
-<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js" defer></script>
+<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
 
 <script>
     var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -353,8 +421,8 @@ def get_user_menu_item(user_name):
         : 'https://qaoverflow.com';
 </script>
 
-<script src="https://qaoverflow.com/js/blog.js"></script>
-<script src="https://qaoverflow.com/js/search.js"></script>
+<script src="https://qaoverflow.com/js/blog.js" defer></script>
+<script src="https://qaoverflow.com/js/search.js" defer></script>
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
@@ -365,6 +433,75 @@ def get_user_menu_item(user_name):
     gtag('config', 'G-F9NWQEL01S');
 </script>
 
+<script>
+.ready(function() {
+    var pageArray = document.location.href.split('/');
+    var currentPageSlug = pageArray[pageArray.length - 1];
+    if (!currentPageSlug) {
+        currentPageSlug = pageArray[pageArray.length - 2];
+    }
+    
+    $.ajax({
+        url: __blogURL + '/data/blog.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.posts !== undefined && data.posts !== null) {
+                var currentPost = null;
+                var currentTags = [];
+                
+                // Find current post and get its tags
+                $.each(data.posts, function(i, post) {
+                    if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+                        currentPost = post;
+                        currentTags = post.tags || [];
+                        return false;
+                    }
+                });
+                
+                if (currentPost && currentTags.length > 0) {
+                    var relatedPosts = [];
+                    
+                    // Find posts with matching tags
+                    $.each(data.posts, function(i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+                            return true; // Skip current post
+                        }
+                        
+                        var postTags = post.tags || [];
+                        var hasMatchingTag = false;
+                        
+                        $.each(currentTags, function(j, tag) {
+                            if ($.inArray(tag, postTags) !== -1) {
+                                hasMatchingTag = true;
+                                return false;
+                            }
+                        });
+                        
+                        if (hasMatchingTag) {
+                            relatedPosts.push(post);
+                        }
+                    });
+                    
+                    // Display related posts (max 5)
+                    var  = #related-posts-list;
+                    .empty();
+                    
+                    if (relatedPosts.length > 0) {
+                        $.each(relatedPosts.slice(0, 5), function(i, post) {
+                            .append('<li style="margin-bottom: 10px;"><a href="' + __blogURL + '/post/' + post.slug + '">' + post.title + '</a></li>');
+                        });
+                    } else {
+                        .append('<li>Nenhum post relacionado encontrado.</li>');
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+<script src="https://qaoverflow.com/js/related-posts.js" defer></script>
+<script src="https://qaoverflow.com/js/comments.js" defer></script>
 </body>
 </html>
 <!-- for pagination -->
@@ -395,7 +532,7 @@ def get_user_menu_item(user_name):
 
                                 if (prevPost === undefined || prevPost === null) {
                                     $prevPostSelector.hide();
-                                    showToast('Você está no primeiro post');
+                                    showToast('VocÃª estÃ¡ no primeiro post');
                                 }
                                 else {
                                     $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
@@ -403,7 +540,7 @@ def get_user_menu_item(user_name):
 
                                 if (nextPost === undefined || nextPost === null) {
                                     $nextPostSelector.hide();
-                                    showToast('Você está no último post');
+                                    showToast('VocÃª estÃ¡ no Ãºltimo post');
                                 }
                                 else {
                                     $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
