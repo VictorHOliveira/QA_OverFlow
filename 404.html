@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Página não encontrada</title>
+    <script>
+    (function() {
+        var path = window.location.pathname;
+        // Fix common URL issues: accents and typos
+        var fixes = {
+            'boas-prticas-em-automao-de-testes-um-guia-para-2026': 'boas-praticas-em-automacao-de-testes-um-guia-para-2026',
+            'boas-prticas-em-automação-de-testes-um-guia-para-2026': 'boas-praticas-em-automacao-de-testes-um-guia-para-2026',
+            'boas-praticas-em-automação-de-testes-um-guia-para-2026': 'boas-praticas-em-automacao-de-testes-um-guia-para-2026'
+        };
+        
+        // Extract the slug from path
+        var matches = path.match(/\/post\/([^\/]+)\/?$/);
+        if (matches) {
+            var slug = matches[1];
+            // Decode URI to handle %C3%A7 etc
+            slug = decodeURIComponent(slug);
+            
+            for (var wrong in fixes) {
+                if (slug === wrong || slug.toLowerCase() === wrong.toLowerCase()) {
+                    window.location.href = '/post/' + fixes[wrong] + '/';
+                    return;
+                }
+            }
+        }
+    })();
+    </script>
+</head>
+<body>
+    <h1>404 - Página não encontrada</h1>
+    <p>A página que você procura não existe.</p>
+    <a href="/">Voltar para a página inicial</a>
+</body>
+</html>
