@@ -9,11 +9,11 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="QA Overflow" name="generator"/>
-<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" name="description">
+<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testes" name="description">
 <meta content="Victor Oliveira" name="author"/>
 <!-- Open Graph -->
-<meta content="Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow" property="og:title"/>
-<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" property="og:description"/>
+<meta content="Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos :: QA Overflow" property="og:title"/>
+<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testes" property="og:description"/>
 <meta content="https://qaoverflow.com/favicon.ico" property="og:image"/>
 <meta content="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos/" property="og:url"/>
 <meta content="article" property="og:type">
@@ -21,10 +21,10 @@
 <meta content="pt_BR" property="og:locale">
 <!-- Twitter Card -->
 <meta content="summary" name="twitter:card">
-<meta content="Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow" name="twitter:title"/>
-<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" name="twitter:description"/>
+<meta content="Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos :: QA Overflow" name="twitter:title"/>
+<meta content="Informações e reviews sobre Qualidade de Software e Automação de Testes" name="twitter:description"/>
 <meta content="https://qaoverflow.com/favicon.ico" name="twitter:image"/>
-<title>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos :: QA Overflow</title>
+<title>Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos :: QA Overflow</title>
 <!-- jQuery - loaded first -->
 <script defer="" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <!-- rss feed url -->
@@ -52,7 +52,7 @@
 
         "@type": "BlogPosting",
 
-        "headline": "Design Patterns para Automação de Testáes: A Arquitetura que Sobrevive ao Caos",
+        "headline": "Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos",
 
         "datePublished": "2026-04-25",
 
@@ -80,9 +80,9 @@
 
         },
 
-        "url": "https://qaoverflow.com/post/design-patterns-para-automacao-de-testáes-a-arquitetura-que-sobrevive-ao-caos/",
+        "url": "https://qaoverflow.com/post/design-patterns-para-automacao-de-Testes-a-arquitetura-que-sobrevive-ao-caos/",
 
-        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testáes"
+        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testes"
 
     }
 
@@ -119,12 +119,12 @@
 </nav>
 </div>
 </header>
-<!-- Toast nãotification -->
-<div class="toast-nãotification" id="toast"></div>
+<!-- Toast notification -->
+<div class="toast-notification" id="toast"></div>
 <div class="container">
 <div class="row"><div class="col-md-8 main-content">
 <article>
-<h3>Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</h3>
+<h3>Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos</h3>
 <span class="glyphicon glyphicon-user"></span> Victor Oliveira
 
                   
@@ -133,13 +133,13 @@
 
                 <hr/>
 <p class="post-content"><p>Por um QA Sênior  13 anos quebrando coisas de forma organizada</p>
-<p>Ao longo de quase uma dcada e meia construindo e reconstruindo sutes de automação, testáemunhei um padro (sem trocadilho) repetido  exausto: projetos comeam lindos, organizados, promissores. Seis meses depois, so um Frankenstein de cdigo duplicado, lgica de negócio vazando para os testáes e manutenão que consome 70% do tempo do time.</p>
-<p>O problema raramente  a ferramenta (Cypress, Playwright, Selenium, o que vier amanh). O problema  arquitetural. E a boa nãotcia  que os Design Patterns de testáe  bem aplicados  so imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organizao, não tcnicos de sintaxe.</p>
+<p>Ao longo de quase uma dcada e meia construindo e reconstruindo sutes de Automação, testámunhei um padro (sem trocadilho) repetido  exausto: projetos comeam lindos, organizados, promissores. Seis meses depois, so um Frankenstein de código duplicado, lgica de negócio vazando para os Testes e manutenção que consome 70% do tempo do time.</p>
+<p>O problema raramente  a ferramenta (Cypress, Playwright, Selenium, o que vier amanh). O problema  arquitetural. E a boa nãotcia  que os Design Patterns de testá  bem aplicados  so imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organizao, não tcnicos de sintaxe.</p>
 <p>Vamos ao que interessa: os padres que realmente entregam valor em 2026, com exemplos prticos e armadilhas fatais.</p>
 <ol>
 <li>Page Object Model (POM)  Clssico, Mas Nem Todo Mundo Sabe Usar</li>
 </ol>
-<p>O POM  o av dos patterns de automação. Todo mundo conhece, mas poucos aplicam corretamente. O princpio  simples: cada pgina ou componente da UI  representado por uma classe que expe apenas aes de alto nvel.</p>
+<p>O POM  o av dos patterns de Automação. Todo mundo conhece, mas poucos aplicam corretamente. O princpio  simples: cada página ou componente da UI  representado por uma classe que expe apenas aes de alto nvel.</p>
 <p>Exemplo do que NO fazer (anti-pattern visto semanalmente):</p>
 <h1>Mau uso: Page Object virou localizador glorificado</h1>
 <p>class LoginPage:
@@ -201,7 +201,7 @@ def click_login(self):
 <ol>
 <li>Testá Data Factory  O Pattern Mais Subestáimado</li>
 </ol>
-<p>O assassinão silenciador da produtividade: testáes que dependem de dados hardcoded.</p>
+<p>O assassinão silenciador da produtividade: Testes que dependem de dados hardcoded.</p>
 <h1>Dados espalhados e frgeis</h1>
 <p>def testá_login():
 
@@ -242,7 +242,7 @@ def admin_user():
 <ol>
 <li>Builder Pattern  Para Cenrios de Dados Complexos</li>
 </ol>
-<p>Quando sua entidade tem 15+ campos opcionais, o Builder impede a exploso de construtores.</p>
+<p>Quando sua entidade têm 15+ campos opcionais, o Builder impede a exploso de construtores.</p>
 <p>class OrderBuilder:
 
 def <strong>init</strong>(self):
@@ -272,7 +272,7 @@ def build(self):
 
 .build())</p>
 <ol>
-<li>Facade Pattern  Orquestárando Mltiplos Page Objects</li>
+<li>Facade Pattern  Orquestárando múltiplos Page Objects</li>
 </ol>
 <p>class CheckoutFacade:
 
@@ -288,7 +288,7 @@ self.checkout = CheckoutPage(page)</p>
     self.checkout.fill_shipping(user.address)
 
     return self.confirmation.get_order_number()</code></pre>
-<h1>Testáe limpo e focado em negócio</h1>
+<h1>Testá limpo e focado em negócio</h1>
 <p>def testá_guestá_checkout():
 
 facade = CheckoutFacade(page)
@@ -297,7 +297,7 @@ order_id = facade.complete_purchase(user, products)
 
 assert order_id is nãot None</p>
 <ol>
-<li>Strategy Pattern  Lidando com Mltiplos Contextos</li>
+<li>Strategy Pattern  Lidando com múltiplos Contextos</li>
 </ol>
 <p>class AuthenticationStrategy(ABC):
 
@@ -318,7 +318,7 @@ def login(self, credentials):
 response = self.api_client.post("/auth/login", json=credentials)
 
 self.token = response.json()["token"]</p>
-<h1>Mesmo testáe com diferentes estáratgias</h1>
+<h1>Mesmo testá com diferentes estratégias</h1>
 <p>def testá_user_profile(auth_strategy):
 
 auth_strategy.login(testá_user)</p>
@@ -355,17 +355,17 @@ def get_user_menu_item(user_name):
 
     return f"div.user-menu:has-text('{user_name}')"</code></pre>
 <p>Vantagem: Quando um dev renãomeia data-testáid, voc altera em UM lugar.</p>
-<p>Concluso: Padres No So Receita de Bolo</p>
+<p>Concluso: Padres No So receita de Bolo</p>
 <p>Aprendi da pior maneira: aplicar todos os padres de uma vez  to ruim quanto aplicar nenhum. O segredo  evoluo incremental.</p>
-<p>Comece com POM. Quando sentir dor de dados repetidos, adicione Factory. Quando os testáes ficarem muito longos, introduza Facade.</p>
-<p>A boa arquitetura não  imposta desde o dia 1  ela emerge para resolver dores reais do time. E a melhor mtrica de sucesso  simples: quanto tempo leva para voc adicionar um testáe para uma nãova funcionalidade? Se a resposta for "minutos", voc acertou.</p>
+<p>Comece com POM. Quando sentir dor de dados repetidos, adicione Factory. Quando os Testes ficarem muito longos, introduza Facade.</p>
+<p>A boa arquitetura não  imposta desde o dia 1  ela emerge para resolver dores reais do time. E a melhor mtrica de sucesso  simples: quanto tempo leva para voc adicionar um testá para uma nãova funcionalidade? Se a resposta for "minutos", voc acertou.</p>
 <p>Agora v e organize esse legado. Ou comece certo do zero. Seu eu do futuro (e o onboarding do prximo QA) vo te agradecer. </p>
-<p> QA Sênior que j refatorou mais cdigo de testáe do que gostaria de admitir</p></p>
+<p> QA Sênior que já refatorou mais código de testá do que gostaria de admitir</p></p>
 <br/><br/>
 <div class="post-info">
 <span class="glyphicon glyphicon-folder-open"></span>  
 
-                        <a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a>
+                        <a href="https://qaoverflow.com/category/boas-práticas">Boas Práticas</a>
 
                           
 
@@ -376,9 +376,9 @@ def get_user_menu_item(user_name):
 
                         <a href="https://qaoverflow.com/tag/automation">automation</a>  
 
-                        <a href="https://qaoverflow.com/tag/automação">automação</a>  
+                        <a href="https://qaoverflow.com/tag/Automação">Automação</a>  
 
-                        <a href="https://qaoverflow.com/tag/boas praticas">boas praticas</a>  
+                        <a href="https://qaoverflow.com/tag/boas práticas">boas práticas</a>  
 
                 </div>
 </article>
@@ -393,7 +393,7 @@ def get_user_menu_item(user_name):
                         os Posts</a>
 </div>
 <div class="col-sm-4 col-md-4">
-<a class="nextpost btn btn-primary">Próximo Post <i class="fa fa-chevron-circle-right"></i></a>
+<a class="nextpost btn btn-primary">próximo Post <i class="fa fa-chevron-circle-right"></i></a>
 </div>
 </div>
 <hr>
@@ -413,9 +413,9 @@ def get_user_menu_item(user_name):
 <strong>Postagens Recentes</strong>
 </div>
 <ul class="list-group">
-<li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testáes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testáes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
-<li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testáes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testáes: A Arquitetura que Sobrevive ao Caos</a></li>
-<li class="list-group-item"><a href="https://qaoverflow.com/post/boas-praticas-em-automação-de-testáes-um-guia-para-2026">Boas Prticas em Automação de Testáes: Um Guia para 2026</a></li>
+<li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-Testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+<li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-Testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que sobrevive ao Caos</a></li>
+<li class="list-group-item"><a href="https://qaoverflow.com/post/boas-práticas-em-Automação-de-Testes-um-guia-para-2026">Boas Prticas em Automação de Testes: Um Guia para 2026</a></li>
 </ul>
 </div>
 <!-- Categorias -->
@@ -424,7 +424,7 @@ def get_user_menu_item(user_name):
 <strong>Categorias</strong>
 </div>
 <ul class="list-group">
-<li class="list-group-item"><a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a></li>
+<li class="list-group-item"><a href="https://qaoverflow.com/category/boas-práticas">Boas Práticas</a></li>
 </ul>
 </div>
 </div></div>
@@ -713,7 +713,7 @@ def get_user_menu_item(user_name):
 
             toast.textContent = message;
 
-            toast.className = "toast-nãotification show";
+            toast.className = "toast-notification show";
 
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
 
