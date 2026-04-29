@@ -15,10 +15,31 @@
  "customValues": [],
  "pages": [],
  "follow": [],
- "posts": [
+  "posts": [
   {
-   "author": "Victor Oliveira",
-   "title": "Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático",
+    "author": "Victor Oliveira",
+    "title": "Metodologia Scrum com Automação de Testes",
+    "tags": [
+      "2026",
+      "scrum",
+      "automacao-de-testes",
+      "metodologia-agil",
+      "qa",
+      "boas-praticas"
+    ],
+    "category": "boas-praticas",
+    "body": "<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p><hr/><p>Introdução</p><p>Scrum é a metodologia ágil mais adotada no mundo, mas muitas vezes a automação de testes é tratada como uma atividade isolada, quase um \"side project\" do time. Isso é um erro gravíssimo.</p><p>Após 13 anos trabalhando com QA em times Scrum, aprendi que a automação de testes precisa estar no DNA de cada Sprint, não como um trabalho paralelo, mas como parte integrante do Definition of Done (DoD).</p><p>O Scrum e a Qualidade</p><p>No Scrum, temos eventos fixos: Sprint Planning, Daily Scrum, Sprint Review e Sprint Retrospective. Onde a automação de testes se encaixa?</p><p>1. Sprint Planning: Planejando a Automação</p><p>No início de cada Sprint, o time deve identificar quais testes de regressão e funcionalidades novas precisam de cobertura automatizada.</p><ul><li>Critério: Se o teste será executado mais de 2 vezes no Sprint, automatize.</li><li>Prioridade: Foco em User Stories que fazem parte do core business.</li></ul><p>2. Daily Scrum: Obstáculos na Automação</p><p>Não esconda problemas de automação. Se um teste está quebrando ou uma nova funcionalidade é difícil de automatizar, traga para o Daily.</p><p>Exemplo real: Em um projeto de 2025, perdemos 3 dias de Sprint porque um QA tentou resolver sozinho um problema de sincronização em testes de API.</p><p>3. Sprint Review: Demonstração de Testes Automatizados</p><p>Ao apresentar a funcionalidade nova, mostre também os testes automatizados que garantem sua qualidade. Isso gera confiança no Product Owner e Stakeholders.</p><p>4. Sprint Retrospective: Melhoria Continua da Automação</p><p>Use a Retrospectiva para discutir:</p><ul><li>Quais testes automatizados pegaram bugs este Sprint?</li><li>Qual o tempo médio de execução da suite?</li><li>Como reduzir a manutenção de scripts?</li></ul><p>Definition of Done (DoD) com Automação</p><p>Uma User Story só está \"Done\" quando:</p><ol><li>Código desenvolvido e revisado</li><li>Testes manuais executados</li><li><strong>Testes automatizados criados/atualizados</strong></li><li>Testes de regressão automatizados passando</li><li>Documentação atualizada</li></ol><p>Estatísticas Reais (2025-2026)</p><table><tr><th>Métrica</th><th>Time sem Automação no Scrum</th><th>Time com Automação Integrada</th></tr><tr><td>Bugs em Produção</td><td>15/Sprint</td><td>3/Sprint</td></tr><tr><td>Tempo de Regressão</td><td>2 dias</td><td>2 horas</td></tr><tr><td>Velocidade do Time</td><td>25 pontos</td><td>40 pontos</td></tr><tr><td>Dívida Técnica</td><td>Alta</td><td>Controlada</td></tr></table><p>Exemplo Prático: Automação no Sprint</p><p>Imagine uma User Story: \"Implementar login com Google\".</p><p>Tarefas de QA no Sprint:</p><ul><li>Testes exploratórios manuais (1 hora)</li><li>Automação do fluxo feliz (2 horas)</li><li>Automação de casos negativos (1 hora)</li><li>Integração no pipeline CI/CD (30 min)</li></ul><p>Resultado: O login está protegido para sempre. Qualquer regressão será pega automaticamente.</p><p>Conclusão</p><p>Scrum com automação de testes não é opcional em 2026. É a diferença entre um time que entrega valor constantemente e um time que gasta mais tempo consertando bugs do que desenvolvendo.</p><p>Lembre-se: Automação é responsabilidade de TODO o time Scrum, não apenas do QA.</p>",
+    "addpost": "addpost",
+    "dated": "April 29, 2026 10:00 AM",
+    "slug": "metodologia-scrum-com-automacao-de-testes",
+    "categoryslug": "boas-praticas",
+    "status": "published",
+    "showbody": "1",
+    "summary": "<p>Metodologia Scrum com Automação de Testes</p><p>Por um QA Sênior com Mais de Uma Década na Trincheira</p><hr/><p>Introdução</p><p>Scrum é a metodologia ágil mais adotada no mundo, mas muitas vezes a automação de testes é tratada como uma atividade isolada, quase um \"side project\" do time. Isso é um erro gravíssimo.</p>"
+  },
+  {
+    "author": "Victor Oliveira",
+    "title": "Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático",
    "tags": [
     "automacao",
     "automation",
