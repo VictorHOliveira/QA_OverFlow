@@ -1,451 +1,902 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8">
-    <link rel="preconnect" href="https://code.jquery.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://qaoverflow.com">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="QA Overflow" />
-    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
-    <meta name="author" content="Victor Oliveira">
-    <!-- Open Graph -->
-    <meta property="og:title" content="QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow" />
-    <meta property="og:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
-    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
-    <meta property="og:url" content="https://qaoverflow.com/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa/" />
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="QA Overflow" />
-    <meta property="og:locale" content="pt_BR" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow" />
-    <meta name="twitter:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
-    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
-
-    <title>QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow</title>
-
-    <!-- jQuery - loaded first -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-
-    <!-- rss feed url -->
-    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="http://localhost/QA_OverFlow/public/rss.xml"/>
-
-    <!-- favicon -->
-    <link rel="shortcut icon" href="/favicon.ico"/>
-    <link rel="shortcut icon" href="http://localhost/QA_OverFlow/public/favicon.ico"/>
-
-    <!-- Bootstrap CSS file -->
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
-
-    <!-- syntax highlighter css file -->
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
-
-    <!-- lightbox for images -->
-    <link href="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
-
-    <!-- blog custom CSS file -->
-    <link href="http://localhost/QA_OverFlow/public/css/style.css" rel="stylesheet"/>
-    <link href="http://localhost/QA_OverFlow/public/css/theme.css" rel="stylesheet"/>
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA",
-        "datePublished": "2026-04-25",
-        "author": {
-            "@type": "Person",
-            "name": "Victor Oliveira"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "QA Overflow",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://qaoverflow.com/favicon.ico"
-            }
-        },
-        "url": "https://qaoverflow.com/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa/",
-        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testes"
-    }
-    </script>
-</head><body>
-<!-- Header -->
-<header class="navbar navbar-default
- navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
-    <div class="container">
-
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Alternar navegacao</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a href="http://localhost/QA_OverFlow/public" class="navbar-brand">QA Overflow</a>
-        </div>
-
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <div class="navbar-form navbar-right" role="search" aria-label="Busca no site" role="search">
-                <div class="form-group">
-                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
-                </div>
-
-                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
-                    Pesquisar
-                </button>
-            </div>
-
-            <ul class="nav navbar-nav page-links">
-            </ul>
-
-        </nav>
-    </div>
-</header>
-<!-- Toast notification -->
-<div id="toast" class="toast-notification"></div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 main-content">
-            <article>
-                <h3>QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</h3>
-                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 25, 2026 02:00 PM
-                <hr>
-
-                <p class="post-content"><h2>QA Overflow: Uma Nova Forma de Aprender e Compartilhar Qualidade de Software</h2>
-<p>Fala, comunidade de QA! </p>
-<p>Estou super animados em compartilhar com voces o <strong>QA Overflow</strong>, um projeto especial que criei para unir duas Paixoes: <strong>Inteligencia Artificial</strong> e <strong>compartilhamento de conhecimento</strong>.</p>
-<h3>O que e o QA Overflow?</h3>
-<p>O QA Overflow e um blog especializado em <strong>Qualidade de Software e Automacao de Testes</strong>, onde combino minha experiencia de mais de 13 anos na area com a Forca da IA para:</p>
-<ul>
-<li>Criar conteudos tecnicos de alta qualidade</li>
-<li>Compartilhar boas praticas e design patterns</li>
-<li>Explorar novas tendencias em automacao de testes</li>
-<li>Ajudar outros QAs a evoluirem na carreira</li>
-</ul>
-<h3>Por que criar este projeto?</h3>
-<p>Como QA senior, percebi que ha uma grande lacuna de conteudo em portugues sobre qualidade de software. Muitos profissionais ainda enfrentam desafios diarios e nao tem acesso a materiais de qualidade.</p>
-<p>Com o QA Overflow, minha missao e:</p>
-<ol>
-<li><strong>Democratizar o conhecimento</strong> - Conteudo gratuito e acesso livre</li>
-<li><strong>Conectar profissionais</strong> - Construir uma comunidade ativa</li>
-<li><strong>Inovar com IA</strong> - Usar tecnologia para produzir melhor</li>
-</ol>
-<h3>Venha Conhecer!</h3>
-<p>Acesse agora: <strong><a href="https://qaoverflow.com">https://qaoverflow.com</a></strong></p>
-<p>L voc encontra:</p>
-<ul>
-<li>Artigos sobre automacao de testes</li>
-<li>Guias praticos para QAs</li>
-<li>Design patterns e boas praticas</li>
-<li>Insights sobre tendencias do mercado</li>
-</ul>
-<p>Vamos construir essa comunidade juntos? </p>
-<h1>QAOverflow #QualidadeDeSoftware #AutomacaoDeTestes #Aprendizado #ComunidadeQA</h1></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/category/sobre">Sobre</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="http://localhost/QA_OverFlow/public/tag/qa">qa</a>&nbsp;&nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/tag/qaoverflow">qaoverflow</a>&nbsp;&nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/tag/ia">ia</a>&nbsp;&nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/tag/artificial-intelligence">artificial-intelligence</a>&nbsp;&nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/tag/blog">blog</a>&nbsp;&nbsp;
-                        <a href="http://localhost/QA_OverFlow/public/tag/conhecimento">conhecimento</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
-            <hr/>
-
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Post Anterior</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="http://localhost/QA_OverFlow/public/"><i class="fa fa-navicon"></i> Ver Todos
-                        os Posts</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary">Próximo Post <i class="fa fa-chevron-circle-right"></i></a>
-                </div>
-            </div>
-
-            <hr/>
-            
-        
-                <!-- Comments Section --><div id="comments" style="margin-top: 40px; margin-bottom: 30px;">
-                    <h3 style="color: var(--heading-color); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
-                        <i class="fas fa-comments" style="margin-right: 8px;"></i>Comentrios
-                    </h3>
-                    <div id="giscus-container"></div>
-                </div>
-                </div>
-                <!-- Related Posts Section -->
-                <div id="related-posts" class="panel panel-primary" style="margin-top: 30px;">
-                    <div class="panel-heading">
-                        <strong>Posts Relacionados</strong>
-                    </div>
-                    <div class="panel-body">
-                        <ul id="related-posts-list" class="list-unstyled">
-                            <!-- Related posts will be loaded here by JavaScript -->
-                        </ul>
-                    </div>
-                </div>
-</div>
-
-        <div class="sidebar col-md-4">
-        
-            <!-- Follow Panel -->
-        
-            <!-- Custom Values from Settings page -->
-        
-            <!-- Postagens Recentes -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>Postagens Recentes</strong>
-                </div>
-        
-                <ul class="list-group">
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa">QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prtico</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Prticas em Automação de Testes: Um Guia para 2026</a></li>
-                </ul>
-            </div>
-        
-            <!-- Categorias -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>Categorias</strong>
-                </div>
-        
-                <ul class="list-group">
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/boas-praticas">Boas Práticas</a></li>
-                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/sobre">Sobre</a></li>
-                </ul>
-            </div>
-        
-            <!-- Arquivos -->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <strong>Arquivos</strong>
-                    </div>
-        
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="/archive/april-2026">April 2026</a></li></ul>
-                </div>
-        
-            <!-- Tags -->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <strong>Tags</strong>
-                    </div>
-        
-                    <div class="panel-body">
-                        <ul class="list-inline">
-                            <a style="font-size: 12px" class="tag_cloud" href="/tag/2026" title="2 total posts">2026</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/artificial-intelligence" title="2 total posts">artificial-intelligence</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automacao</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automation" title="2 total posts">automation</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automao</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/blog" title="2 total posts">blog</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas-praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/conhecimento" title="2 total posts">conhecimento</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">Guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/ia" title="2 total posts">ia</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/manual-testing" title="2 total posts">manual-testing</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/qa" title="2 total posts">qa</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/qaoverflow" title="2 total posts">qaoverflow</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/testes" title="2 total posts">testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="/tag/web" title="2 total posts">web</a>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-    </div>
-</div>
-
-<!-- Footer -->
-                
-        </div>
-
-<footer>
-    <div class="container">
-        <hr/>
-        <p class="text-center">Publicado por <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
-    </div>
-</footer>
-
-<!-- Bootstrap and other Script files -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
-<script src="http://localhost/QA_OverFlow/public/js/plugins/highlight/highlight.pack.js" defer></script>
-<script src="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
-
-<script>
-    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost/QA_OverFlow/public'
-        : 'https://qaoverflow.com';
-</script>
-
-<script src="http://localhost/QA_OverFlow/public/js/blog.js" defer></script>
-<script src="http://localhost/QA_OverFlow/public/js/search.js" defer></script>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F9NWQEL01S');
-</script>
-
-<script>
-.ready(function() {
-    var pageArray = document.location.href.split('/');
-    var currentPageSlug = pageArray[pageArray.length - 1];
-    if (!currentPageSlug) {
-        currentPageSlug = pageArray[pageArray.length - 2];
-    }
-    
-    $.ajax({
-        url: __blogURL + '/data/blog.json',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            if (data.posts !== undefined && data.posts !== null) {
-                var currentPost = null;
-                var currentTags = [];
-                
-                // Find current post and get its tags
-                $.each(data.posts, function(i, post) {
-                    if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-                        currentPost = post;
-                        currentTags = post.tags || [];
-                        return false;
-                    }
-                });
-                
-                if (currentPost && currentTags.length > 0) {
-                    var relatedPosts = [];
-                    
-                    // Find posts with matching tags
-                    $.each(data.posts, function(i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-                            return true; // Skip current post
-                        }
-                        
-                        var postTags = post.tags || [];
-                        var hasMatchingTag = false;
-                        
-                        $.each(currentTags, function(j, tag) {
-                            if ($.inArray(tag, postTags) !== -1) {
-                                hasMatchingTag = true;
-                                return false;
-                            }
-                        });
-                        
-                        if (hasMatchingTag) {
-                            relatedPosts.push(post);
-                        }
-                    });
-                    
-                    // Display related posts (max 5)
-                    var  = #related-posts-list;
-                    .empty();
-                    
-                    if (relatedPosts.length > 0) {
-                        $.each(relatedPosts.slice(0, 5), function(i, post) {
-                            .append('<li style="margin-bottom: 10px;"><a href="' + __blogURL + '/post/' + post.slug + '">' + post.title + '</a></li>');
-                        });
-                    } else {
-                        .append('<li>Nenhum post relacionado encontrado.</li>');
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
-<script src="https://qaoverflow.com/js/related-posts.js" defer></script>
-<script src="https://qaoverflow.com/js/comments.js" defer></script>
-</body>
-</html>
-<!-- for pagination -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            var $prevPostSelector = $('.prevpost');
-            var $nextPostSelector = $('.nextpost');
-
-            var pageArray = document.location.href.split('/');
-            var currentPageSlug = pageArray[pageArray.length - 1];
-
-            if (!currentPageSlug) {
-                currentPageSlug = pageArray[pageArray.length - 2];
-            }
-
-            $.ajax({
-                url: __blogURL + "/data/blog.json",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    if (data.posts !== undefined && data.posts !== null) {
-                        $.each(data.posts, function (i, post) {
-                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                                var prevPost = data.posts[i - 1];
-                                var nextPost = data.posts[i + 1];
-
-                                if (prevPost === undefined || prevPost === null) {
-                                    $prevPostSelector.hide();
-                                    showToast('Voc est no primeiro post');
-                                }
-                                else {
-                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                                }
-
-                                if (nextPost === undefined || nextPost === null) {
-                                    $nextPostSelector.hide();
-                                    showToast('Voc est no ltimo post');
-                                }
-                                else {
-                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                                }
-
-                                return false;
-                            }
-                        });
-                    }
-                },
-                error: function (e) {
-                    $prevPostSelector.hide();
-                    $nextPostSelector.hide();
-                }
-            });
-        }, 100);
-
-        function showToast(message) {
-            var toast = document.getElementById("toast");
-            toast.textContent = message;
-            toast.className = "toast-notification show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
-        }
-    });
-</script>
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://code.jquery.com">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link rel="preconnect" href="https://qaoverflow.com">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="generator" content="QA Overflow" />
+
+    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes">
+
+    <meta name="author" content="Victor Oliveira">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title" content="QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow" />
+
+    <meta property="og:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" />
+
+    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
+
+    <meta property="og:url" content="https://qaoverflow.com/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa/" />
+
+    <meta property="og:type" content="article" />
+
+    <meta property="og:site_name" content="QA Overflow" />
+
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="twitter:title" content="QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow" />
+
+    <meta name="twitter:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" />
+
+    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
+
+
+
+    <title>QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA :: QA Overflow</title>
+
+
+
+    <!-- jQuery - loaded first -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+
+
+
+    <!-- rss feed url -->
+
+    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="http://localhost/QA_OverFlow/public/rss.xml"/>
+
+
+
+    <!-- favicon -->
+
+    <link rel="shortcut icon" href="/favicon.ico"/>
+
+    <link rel="shortcut icon" href="http://localhost/QA_OverFlow/public/favicon.ico"/>
+
+
+
+    <!-- Bootstrap CSS file -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+
+
+
+    <!-- syntax highlighter css file -->
+
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+
+
+
+    <!-- lightbox for images -->
+
+    <link href="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+
+
+
+    <!-- blog custom CSS file -->
+
+    <link href="http://localhost/QA_OverFlow/public/css/style.css" rel="stylesheet"/>
+
+    <link href="http://localhost/QA_OverFlow/public/css/theme.css" rel="stylesheet"/>
+
+    <!-- JSON-LD Structured Data -->
+
+    <script type="application/ld+json">
+
+    {
+
+        "@context": "https://schema.org",
+
+        "@type": "BlogPosting",
+
+        "headline": "QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA",
+
+        "datePublished": "2026-04-25",
+
+        "author": {
+
+            "@type": "Person",
+
+            "name": "Victor Oliveira"
+
+        },
+
+        "publisher": {
+
+            "@type": "Organization",
+
+            "name": "QA Overflow",
+
+            "logo": {
+
+                "@type": "ImageObject",
+
+                "url": "https://qaoverflow.com/favicon.ico"
+
+            }
+
+        },
+
+        "url": "https://qaoverflow.com/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa/",
+
+        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testáes"
+
+    }
+
+    </script>
+
+</head><body>
+
+<!-- Header -->
+
+<header class="navbar navbar-default
+
+ navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
+
+    <div class="container">
+
+
+
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+
+                <span class="sr-only">Alternar navegacao</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+            </button>
+
+
+
+            <a href="http://localhost/QA_OverFlow/public" class="navbar-brand">QA Overflow</a>
+
+        </div>
+
+
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <div class="navbar-form navbar-right" role="search" aria-label="Busca não site" role="search">
+
+                <div class="form-group">
+
+                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
+
+                </div>
+
+
+
+                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
+
+                    Pesquisar
+
+                </button>
+
+            </div>
+
+
+
+            <ul class="nav navbar-nav page-links">
+
+            </ul>
+
+
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- Toast nãotification -->
+
+<div id="toast" class="toast-nãotification"></div>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-8 main-content">
+
+            <article>
+
+                <h3>QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</h3>
+
+                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
+
+                &nbsp;&nbsp;
+
+                <span class="glyphicon glyphicon-time"></span> April 25, 2026 02:00 PM
+
+                <hr>
+
+
+
+                <p class="post-content"><h2>QA Overflow: Uma Nova Forma de Aprender e Compartilhar Qualidade de Software</h2>
+
+<p>Fala, comunidade de QA! </p>
+
+<p>Estou super animados em compartilhar com voces o <strong>QA Overflow</strong>, um projeto especial que criei para unir duas Paixoes: <strong>Inteligencia Artificial</strong> e <strong>compartilhamento de conhecimento</strong>.</p>
+
+<h3>O que e o QA Overflow?</h3>
+
+<p>O QA Overflow e um blog especializado em <strong>Qualidade de Software e Automacao de Testáes</strong>, onde combinão minha experiencia de mais de 13 anos na area com a Forca da IA para:</p>
+
+<ul>
+
+<li>Criar conteudos tecnicos de alta qualidade</li>
+
+<li>Compartilhar boas praticas e design patterns</li>
+
+<li>Explorar nãovas tendencias em automacao de testáes</li>
+
+<li>Ajudar outros QAs a evoluirem na carreira</li>
+
+</ul>
+
+<h3>Por que criar estáe projeto?</h3>
+
+<p>Como QA senior, percebi que ha uma grande lacuna de conteudo em portugues sobre qualidade de software. Muitos profissionais ainda enfrentam desafios diarios e nao tem acesso a materiais de qualidade.</p>
+
+<p>Com o QA Overflow, minha missao e:</p>
+
+<ol>
+
+<li><strong>Democratizar o conhecimento</strong> - Conteudo gratuito e acesso livre</li>
+
+<li><strong>Conectar profissionais</strong> - Construir uma comunidade ativa</li>
+
+<li><strong>Inãovar com IA</strong> - Usar tecnãologia para produzir melhor</li>
+
+</ol>
+
+<h3>Venha Conhecer!</h3>
+
+<p>Acesse agora: <strong><a href="https://qaoverflow.com">https://qaoverflow.com</a></strong></p>
+
+<p>L voc encontra:</p>
+
+<ul>
+
+<li>Artigos sobre automacao de testáes</li>
+
+<li>Guias praticos para QAs</li>
+
+<li>Design patterns e boas praticas</li>
+
+<li>Insights sobre tendencias do mercado</li>
+
+</ul>
+
+<p>Vamos construir essa comunidade juntos? </p>
+
+<h1>QAOverflow #QualidadeDeSoftware #AutomacaoDeTestáes #Aprendizado #ComunidadeQA</h1></p>
+
+                <br/><br/>
+
+
+
+                <div class="post-info">
+
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/category/sobre">Sobre</a>
+
+                        &nbsp;&nbsp;
+
+
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/qa">qa</a>&nbsp;&nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/qaoverflow">qaoverflow</a>&nbsp;&nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/ia">ia</a>&nbsp;&nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/artificial-intelligence">artificial-intelligence</a>&nbsp;&nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/blog">blog</a>&nbsp;&nbsp;
+
+                        <a href="http://localhost/QA_OverFlow/public/tag/conhecimento">conhecimento</a>&nbsp;&nbsp;
+
+                </div>
+
+
+
+            </article>
+
+            <hr/>
+
+
+
+            <div class="text-center clearfix">
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Post Anterior</a>
+
+                </div>
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="btn btn-primary" href="http://localhost/QA_OverFlow/public/"><i class="fa fa-navicon"></i> Ver Todos
+
+                        os Posts</a>
+
+                </div>
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="nextpost btn btn-primary">Próximo Post <i class="fa fa-chevron-circle-right"></i></a>
+
+                </div>
+
+            </div>
+
+
+
+            <hr/>
+
+            
+
+        
+
+                <!-- Comments Section --><div id="comments" style="margin-top: 40px; margin-bottom: 30px;">
+
+                    <h3 style="color: var(--heading-color); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+
+                        <i class="fas fa-comments" style="margin-right: 8px;"></i>Comentários
+
+                    </h3>
+
+                    <div id="giscus-container"></div>
+
+                </div>
+
+                </div>
+
+                <!-- Related Posts Section -->
+
+                <div id="related-posts" class="panel panel-primary" style="margin-top: 30px;">
+
+                    <div class="panel-heading">
+
+                        <strong>Posts Relacionados</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <ul id="related-posts-list" class="list-unstyled">
+
+                            <!-- Related posts will be loaded here by JavaScript -->
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+</div>
+
+
+
+        <div class="sidebar col-md-4">
+
+        
+
+            <!-- Follow Panel -->
+
+        
+
+            <!-- Custom Values from Settings page -->
+
+        
+
+            <!-- Postagens Recentes -->
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+
+                    <strong>Postagens Recentes</strong>
+
+                </div>
+
+        
+
+                <ul class="list-group">
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa">QA Overflow: Combinando IA e Blog para Aprender e Ensinar QA</a></li>
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/identificar-testáes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testáes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/design-patterns-para-automacao-de-testáes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testáes: A Arquitetura que Sobrevive ao Caos</a></li>
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/post/boas-prticas-em-automação-de-testáes-um-guia-para-2026">Boas Prticas em Automação de Testáes: Um Guia para 2026</a></li>
+
+                </ul>
+
+            </div>
+
+        
+
+            <!-- Categorias -->
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+
+                    <strong>Categorias</strong>
+
+                </div>
+
+        
+
+                <ul class="list-group">
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/boas-praticas">Boas Práticas</a></li>
+
+                        <li class="list-group-item"><a href="http://localhost/QA_OverFlow/public/category/sobre">Sobre</a></li>
+
+                </ul>
+
+            </div>
+
+        
+
+            <!-- Arquivos -->
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+
+                        <strong>Arquivos</strong>
+
+                    </div>
+
+        
+
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="/archive/april-2026">April 2026</a></li></ul>
+
+                </div>
+
+        
+
+            <!-- Tags -->
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+
+                        <strong>Tags</strong>
+
+                    </div>
+
+        
+
+                    <div class="panel-body">
+
+                        <ul class="list-inline">
+
+                            <a style="font-size: 12px" class="tag_cloud" href="/tag/2026" title="2 total posts">2026</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/artificial-intelligence" title="2 total posts">artificial-intelligence</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automacao</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automation" title="2 total posts">automation</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao" title="2 total posts">automação</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/automacao-de-testáes" title="2 total posts">Automação de Testáes</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/blog" title="2 total posts">blog</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas-praticas</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/boas-praticas" title="2 total posts">boas praticas</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/conhecimento" title="2 total posts">conhecimento</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">guia</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/guia" title="2 total posts">Guia</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/ia" title="2 total posts">ia</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/manual-testáing" title="2 total posts">manual-testáing</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/qa" title="2 total posts">qa</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/qaoverflow" title="2 total posts">qaoverflow</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/testáes" title="2 total posts">testáes</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="/tag/web" title="2 total posts">web</a>
+
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- Footer -->
+
+                
+
+        </div>
+
+
+
+<footer>
+
+    <div class="container">
+
+        <hr/>
+
+        <p class="text-center">Publicado por <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- Bootstrap and other Script files -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+
+<script src="http://localhost/QA_OverFlow/public/js/plugins/highlight/highlight.pack.js" defer></script>
+
+<script src="http://localhost/QA_OverFlow/public/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
+
+
+
+<script>
+
+    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
+        ? 'http://localhost/QA_OverFlow/public'
+
+        : 'https://qaoverflow.com';
+
+</script>
+
+
+
+<script src="http://localhost/QA_OverFlow/public/js/blog.js" defer></script>
+
+<script src="http://localhost/QA_OverFlow/public/js/search.js" defer></script>
+
+
+
+<!-- Google Analytics 4 -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
+
+<script>
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-F9NWQEL01S');
+
+</script>
+
+
+
+<script>
+
+.ready(function() {
+
+    var pageArray = document.location.href.split('/');
+
+    var currentPageSlug = pageArray[pageArray.length - 1];
+
+    if (!currentPageSlug) {
+
+        currentPageSlug = pageArray[pageArray.length - 2];
+
+    }
+
+    
+
+    $.ajax({
+
+        url: __blogURL + '/data/blog.json',
+
+        type: 'GET',
+
+        dataType: 'json',
+
+        success: function(data) {
+
+            if (data.posts !== undefined && data.posts !== null) {
+
+                var currentPost = null;
+
+                var currentTags = [];
+
+                
+
+                // Find current post and get its tags
+
+                $.each(data.posts, function(i, post) {
+
+                    if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                        currentPost = post;
+
+                        currentTags = post.tags || [];
+
+                        return false;
+
+                    }
+
+                });
+
+                
+
+                if (currentPost && currentTags.length > 0) {
+
+                    var relatedPosts = [];
+
+                    
+
+                    // Find posts with matching tags
+
+                    $.each(data.posts, function(i, post) {
+
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            return true; // Skip current post
+
+                        }
+
+                        
+
+                        var postTags = post.tags || [];
+
+                        var hasMatchingTag = false;
+
+                        
+
+                        $.each(currentTags, function(j, tag) {
+
+                            if ($.inArray(tag, postTags) !== -1) {
+
+                                hasMatchingTag = true;
+
+                                return false;
+
+                            }
+
+                        });
+
+                        
+
+                        if (hasMatchingTag) {
+
+                            relatedPosts.push(post);
+
+                        }
+
+                    });
+
+                    
+
+                    // Display related posts (max 5)
+
+                    var  = #related-posts-list;
+
+                    .empty();
+
+                    
+
+                    if (relatedPosts.length > 0) {
+
+                        $.each(relatedPosts.slice(0, 5), function(i, post) {
+
+                            .append('<li style="margin-bottom: 10px;"><a href="' + __blogURL + '/post/' + post.slug + '">' + post.title + '</a></li>');
+
+                        });
+
+                    } else {
+
+                        .append('<li>Nenhum post relacionado encontrado.</li>');
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+});
+
+</script>
+
+<script src="https://qaoverflow.com/js/related-posts.js" defer></script>
+
+<script src="https://qaoverflow.com/js/comments.js" defer></script>
+
+</body>
+
+</html>
+
+<!-- for pagination -->
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        setTimeout(function() {
+
+            var $prevPostSelector = $('.prevpost');
+
+            var $nextPostSelector = $('.nextpost');
+
+
+
+            var pageArray = document.location.href.split('/');
+
+            var currentPageSlug = pageArray[pageArray.length - 1];
+
+
+
+            if (!currentPageSlug) {
+
+                currentPageSlug = pageArray[pageArray.length - 2];
+
+            }
+
+
+
+            $.ajax({
+
+                url: __blogURL + "/data/blog.json",
+
+                type: "GET",
+
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (data.posts !== undefined && data.posts !== null) {
+
+                        $.each(data.posts, function (i, post) {
+
+                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+
+
+                                var prevPost = data.posts[i - 1];
+
+                                var nextPost = data.posts[i + 1];
+
+
+
+                                if (prevPost === undefined || prevPost === null) {
+
+                                    $prevPostSelector.hide();
+
+                                    showToast('Você está não primeiro post');
+
+                                }
+
+                                else {
+
+                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+
+                                }
+
+
+
+                                if (nextPost === undefined || nextPost === null) {
+
+                                    $nextPostSelector.hide();
+
+                                    showToast('Você está não último post');
+
+                                }
+
+                                else {
+
+                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+
+                                }
+
+
+
+                                return false;
+
+                            }
+
+                        });
+
+                    }
+
+                },
+
+                error: function (e) {
+
+                    $prevPostSelector.hide();
+
+                    $nextPostSelector.hide();
+
+                }
+
+            });
+
+        }, 100);
+
+
+
+        function showToast(message) {
+
+            var toast = document.getElementById("toast");
+
+            toast.textContent = message;
+
+            toast.className = "toast-nãotification show";
+
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
+
+        }
+
+    });
+
+</script>
+

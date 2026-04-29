@@ -1,480 +1,960 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8">
-    <link rel="preconnect" href="https://code.jquery.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://qaoverflow.com">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="QA Overflow" />
-    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes">
-    <meta name="author" content="Victor Oliveira">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Boas Prticas em Automação de Testes: Um Guia para 2026 :: QA Overflow" />
-    <meta property="og:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
-    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
-    <meta property="og:url" content="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026/" />
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="QA Overflow" />
-    <meta property="og:locale" content="pt_BR" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Boas Prticas em Automação de Testes: Um Guia para 2026 :: QA Overflow" />
-    <meta name="twitter:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testes" />
-    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
-
-    <title>Boas Prticas em Automação de Testes: Um Guia para 2026 :: QA Overflow</title>
-
-    <!-- jQuery - loaded first -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-
-    <!-- rss feed url -->
-    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="https://qaoverflow.com/rss.xml"/>
-
-    <!-- favicon -->
-    <link rel="shortcut icon" href="/favicon.ico"/>
-    <link rel="shortcut icon" href="https://qaoverflow.com/favicon.ico"/>
-
-    <!-- Bootstrap CSS file -->
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="https://qaoverflow.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
-
-    <!-- syntax highlighter css file -->
-    <link href="https://qaoverflow.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
-
-    <!-- lightbox for images -->
-    <link href="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
-
-    <!-- blog custom CSS file -->
-    <link href="https://qaoverflow.com/css/style.css" rel="stylesheet"/>
-    <link href="https://qaoverflow.com/css/theme.css" rel="stylesheet"/>
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Boas Prticas em Automação de Testes: Um Guia para 2026",
-        "datePublished": "2026-04-25",
-        "author": {
-            "@type": "Person",
-            "name": "Victor Oliveira"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "QA Overflow",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://qaoverflow.com/favicon.ico"
-            }
-        },
-        "url": "https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026/",
-        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testes"
-    }
-    </script>
-</head><body>
-<!-- Header -->
-<header class="navbar navbar-default
- navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
-    <div class="container">
-
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Alternar navegacao</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a href="https://qaoverflow.com" class="navbar-brand">QA Overflow</a>
-        </div>
-        <ul class="nav navbar-nav page-links">
-            <li><a href="https://qaoverflow.com/category/sobre/">Sobre</a></li>
-        </ul>
-
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <div class="navbar-form navbar-right" role="search" aria-label="Busca no site" role="search">
-                <div class="form-group">
-                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
-                </div>
-
-                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
-                    Pesquisar
-                </button>
-            </div>
-
-            <ul class="nav navbar-nav page-links">
-            </ul>
-
-        </nav>
-    </div>
-</header>
-<!-- Toast notification -->
-<div id="toast" class="toast-notification"></div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 main-content">
-            <article>
-                <h3>Boas Prticas em Automação de Testes: Um Guia para 2026</h3>
-                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 22, 2026 05:37 PM
-                <hr>
-
-                <p class="post-content"><p>Por Um QA Snior com Mais de Uma Dcada na Trincheira</p>
-<p>Se h uma coisa que aprendi em mais de 13 anos de QA — testando desde aplicaes monolticas com C# at microsservios efmeros com Python e ferramentas de IA —  que automao no  sobre cdigo,  sobre risco. Passei por projetos onde tnhamos mais de 5.000 scripts de automao, uma cobertura de 85%, e ainda assim bugs crticos escapavam para produo. O problema? Estvamos presos a &quot;mtricas de vaidade&quot; e prticas que, embora populares, estavam nos afogando em dvida tcnica.</p>
-<p>A boa notcia  que o cenrio em 2026 mudou drasticamente. Com a ascenso da IA Agntica e a maturidade do DevOps, temos a oportunidade de reescrever as regras. Este artigo no  sobre teoria;  um compndio de boas prticas que eu gostaria de ter conhecido no incio da minha carreira, atualizadas para a realidade de hoje.</p>
-<ol>
-<li>A Morte da &quot;Febre da Cobertura&quot; e o Nascimento da Automação Baseada em Risco</li>
-</ol>
-<p>Por muito tempo, fomos medidos por um nmero: cobertura de testes automatizados. Gestores pediam 80%, 90%, mas ningum perguntava: esses testes protegem o que realmente importa?</p>
-<p>Na minha experincia, uma sute de automao inchada se torna um passivo, no um ativo. Voc gasta mais tempo consertando testes quebrados por mudanas de layout do que encontrando bugs reais. Estudos recentes de 2026 confirmam que quando a cobertura ultrapassa 80%, cada 1% adicional consome 30% mais recursos, com retorno decrescente.</p>
-<p>Boas Prticas em 2026:</p>
-<ul>
-<li>Adote a Abordagem Baseada em Risco (RBT): Antes de automatizar, pergunte: &quot;Qual o custo disso quebrar em produo?&quot; Fluxos de pagamento, autenticao e regras fiscais vm primeiro. Testes de &quot;footer&quot; ou cores de boto no precisam estar na esteira de CI.</li>
-<li>Abandonas as Mtricas de Vaidade: Nmero total de casos de teste automatizados  irrelevante. Foque em Defect Escape Rate (taxa de fuga de defeitos) e Signal-to-Noise Ratio (quantos testes falham por bug real vs. falso positivo).</li>
-</ul>
-<ol>
-<li>O Fim dos Seletores Frgeis: Automação com Inteno e Self-Healing</li>
-</ol>
-<p>Quantas horas perdemos consertando XPaths quebrados porque o dev mudou um id? A automao tradicional  brittle (frgil) por natureza. Em 2026, escrever scripts baseados puramente em localizadores DOM  uma prtica condenada.</p>
-<p>A indstria est migrando em massa para a automao intencional (Intent-Driven) e visual.</p>
-<p>Self-Healing (Autocura): Ferramentas modernas identificam que um elemento mudou e automaticamente corrigem o seletor em tempo de execuo. Testes que antes quebravam em toda refatorao de UI agora se adaptam sozinhos.</p>
-<p>Testes Visuais com AI: Ao invs de assertions textuais vagas, usamos modelos de viso computacional (VLM) para validar layout e comportamento.</p>
-<ol>
-<li>A Revoluo Agntica: Da Instruo (Step) para a Inteno (Intent)</li>
-</ol>
-<p>A maior mudana de paradigma nos ltimos 2 anos  a chegada da IA Agntica. No passado, escrevamos &quot;Clique no boto X, espere Y, digite Z&quot;. Hoje, dizemos ao sistema: &quot;Finalize a compra do produto X com carto invlido e verifique a mensagem de erro&quot;.</p>
-<p>O que isso muda na prtica?</p>
-<ul>
-<li>Manuteno Zero: O agente entende a semntica da pgina. Se o boto &quot;Finalizar&quot; mudar de lugar, ele encontra.</li>
-<li>Teste entre Plataformas: O mesmo comando em linguagem natural funciona para Web, iOS e Android.</li>
-</ul>
-<ol>
-<li>Arquitetura de Testes: O Modelo &quot;Honeycomb&quot; e a Pirmide Invertida</li>
-</ol>
-<p>Com a popularizao dos microsservios e da Integrao Contnua, a pirmide est cedendo lugar para o Modelo Honeycomb.</p>
-<ul>
-<li>Testes de Contrato (Pact/OpenAPI): Cruciais para garantir que o Servio A no quebre o Servio B.</li>
-<li>Testes de Integrao: Mdio volume, alto impacto.</li>
-<li>Testes E2E (UI): Apenas para os happy paths crticos e fluxos de jornada do usurio.</li>
-</ul>
-<ol>
-<li>Dados e Ambientes como Cdigo (EaC)</li>
-</ol>
-<p>Teste flaky geralmente  culpa de ambiente ou dado, no do cdigo. Em 2026, no h desculpa para ambientes inconsistentes.</p>
-<ul>
-<li>Ambiente como Cdigo: Use ferramentas como Terraform ou Docker Compose para subir seu ambiente de teste com um comando.</li>
-<li>Dados Gerenciados: Hard-Coding de dados  a receita do desastre. Pratique Data Seeding controlado ou use Gerao de Dados Sintticos com IA.</li>
-</ul>
-<ol>
-<li>A Integrao Contnua (CI) Inteligente</li>
-</ol>
-<p>Rodar todos os testes para qualquer commit  coisa do passado. As boas prticas atuais envolvem Test Impact Analysis (TIA).</p>
-<p>Configure esteiras para rodar testes especficos baseados no diff do cdigo.</p>
-<p>Resumo para o Lder Tcnico (Checklist 2026)</p>
-<ul>
-<li>Governana  Life: Cdigo de teste  cdigo de produo.</li>
-<li>IA  sua Ferramenta, no seu Dono: Use IA para gerar o esqueleto do teste, mas mantenha o controle sobre as regras de negcio.</li>
-<li>Ambiente Imutvel: Se no conseguir subir o ambiente com um script, sua automao vai falhar.</li>
-<li>Monitore a Confiana: Prefiro uma sute com 50 testes super estveis e relevantes do que 500 testes flaky.</li>
-</ul>
-<p>Vamos para a trincheira! 🚀</p></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="https://qaoverflow.com/tag/2026">2026</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/Automação de Testes">Automação de Testes</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/Guia">Guia</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/automation">automation</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/automao">automao</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/boas praticas">boas praticas</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/qa">qa</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/qaoverflow">qaoverflow</a>&nbsp;&nbsp;
-                        <a href="https://qaoverflow.com/tag/web">web</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
-            <hr/>
-
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Post Anterior</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="https://qaoverflow.com/"><i class="fa fa-navicon"></i> Ver Todos
-                        os Posts</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary">Próximo Post <i class="fa fa-chevron-circle-right"></i></a>
-                </div>
-            </div>
-
-            <hr/>
-            
-        
-                <!-- Comments Section --><div id="comments" style="margin-top: 40px; margin-bottom: 30px;">
-                    <h3 style="color: var(--heading-color); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
-                        <i class="fas fa-comments" style="margin-right: 8px;"></i>Comentrios
-                    </h3>
-                    <div id="giscus-container"></div>
-                </div>
-                </div>
-                <!-- Related Posts Section -->
-                <div id="related-posts" class="panel panel-primary" style="margin-top: 30px;">
-                    <div class="panel-heading">
-                        <strong>Posts Relacionados</strong>
-                    </div>
-                    <div class="panel-body">
-                        <ul id="related-posts-list" class="list-unstyled">
-                            <!-- Related posts will be loaded here by JavaScript -->
-                        </ul>
-                    </div>
-                </div>
-</div>
-
-        <div class="sidebar col-md-4">
-        
-            <!-- Follow Panel -->
-        
-            <!-- Custom Values from Settings page -->
-        
-            <!-- Postagens Recentes -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>Postagens Recentes</strong>
-                </div>
-        
-                <ul class="list-group">
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prtico</a></li>
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos</a></li>
-                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automao-de-testes-um-guia-para-2026">Boas Prticas em Automação de Testes: Um Guia para 2026</a></li>
-                </ul>
-            </div>
-        
-            <!-- Categorias -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>Categorias</strong>
-                </div>
-        
-                <ul class="list-group">
-                        <li class="list-group-item"><a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a></li>
-                </ul>
-            </div>
-        
-            <!-- Arquivos -->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <strong>Arquivos</strong>
-                    </div>
-        
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://qaoverflow.com/archive/april-2026">April 2026</a></li></ul>
-                </div>
-        
-            <!-- Tags -->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <strong>Tags</strong>
-                    </div>
-        
-                    <div class="panel-body">
-                        <ul class="list-inline">
-                            <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/2026" title="2 total posts">2026</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automacao</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automation" title="2 total posts">automation</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automao</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testes" title="2 total posts">Automação de Testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas-praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas praticas</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">Guia</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/manual-testing" title="2 total posts">manual-testing</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qa" title="2 total posts">qa</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qaoverflow" title="2 total posts">qaoverflow</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/testes" title="2 total posts">testes</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/web" title="2 total posts">web</a>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-    </div>
-</div>
-
-<!-- Footer -->
-                
-        </div>
-
-<footer>
-    <div class="container">
-        <hr/>
-        <p class="text-center">Publicado por <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
-    </div>
-</footer>
-
-<!-- Bootstrap and other Script files -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
-<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js" defer></script>
-<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
-
-<script>
-    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost/QA_OverFlow/public'
-        : 'https://qaoverflow.com';
-</script>
-
-<script src="https://qaoverflow.com/js/blog.js" defer></script>
-<script src="https://qaoverflow.com/js/search.js" defer></script>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F9NWQEL01S');
-</script>
-
-<script>
-.ready(function() {
-    var pageArray = document.location.href.split('/');
-    var currentPageSlug = pageArray[pageArray.length - 1];
-    if (!currentPageSlug) {
-        currentPageSlug = pageArray[pageArray.length - 2];
-    }
-    
-    $.ajax({
-        url: __blogURL + '/data/blog.json',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            if (data.posts !== undefined && data.posts !== null) {
-                var currentPost = null;
-                var currentTags = [];
-                
-                // Find current post and get its tags
-                $.each(data.posts, function(i, post) {
-                    if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-                        currentPost = post;
-                        currentTags = post.tags || [];
-                        return false;
-                    }
-                });
-                
-                if (currentPost && currentTags.length > 0) {
-                    var relatedPosts = [];
-                    
-                    // Find posts with matching tags
-                    $.each(data.posts, function(i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-                            return true; // Skip current post
-                        }
-                        
-                        var postTags = post.tags || [];
-                        var hasMatchingTag = false;
-                        
-                        $.each(currentTags, function(j, tag) {
-                            if ($.inArray(tag, postTags) !== -1) {
-                                hasMatchingTag = true;
-                                return false;
-                            }
-                        });
-                        
-                        if (hasMatchingTag) {
-                            relatedPosts.push(post);
-                        }
-                    });
-                    
-                    // Display related posts (max 5)
-                    var  = #related-posts-list;
-                    .empty();
-                    
-                    if (relatedPosts.length > 0) {
-                        $.each(relatedPosts.slice(0, 5), function(i, post) {
-                            .append('<li style="margin-bottom: 10px;"><a href="' + __blogURL + '/post/' + post.slug + '">' + post.title + '</a></li>');
-                        });
-                    } else {
-                        .append('<li>Nenhum post relacionado encontrado.</li>');
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
-<script src="https://qaoverflow.com/js/related-posts.js" defer></script>
-<script src="https://qaoverflow.com/js/comments.js" defer></script>
-</body>
-</html>
-<!-- for pagination -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            var $prevPostSelector = $('.prevpost');
-            var $nextPostSelector = $('.nextpost');
-
-            var pageArray = document.location.href.split('/');
-            var currentPageSlug = pageArray[pageArray.length - 1];
-
-            if (!currentPageSlug) {
-                currentPageSlug = pageArray[pageArray.length - 2];
-            }
-
-            $.ajax({
-                url: __blogURL + "/data/blog.json",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    if (data.posts !== undefined && data.posts !== null) {
-                        $.each(data.posts, function (i, post) {
-                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                                var prevPost = data.posts[i - 1];
-                                var nextPost = data.posts[i + 1];
-
-                                if (prevPost === undefined || prevPost === null) {
-                                    $prevPostSelector.hide();
-                                    showToast('Voc est no primeiro post');
-                                }
-                                else {
-                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                                }
-
-                                if (nextPost === undefined || nextPost === null) {
-                                    $nextPostSelector.hide();
-                                    showToast('Voc est no ltimo post');
-                                }
-                                else {
-                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                                }
-
-                                return false;
-                            }
-                        });
-                    }
-                },
-                error: function (e) {
-                    $prevPostSelector.hide();
-                    $nextPostSelector.hide();
-                }
-            });
-        }, 100);
-
-        function showToast(message) {
-            var toast = document.getElementById("toast");
-            toast.textContent = message;
-            toast.className = "toast-notification show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
-        }
-    });
-</script>
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://code.jquery.com">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link rel="preconnect" href="https://qaoverflow.com">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="generator" content="QA Overflow" />
+
+    <meta name="description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes">
+
+    <meta name="author" content="Victor Oliveira">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title" content="Boas Prticas em Automação de Testáes: Um Guia para 2026 :: QA Overflow" />
+
+    <meta property="og:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" />
+
+    <meta property="og:image" content="https://qaoverflow.com/favicon.ico" />
+
+    <meta property="og:url" content="https://qaoverflow.com/post/boas-prticas-em-automação-de-testáes-um-guia-para-2026/" />
+
+    <meta property="og:type" content="article" />
+
+    <meta property="og:site_name" content="QA Overflow" />
+
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="twitter:title" content="Boas Prticas em Automação de Testáes: Um Guia para 2026 :: QA Overflow" />
+
+    <meta name="twitter:description" content="Informações e reviews sobre Qualidade de Software e Automação de Testáes" />
+
+    <meta name="twitter:image" content="https://qaoverflow.com/favicon.ico" />
+
+
+
+    <title>Boas Prticas em Automação de Testáes: Um Guia para 2026 :: QA Overflow</title>
+
+
+
+    <!-- jQuery - loaded first -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+
+
+
+    <!-- rss feed url -->
+
+    <link rel="alternate" type="application/rss+xml" title="QA Overflow" href="https://qaoverflow.com/rss.xml"/>
+
+
+
+    <!-- favicon -->
+
+    <link rel="shortcut icon" href="/favicon.ico"/>
+
+    <link rel="shortcut icon" href="https://qaoverflow.com/favicon.ico"/>
+
+
+
+    <!-- Bootstrap CSS file -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@3.4.1/darkly/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <link href="https://qaoverflow.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+
+
+
+    <!-- syntax highlighter css file -->
+
+    <link href="https://qaoverflow.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+
+
+
+    <!-- lightbox for images -->
+
+    <link href="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+
+
+
+    <!-- blog custom CSS file -->
+
+    <link href="https://qaoverflow.com/css/style.css" rel="stylesheet"/>
+
+    <link href="https://qaoverflow.com/css/theme.css" rel="stylesheet"/>
+
+    <!-- JSON-LD Structured Data -->
+
+    <script type="application/ld+json">
+
+    {
+
+        "@context": "https://schema.org",
+
+        "@type": "BlogPosting",
+
+        "headline": "Boas Prticas em Automação de Testáes: Um Guia para 2026",
+
+        "datePublished": "2026-04-25",
+
+        "author": {
+
+            "@type": "Person",
+
+            "name": "Victor Oliveira"
+
+        },
+
+        "publisher": {
+
+            "@type": "Organization",
+
+            "name": "QA Overflow",
+
+            "logo": {
+
+                "@type": "ImageObject",
+
+                "url": "https://qaoverflow.com/favicon.ico"
+
+            }
+
+        },
+
+        "url": "https://qaoverflow.com/post/boas-prticas-em-automação-de-testáes-um-guia-para-2026/",
+
+        "description": "Informações e reviews sobre Qualidade de Software e Automação de Testáes"
+
+    }
+
+    </script>
+
+</head><body>
+
+<!-- Header -->
+
+<header class="navbar navbar-default
+
+ navbar-fixed-top bs-docs-nav" role="navigation" aria-label="Menu principal">
+
+    <div class="container">
+
+
+
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+
+                <span class="sr-only">Alternar navegacao</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+            </button>
+
+
+
+            <a href="https://qaoverflow.com" class="navbar-brand">QA Overflow</a>
+
+        </div>
+
+        <ul class="nav navbar-nav page-links">
+
+            <li><a href="https://qaoverflow.com/category/sobre/">Sobre</a></li>
+
+        </ul>
+
+
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <div class="navbar-form navbar-right" role="search" aria-label="Busca não site" role="search">
+
+                <div class="form-group">
+
+                    <input type="text" class="searchQuery form-control" aria-label="Pesquisar artigos" placeholder="Pesquisar artigos">
+
+                </div>
+
+
+
+                <button type="button" class="searchButton btn btn-default" aria-label="Pesquisar"><i class="glyphicon glyphicon-search"></i>
+
+                    Pesquisar
+
+                </button>
+
+            </div>
+
+
+
+            <ul class="nav navbar-nav page-links">
+
+            </ul>
+
+
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- Toast nãotification -->
+
+<div id="toast" class="toast-nãotification"></div>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-8 main-content">
+
+            <article>
+
+                <h3>Boas Prticas em Automação de Testáes: Um Guia para 2026</h3>
+
+                <span class="glyphicon glyphicon-user"></span> Victor Oliveira
+
+                &nbsp;&nbsp;
+
+                <span class="glyphicon glyphicon-time"></span> April 22, 2026 05:37 PM
+
+                <hr>
+
+
+
+                <p class="post-content"><p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p>
+
+<p>Se h uma coisa que aprendi em mais de 13 anos de QA — testáando desde aplicações monãolticas com C# at microsservios efmeros com Python e ferramentas de IA —  que automação não  sobre cdigo,  sobre risco. Passei por projetos onde tnhamos mais de 5.000 scripts de automação, uma cobertura de 85%, e ainda assim bugs críticos escapavam para produo. O problema? Estvamos presos a &quot;mtricas de vaidade&quot; e prticas que, embora populares, estáavam nãos afogando em dvida tcnica.</p>
+
+<p>A boa nãotcia  que o cenrio em 2026 mudou drasticamente. Com a ascenso da IA Agntica e a maturidade do DevOps, temos a oportunidade de reescrever as regras. Este artigo não  sobre teoria;  um compndio de boas prticas que eu gostaria de ter conhecido não incio da minha carreira, atualizadas para a realidade de hoje.</p>
+
+<ol>
+
+<li>A Morte da &quot;Febre da Cobertura&quot; e o Nascimento da Automação Baseada em Risco</li>
+
+</ol>
+
+<p>Por muito tempo, fomos medidos por um nmero: cobertura de testáes automatizados. Gestáãores pediam 80%, 90%, mas ningum perguntava: esses testáes protegem o que realmente importa?</p>
+
+<p>Na minha experincia, uma sute de automação inchada se torna um passivo, não um ativo. Você gasta mais tempo consertando testáes quebrados por mudanas de layout do que encontrando bugs reais. Estudos recentes de 2026 confirmam que quando a cobertura ultrapassa 80%, cada 1% adicional consome 30% mais recursos, com retornão decrescente.</p>
+
+<p>Boas Prticas em 2026:</p>
+
+<ul>
+
+<li>Adote a Abordagem Baseada em Risco (RBT): Antes de automatizar, pergunte: &quot;Qual o custo disso quebrar em produo?&quot; Fluxos de pagamento, autenticao e regras fiscais vm primeiro. Testáes de &quot;footer&quot; ou cores de boto não precisam estáar na estáeira de CI.</li>
+
+<li>Abandonas as Mtricas de Vaidade: Nmero total de casos de testáe automatizados  irrelevante. Foque em Defect Escape Rate (taxa de fuga de defeitos) e Signal-to-Noise Ratio (quantos testáes falham por bug real vs. falso positivo).</li>
+
+</ul>
+
+<ol>
+
+<li>O Fim dos Seletores Frgeis: Automação com Intenão e Self-Healing</li>
+
+</ol>
+
+<p>Quantas horas perdemos consertando XPaths quebrados porque o dev mudou um id? A automação tradicional  brittle (frgil) por natureza. Em 2026, escrever scripts baseados puramente em localizadores DOM  uma prtica condenada.</p>
+
+<p>A indstria está migrando em massa para a automação intencional (Intent-Driven) e visual.</p>
+
+<p>Self-Healing (Autocura): Ferramentas modernas identificam que um elemento mudou e automaticamente corrigem o seletor em tempo de execuo. Testáes que antes quebravam em toda refatorao de UI agora se adaptam sozinhos.</p>
+
+<p>Testáes Visuais com AI: Ao invs de assertions textuais vagas, usamos modelos de viso computacional (VLM) para validar layout e comportamento.</p>
+
+<ol>
+
+<li>A Revoluo Agntica: Da Instruo (Step) para a Intenão (Intent)</li>
+
+</ol>
+
+<p>A maior mudana de paradigma nãos últimos 2 anos  a chegada da IA Agntica. No passado, escrevamos &quot;Clique não boto X, espere Y, digite Z&quot;. Hoje, dizemos ao sistema: &quot;Finalize a compra do produto X com carto invlido e verifique a mensagem de erro&quot;.</p>
+
+<p>O que isso muda na prtica?</p>
+
+<ul>
+
+<li>Manutenão Zero: O agente entende a semntica da pgina. Se o boto &quot;Finalizar&quot; mudar de lugar, ele encontra.</li>
+
+<li>Testáe entre Plataformas: O mesmo comando em linguagem natural funciona para Web, iOS e Android.</li>
+
+</ul>
+
+<ol>
+
+<li>Arquitetura de Testáes: O Modelo &quot;Honeycomb&quot; e a Pirmide Invertida</li>
+
+</ol>
+
+<p>Com a popularizao dos microsservios e da Integrao Contnua, a pirmide está cedendo lugar para o Modelo Honeycomb.</p>
+
+<ul>
+
+<li>Testáes de Contrato (Pact/OpenAPI): Cruciais para garantir que o Servio A não quebre o Servio B.</li>
+
+<li>Testáes de Integrao: Mdio volume, alto impacto.</li>
+
+<li>Testáes E2E (UI): Apenas para os happy paths críticos e fluxos de jornada do usurio.</li>
+
+</ul>
+
+<ol>
+
+<li>Dados e Ambientes como Código (EaC)</li>
+
+</ol>
+
+<p>Testáe flaky geralmente  culpa de ambiente ou dado, não do cdigo. Em 2026, não h desculpa para ambientes inconsistentes.</p>
+
+<ul>
+
+<li>Ambiente como Código: Use ferramentas como Terraform ou Docker Compose para subir seu ambiente de testáe com um comando.</li>
+
+<li>Dados Gerenciados: Hard-Coding de dados  a receita do desastre. Pratique Data Seeding controlado ou use Gerao de Dados Sintticos com IA.</li>
+
+</ul>
+
+<ol>
+
+<li>A Integrao Contnua (CI) Inteligente</li>
+
+</ol>
+
+<p>Rodar todos os testáes para qualquer commit  coisa do passado. As boas prticas atuais envolvem Testá Impact Analysis (TIA).</p>
+
+<p>Configure estáeiras para rodar testáes especficos baseados não diff do cdigo.</p>
+
+<p>Resumo para o Lder Tcnico (Checklist 2026)</p>
+
+<ul>
+
+<li>Governana  Life: Código de testáe  cdigo de produo.</li>
+
+<li>IA  sua Ferramenta, não seu Donão: Use IA para gerar o esqueleto do testáe, mas mantenha o controle sobre as regras de negócio.</li>
+
+<li>Ambiente Imutvel: Se não conseguir subir o ambiente com um script, sua automação vai falhar.</li>
+
+<li>Monitore a Confiana: Prefiro uma sute com 50 testáes super estáveis e relevantes do que 500 testáes flaky.</li>
+
+</ul>
+
+<p>Vamos para a trincheira! 🚀</p></p>
+
+                <br/><br/>
+
+
+
+                <div class="post-info">
+
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+
+                        <a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a>
+
+                        &nbsp;&nbsp;
+
+
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+
+
+                        <a href="https://qaoverflow.com/tag/2026">2026</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/Automação de Testáes">Automação de Testáes</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/Guia">Guia</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/automation">automation</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/automação">automação</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/boas praticas">boas praticas</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/qa">qa</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/qaoverflow">qaoverflow</a>&nbsp;&nbsp;
+
+                        <a href="https://qaoverflow.com/tag/web">web</a>&nbsp;&nbsp;
+
+                </div>
+
+
+
+            </article>
+
+            <hr/>
+
+
+
+            <div class="text-center clearfix">
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Post Anterior</a>
+
+                </div>
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="btn btn-primary" href="https://qaoverflow.com/"><i class="fa fa-navicon"></i> Ver Todos
+
+                        os Posts</a>
+
+                </div>
+
+                <div class="col-sm-4 col-md-4">
+
+                    <a class="nextpost btn btn-primary">Próximo Post <i class="fa fa-chevron-circle-right"></i></a>
+
+                </div>
+
+            </div>
+
+
+
+            <hr/>
+
+            
+
+        
+
+                <!-- Comments Section --><div id="comments" style="margin-top: 40px; margin-bottom: 30px;">
+
+                    <h3 style="color: var(--heading-color); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+
+                        <i class="fas fa-comments" style="margin-right: 8px;"></i>Comentários
+
+                    </h3>
+
+                    <div id="giscus-container"></div>
+
+                </div>
+
+                </div>
+
+                <!-- Related Posts Section -->
+
+                <div id="related-posts" class="panel panel-primary" style="margin-top: 30px;">
+
+                    <div class="panel-heading">
+
+                        <strong>Posts Relacionados</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <ul id="related-posts-list" class="list-unstyled">
+
+                            <!-- Related posts will be loaded here by JavaScript -->
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+</div>
+
+
+
+        <div class="sidebar col-md-4">
+
+        
+
+            <!-- Follow Panel -->
+
+        
+
+            <!-- Custom Values from Settings page -->
+
+        
+
+            <!-- Postagens Recentes -->
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+
+                    <strong>Postagens Recentes</strong>
+
+                </div>
+
+        
+
+                <ul class="list-group">
+
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/identificar-testáes-manuais-que-podem-ser-automatizados-um-guia-pratico">Identificar Testáes Manuais que Podem Ser Automatizados: Um Guia Prático</a></li>
+
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/design-patterns-para-automacao-de-testáes-a-arquitetura-que-sobrevive-ao-caos">Design Patterns para Automação de Testáes: A Arquitetura que Sobrevive ao Caos</a></li>
+
+                        <li class="list-group-item"><a href="https://qaoverflow.com/post/boas-prticas-em-automação-de-testáes-um-guia-para-2026">Boas Prticas em Automação de Testáes: Um Guia para 2026</a></li>
+
+                </ul>
+
+            </div>
+
+        
+
+            <!-- Categorias -->
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+
+                    <strong>Categorias</strong>
+
+                </div>
+
+        
+
+                <ul class="list-group">
+
+                        <li class="list-group-item"><a href="https://qaoverflow.com/category/boas-praticas">Boas Práticas</a></li>
+
+                </ul>
+
+            </div>
+
+        
+
+            <!-- Arquivos -->
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+
+                        <strong>Arquivos</strong>
+
+                    </div>
+
+        
+
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://qaoverflow.com/archive/april-2026">April 2026</a></li></ul>
+
+                </div>
+
+        
+
+            <!-- Tags -->
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+
+                        <strong>Tags</strong>
+
+                    </div>
+
+        
+
+                    <div class="panel-body">
+
+                        <ul class="list-inline">
+
+                            <a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/2026" title="2 total posts">2026</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automacao</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automation" title="2 total posts">automation</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao" title="2 total posts">automação</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/automacao-de-testáes" title="2 total posts">Automação de Testáes</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas-praticas</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/boas-praticas" title="2 total posts">boas praticas</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">guia</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/guia" title="2 total posts">Guia</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/manual-testáing" title="2 total posts">manual-testáing</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qa" title="2 total posts">qa</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/qaoverflow" title="2 total posts">qaoverflow</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/testáes" title="2 total posts">testáes</a>
+
+<a style="font-size: 12px" class="tag_cloud" href="https://qaoverflow.com/tag/web" title="2 total posts">web</a>
+
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- Footer -->
+
+                
+
+        </div>
+
+
+
+<footer>
+
+    <div class="container">
+
+        <hr/>
+
+        <p class="text-center">Publicado por <strong><a target="_blank" href="https://github.com/qaoverflow">QA Overflow</a></strong></p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- Bootstrap and other Script files -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+
+<script src="https://qaoverflow.com/js/plugins/highlight/highlight.pack.js" defer></script>
+
+<script src="https://qaoverflow.com/js/plugins/lightbox/ekko-lightbox.min.js" defer></script>
+
+
+
+<script>
+
+    var __blogURL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
+        ? 'http://localhost/QA_OverFlow/public'
+
+        : 'https://qaoverflow.com';
+
+</script>
+
+
+
+<script src="https://qaoverflow.com/js/blog.js" defer></script>
+
+<script src="https://qaoverflow.com/js/search.js" defer></script>
+
+
+
+<!-- Google Analytics 4 -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9NWQEL01S"></script>
+
+<script>
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-F9NWQEL01S');
+
+</script>
+
+
+
+<script>
+
+.ready(function() {
+
+    var pageArray = document.location.href.split('/');
+
+    var currentPageSlug = pageArray[pageArray.length - 1];
+
+    if (!currentPageSlug) {
+
+        currentPageSlug = pageArray[pageArray.length - 2];
+
+    }
+
+    
+
+    $.ajax({
+
+        url: __blogURL + '/data/blog.json',
+
+        type: 'GET',
+
+        dataType: 'json',
+
+        success: function(data) {
+
+            if (data.posts !== undefined && data.posts !== null) {
+
+                var currentPost = null;
+
+                var currentTags = [];
+
+                
+
+                // Find current post and get its tags
+
+                $.each(data.posts, function(i, post) {
+
+                    if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                        currentPost = post;
+
+                        currentTags = post.tags || [];
+
+                        return false;
+
+                    }
+
+                });
+
+                
+
+                if (currentPost && currentTags.length > 0) {
+
+                    var relatedPosts = [];
+
+                    
+
+                    // Find posts with matching tags
+
+                    $.each(data.posts, function(i, post) {
+
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            return true; // Skip current post
+
+                        }
+
+                        
+
+                        var postTags = post.tags || [];
+
+                        var hasMatchingTag = false;
+
+                        
+
+                        $.each(currentTags, function(j, tag) {
+
+                            if ($.inArray(tag, postTags) !== -1) {
+
+                                hasMatchingTag = true;
+
+                                return false;
+
+                            }
+
+                        });
+
+                        
+
+                        if (hasMatchingTag) {
+
+                            relatedPosts.push(post);
+
+                        }
+
+                    });
+
+                    
+
+                    // Display related posts (max 5)
+
+                    var  = #related-posts-list;
+
+                    .empty();
+
+                    
+
+                    if (relatedPosts.length > 0) {
+
+                        $.each(relatedPosts.slice(0, 5), function(i, post) {
+
+                            .append('<li style="margin-bottom: 10px;"><a href="' + __blogURL + '/post/' + post.slug + '">' + post.title + '</a></li>');
+
+                        });
+
+                    } else {
+
+                        .append('<li>Nenhum post relacionado encontrado.</li>');
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+});
+
+</script>
+
+<script src="https://qaoverflow.com/js/related-posts.js" defer></script>
+
+<script src="https://qaoverflow.com/js/comments.js" defer></script>
+
+</body>
+
+</html>
+
+<!-- for pagination -->
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        setTimeout(function() {
+
+            var $prevPostSelector = $('.prevpost');
+
+            var $nextPostSelector = $('.nextpost');
+
+
+
+            var pageArray = document.location.href.split('/');
+
+            var currentPageSlug = pageArray[pageArray.length - 1];
+
+
+
+            if (!currentPageSlug) {
+
+                currentPageSlug = pageArray[pageArray.length - 2];
+
+            }
+
+
+
+            $.ajax({
+
+                url: __blogURL + "/data/blog.json",
+
+                type: "GET",
+
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (data.posts !== undefined && data.posts !== null) {
+
+                        $.each(data.posts, function (i, post) {
+
+                            if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+
+
+                                var prevPost = data.posts[i - 1];
+
+                                var nextPost = data.posts[i + 1];
+
+
+
+                                if (prevPost === undefined || prevPost === null) {
+
+                                    $prevPostSelector.hide();
+
+                                    showToast('Você está não primeiro post');
+
+                                }
+
+                                else {
+
+                                    $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+
+                                }
+
+
+
+                                if (nextPost === undefined || nextPost === null) {
+
+                                    $nextPostSelector.hide();
+
+                                    showToast('Você está não último post');
+
+                                }
+
+                                else {
+
+                                    $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+
+                                }
+
+
+
+                                return false;
+
+                            }
+
+                        });
+
+                    }
+
+                },
+
+                error: function (e) {
+
+                    $prevPostSelector.hide();
+
+                    $nextPostSelector.hide();
+
+                }
+
+            });
+
+        }, 100);
+
+
+
+        function showToast(message) {
+
+            var toast = document.getElementById("toast");
+
+            toast.textContent = message;
+
+            toast.className = "toast-nãotification show";
+
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
+
+        }
+
+    });
+
+</script>
+
