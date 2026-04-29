@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Overflow - Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        .summary { display: flex; gap: 20px; margin: 20px 0; }
+        .summary-box { flex: 1; padding: 15px; border-radius: 5px; text-align: center; }
+        .passed { background: #d4edda; border: 1px solid #c3e6cb; }
+        .failed { background: #f8d7da; border: 1px solid #f5c6cb; }
+        .summary-box h2 { margin: 0; font-size: 2em; }
+        .test-suite { margin: 20px 0; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
+        .suite-header { background: #007bff; color: white; padding: 10px 15px; font-weight: bold; }
+        .test-case { padding: 10px 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .test-case:last-child { border-bottom: none; }
+        .test-case.passed { background: #f8fff9; }
+        .test-case.failed { background: #fff8f8; }
+        .status { padding: 3px 10px; border-radius: 3px; font-size: 0.9em; font-weight: bold; }
+        .status.passed { background: #28a745; color: white; }
+        .status.failed { background: #dc3545; color: white; }
+        .timestamp { color: #666; font-size: 0.9em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="report">
+        <h1>QA Overflow - Regression Test Report</h1>
+        <div class="summary">
+            <div class="summary-box passed">
+                <h2 id="total-passed">0</h2>
+                <p>Tests Passed</p>
+            </div>
+            <div class="summary-box failed">
+                <h2 id="total-failed">0</h2>
+                <p>Tests Failed</p>
+            </div>
+            <div class="summary-box passed">
+                <h2 id="total-suites">0</h2>
+                <p>Test Suites</p>
+            </div>
+        </div>
+        <div id="suites-container"></div>
+        <div class="timestamp">Generated: <span id="timestamp"></span></div>
+    </div>
+
+    <script>
+        fetch('test-report.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('total-passed').textContent = data.numTotalTests - data.numFailedTests;
+                document.getElementById('total-failed').textContent = data.numFailedTests;
+                document.getElementById('total-suites').textContent = data.numTotalTestSuites;
+                document.getElementById('timestamp').textContent = new Date().toLocaleString('pt-BR');
+
+                const container = document.getElementById('suites-container');
+                data.testResults.forEach(suite => {
+                    const suiteDiv = document.createElement('div');
+                    suiteDiv.className = 'test-suite';
+                    
+                    const header = document.createElement('div');
+                    header.className = 'suite-header';
+                    header.textContent = suite.testFilePath.split('/').pop();
+                    suiteDiv.appendChild(header);
+
+                    suite.testResults.forEach(test => {
+                        const testDiv = document.createElement('div');
+                        testDiv.className = 'test-case ' + (test.status);
+                        
+                        const nameSpan = document.createElement('span');
+                        nameSpan.textContent = test.title;
+                        testDiv.appendChild(nameSpan);
+
+                        const statusSpan = document.createElement('span');
+                        statusSpan.className = 'status ' + test.status;
+                        statusSpan.textContent = test.status.toUpperCase();
+                        testDiv.appendChild(statusSpan);
+
+                        suiteDiv.appendChild(testDiv);
+                    });
+
+                    container.appendChild(suiteDiv);
+                });
+            })
+            .catch(err => {
+                document.getElementById('report').innerHTML = '<h2>Error loading test-report.json</h2><p>Run "npm run test:report" first to generate the report.</p>';
+            });
+    </script>
+</body>
+</html>

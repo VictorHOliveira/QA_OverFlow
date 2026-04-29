@@ -1,0 +1,19 @@
+{
+  "name": "qaoverflow-tests",
+  "version": "1.0.0",
+  "description": "Regression test suite for QA Overflow blog",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:report": "jest --verbose --json --outputFile=test-report.json"
+  },
+  "devDependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "jest": "^29.7.0",
+    "valid-url": "^1.0.9"
+  },
+  "dependencies": {
+    "puppeteer": "^24.42.0"
+  }
+}
