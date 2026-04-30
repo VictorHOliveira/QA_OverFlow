@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Relatórios{% endblock %}
+{% block content %}
+<h2>Relatórios</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Gastos por Categoria</div>
+            <div class="card-body"><canvas id="catChart"></canvas></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Rendimentos vs Despesas (6 Meses)</div>
+            <div class="card-body"><canvas id="monthChart"></canvas></div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">Balanço Mensal</div>
+            <div class="card-body">
+                <p>Este mês: Rendimentos {{ "%.2f"|format(current_income) }} € | Despesas {{ "%.2f"|format(current_expenses) }} €</p>
+                <h5>Balanço: 
+                    <span class="{% if balance >= 0 %}text-success{% else %}text-danger{% endif %}">
+                        {{ "%.2f"|format(balance) }} €
+                    </span>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">Dicas de Economia</div>
+            <div class="card-body">
+                {% if current_expenses > 0 %}
+                    <p>Total este mês: {{ "%.2f"|format(current_expenses) }} €</p>
+                    {% for tip in tips %}
+                        <div class="mb-3">
+                            <h6>{{ tip.category }}: {{ "%.2f"|format(tip.amount) }} €</h6>
+                            <p>Reduzir 10%: Poupar {{ "%.2f"|format(tip.save_10) }} €/mês</p>
+                            <p>Reduzir 20%: Poupar {{ "%.2f"|format(tip.save_20) }} €/mês</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Sem gastos este mês.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    new Chart(document.getElementById('catChart'), {
+        type: 'pie',
+        data: {
+            labels: {{ cat_labels|tojson }},
+            datasets: [{ data: {{ cat_data|tojson }}, backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40'] }]
+        }
+    });
+
+    new Chart(document.getElementById('monthChart'), {
+        type: 'bar',
+        data: {
+            labels: {{ month_labels|tojson }},
+            datasets: [
+                { label: 'Rendimentos', data: {{ month_income_data|tojson }}, backgroundColor: 'rgba(75, 192, 192, 0.7)' },
+                { label: 'Despesas', data: {{ month_expense_data|tojson }}, backgroundColor: 'rgba(255, 99, 132, 0.7)' }
+            ]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+</script>
+{% endblock %}

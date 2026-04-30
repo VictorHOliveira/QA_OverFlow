@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Todas as Despesas{% endblock %}
+{% block content %}
+<h2>Todas as Despesas</h2>
+<div class="card">
+    <div class="card-body">
+        {% if expenses %}
+            <table class="table table-striped">
+                <thead><tr><th>Data</th><th>Categoria</th><th>Descrição</th><th>Montante</th><th>Ações</th></tr></thead>
+                <tbody>
+                    {% for e in expenses %}
+                        <tr>
+                            <td>{{ e.date }}</td>
+                            <td>{{ e.category }}</td>
+                            <td>{{ e.description }}</td>
+                            <td>{{ "%.2f"|format(e.amount) }} €</td>
+                            <td>
+                                <a href="{{ url_for('edit_expense', expense_id=e.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="{{ url_for('delete_expense_route', expense_id=e.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja eliminar esta despesa?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhuma despesa. <a href="{{ url_for('add_expense_route') }}">Adicione uma</a>.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
