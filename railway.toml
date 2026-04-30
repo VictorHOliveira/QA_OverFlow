@@ -1,0 +1,20 @@
+[build]
+  builder = "nix"
+  buildCommand = "cd GestaoFinanceira && pip install -r requirements.txt"
+
+[deploy]
+  startCommand = "cd GestaoFinanceira && gunicorn wsgi:application"
+  restartPolicyType = "on-failure"
+
+[env]
+  FLASK_SECRET_KEY = "3795274b46d4b5471ea25c66c8f84e27f7e120a6ce8202528a84de8804cab7c3"
+  FLASK_DEBUG = "False"
+
+[[volume]]
+  mountPath = "/app/GestaoFinanceira"
+  name = "sqlite-data"
+
+# Backup diário às 2:00 AM UTC
+[[cron]]
+  schedule = "0 2 * * *"
+  command = "cd GestaoFinanceira && python backup.py"

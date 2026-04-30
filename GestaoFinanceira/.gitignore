@@ -3,6 +3,9 @@
 secret.key
 financial.db
 
+# Backups (manter no repo para histórico)
+!backups/
+
 # Python
 __pycache__/
 *.pyc
