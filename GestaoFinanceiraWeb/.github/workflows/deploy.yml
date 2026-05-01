@@ -1,0 +1,43 @@
+name: Deploy GestaoFinanceira to qaoverflow.com/admin
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js (optional, for future build steps)
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    # Exemplo: Minificar CSS/JS no futuro
+    # - name: Install dependencies
+    #   run: npm install
+    
+    # - name: Build
+    #   run: npm run build
+    
+    - name: Deploy to qaoverflow.com/admin
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ftp.qaoverflow.com
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /public_html/admin/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/.github*/**
+          **/sql/**
+          **/README.md
+          **/.gitignore
