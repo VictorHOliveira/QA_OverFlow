@@ -16,9 +16,32 @@
  "pages": [],
  "follow": [],
   "posts": [
-  {
-    "author": "Victor Oliveira",
-    "title": "Metodologia Scrum com Automação de Testes",
+   {
+     "author": "Victor Oliveira",
+     "title": "Shift-Left + Shift-Right: O QA Automation Senior em 2026",
+     "tags": [
+       "2026",
+       "shift-left",
+       "shift-right",
+       "qa-automation",
+       "devops",
+       "testing-strategy",
+       "senior-qa",
+       "boas-praticas"
+     ],
+     "category": "boas-práticas",
+     "body": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p><p>Se você ainda vê Shift-Left e Shift-Right como conceitos opostos ou competitivos, prepare-se: em 2026, essa visão é tão ultrapassada quanto escrever testes apenas via interface gráfica. Após 13 anos testando desde mainframes até aplicações nativas em nuvem, aprendi que a verdadeira maturidade em QA não está em escolher um lado, mas em orquestrar ambos.</p><p>O cenário atual é desafiador. Temos microsserviços efêmeros, deploys múltiplos por dia, e uma pressão enorme por velocidade. Neste artigo, vou compartilhar como um QA Automation Senior deve pensar e operar nesse novo paradigma.</p>",
+     "addpost": "addpost",
+     "dated": "May 04, 2026 07:30 AM",
+     "slug": "shift-left-shift-right-qa-automation-senior-2026",
+     "categoryslug": "boas-praticas",
+     "status": "published",
+     "showbody": "1",
+     "summary": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p><p>Se você ainda vê Shift-Left e Shift-Right como conceitos opostos ou competitivos, prepare-se: em 2026, essa visão é tão ultrapassada quanto escrever testes apenas via interface gráfica.</p>"
+   },
+   {
+     "author": "Victor Oliveira",
+     "title": "Metodologia Scrum com Automação de Testes",
     "tags": [
       "2026",
       "scrum",
@@ -106,8 +129,27 @@
  ],
   "latestPosts": [
    {
-    "author": "Victor Oliveira",
-    "title": "Metodologia Scrum com Automação de Testes",
+     "author": "Victor Oliveira",
+     "title": "Shift-Left + Shift-Right: O QA Automation Senior em 2026",
+     "tags": [
+       "2026",
+       "shift-left",
+       "shift-right",
+       "qa-automation",
+       "devops",
+       "testing-strategy",
+       "senior-qa",
+       "boas-praticas"
+     ],
+     "category": "boas-práticas",
+     "body": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p><p>Se você ainda vê Shift-Left e Shift-Right como conceitos opostos ou competitivos, prepare-se: em 2026, essa visão é tão ultrapassada quanto escrever testes apenas via interface gráfica.</p>",
+     "dated": "May 04, 2026 07:30 AM",
+     "slug": "shift-left-shift-right-qa-automation-senior-2026",
+     "categoryslug": "boas-praticas"
+   },
+   {
+     "author": "Victor Oliveira",
+     "title": "Metodologia Scrum com Automação de Testes",
     "tags": [
      "scrum",
      "automacao",
