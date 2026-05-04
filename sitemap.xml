@@ -47,124 +47,14 @@
   </url>
   <url>
     <loc>https://qaoverflow.com/post/boas-praticas-em-automacao-de-testes-um-guia-para-2026/</loc>
-    <lastmod>2026-04-29T15:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Página de posts -->
-  <url>
-    <loc>https://qaoverflow.com/posts.html</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <!-- Categorias -->
-  <url>
-    <loc>https://qaoverflow.com/category/boas-praticas/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/category/sobre/</loc>
-    <lastmod>2026-04-25T10:00:00+00:00</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <!-- Tags que existem -->
-  <url>
-    <loc>https://qaoverflow.com/tag/2026/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://qaoverflow.com/tag/automacao/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/automation/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/automacao-de-testes/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/boas-praticas/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/qa/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/qaoverflow/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/testes/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/web/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/manual-testing/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/ia/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/conhecimento/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/artificial-intelligence/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://qaoverflow.com/tag/blog/</loc>
-    <lastmod>2026-05-04T07:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.40</priority>
-  </url>
-
-  <!-- Arquivos -->
-  <url>
-    <loc>https://qaoverflow.com/archive/april-2026/</loc>
-    <lastmod>2026-04-25T10:00:00+00:00</lastmod>
+    <loc>https://qaoverflow.com/post/qa-overflow-o-que-e-guia-para-iniciantes/</loc>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.40</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
