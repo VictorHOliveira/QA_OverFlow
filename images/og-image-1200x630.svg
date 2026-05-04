@@ -1,0 +1,23 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#1a1a2e"/>
+  <rect x="50" y="50" width="1100" height="530" rx="20" fill="#16213e" stroke="#0f3460" stroke-width="3"/>
+  
+  <!-- Logo/Icon placeholder -->
+  <circle cx="200" cy="315" r="80" fill="#e94560"/>
+  <text x="200" y="340" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">Q</text>
+  
+  <!-- Title -->
+  <text x="350" y="250" font-family="Arial, sans-serif" font-size="72" fill="#ffffff" font-weight="bold">QA Overflow</text>
+  
+  <!-- Subtitle -->
+  <text x="350" y="330" font-family="Arial, sans-serif" font-size="36" fill="#e94560">Automação de Testes & QA</text>
+  
+  <!-- Keywords -->
+  <text x="350" y="400" font-family="Arial, sans-serif" font-size="28" fill="#b0b0b0">Overflow • QA • Testes Automatizados • 2026</text>
+  
+  <!-- Decorative line -->
+  <line x1="350" y1="420" x2="1050" y2="420" stroke="#0f3460" stroke-width="2"/>
+  
+  <!-- Call to action -->
+  <text x="350" y="480" font-family="Arial, sans-serif" font-size="24" fill="#e94560">Aprenda com tutoriais e guias práticos</text>
+</svg>
