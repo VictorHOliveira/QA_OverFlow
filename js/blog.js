@@ -1,5 +1,6 @@
 /**
  * Created by Sarfraz on 4/3/2015.
+ * Encoding: UTF-8 (caracteres pt-BR suportados)
  */
 
 $(function () {

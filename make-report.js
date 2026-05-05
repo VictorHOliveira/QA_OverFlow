@@ -1,3 +1,4 @@
+// Encoding: UTF-8 (suporte a caracteres especiais pt-BR)
 const fs = require('fs');
 const path = require('path');
 

@@ -1,4 +1,5 @@
-﻿const puppeteer = require('puppeteer');
+﻿// Encoding: UTF-8 (suporte a caracteres especiais pt-BR)
+const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 

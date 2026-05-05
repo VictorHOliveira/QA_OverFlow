@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Este arquivo usa codificação UTF-8 para suporte a caracteres especiais (pt-BR)
+# Não alterar o encoding para evitar problemas com acentuação
 import sqlite3
 import os
 import bcrypt

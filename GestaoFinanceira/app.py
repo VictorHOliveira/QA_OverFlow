@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# Encoding: UTF-8 (suporte a caracteres especiais pt-BR)
 from flask import Flask, render_template, request, redirect, url_for, session, flash, abort
 from flask_wtf import CSRFProtect
 from flask_limiter import Limiter

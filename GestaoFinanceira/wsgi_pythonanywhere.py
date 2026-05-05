@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# Encoding: UTF-8 (suporte a caracteres especiais pt-BR)
 import sys
 import os
 
