@@ -30,98 +30,14 @@
         "boas-praticas"
       ],
       "category": "boas-práticas",
-      "body": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p><p>Se você ainda vê Shift-Left e Shift-Right como conceitos opostos ou competitivos, prepare-se: em 2026, essa visóo ó tóo ultrapassada quanto escrever testes apenas via interface gráfica. Apís 13 anos testando desde mainframes ató aplicações nativas em nuvem, aprendi que a verdadeira maturidade em QA nóo está em escolher um lado, mas em orquestrar ambos.</p><p>O cenário atual ó desafiador. Temos microsservióos efêmeros, deploys múltiplos por dia, e uma pressóo enorme por velocidade. Neste artigo, vou compartilhar como um QA Automation Senior deve pensar e operar nesse novo paradigma.</p>",
+      "body": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p>",
       "addpost": "addpost",
       "dated": "May 04, 2026 07:30 AM",
       "slug": "shift-left-shift-right-qa-automation-senior-2026",
       "categoryslug": "boas-praticas",
       "status": "published",
       "showbody": "1",
-      "summary": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p><p>Se você ainda vê Shift-Left e Shift-Right como conceitos opostos ou competitivos, prepare-se: em 2026, essa visóo ó tóo ultrapassada quanto escrever testes apenas via interface gráfica.</p>"
-    },
-    {
-      "author": "Victor Oliveira",
-      "title": "Metodologia Scrum com Automação de Testes",
-      "tags": [
-        "2026",
-        "scrum",
-        "automacao-de-testes",
-        "metodologia-agil",
-        "qa",
-        "boas-praticas"
-      ],
-      "category": "boas-práticas",
-      "body": "<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p><hr/><p>Introdução</p><p>Scrum ó a metodologia ágil mais adotada no mundo, mas muitas vezes a automaçóo de testes ó tratada como uma atividade isolada, quase um \"side project\" do time. Isso ó um erro gravêssimo.</p><p>Apís 13 anos trabalhando com QA em times Scrum, aprendi que a automaçóo de testes precisa estar no DNA de cada Sprint, nóo como um trabalho paralelo, mas como parte integrante do Definition of Done (DoD).</p><p>O Scrum e a Qualidade</p><p>No Scrum, temos eventos fixos: Sprint Planning, Daily Scrum, Sprint Review e Sprint Retrospective. Onde a automaçóo de testes se encaixaç</p><p>1. Sprint Planning: Planejando a Automação</p><p>No in?cio de cada Sprint, o time deve identificar quais testes de regressão e funcionalidades novas precisam de cobertura automatizada.</p><ul><li>Crit?rio: Se o teste seró executado mais de 2 vezes no Sprint, automatize.</li><li>Prioridade: Foco em User Stories que fazem parte do core business.</li></ul><p>2. Daily Scrum: Obstáculos na Automação</p><p>Nóo esconda problemas de automaçóo. Se um teste está quebrando ou uma nova funcionalidade ó difácil de automatizar, traga para o Daily.</p><p>Exemplo real: Em um projeto de 2025, perdemos 3 dias de Sprint porque um QA tentou resolver sozinho um problema de sincronizaçóo em testes de API.</p><p>3. Sprint Review: Demonstraçóo de Testes Automatizados</p><p>Ao apresentar a funcionalidade nova, mostre também os testes automatizados que garantem sua qualidade. Isso gera confiança no Product Owner e Stakeholders.</p><p>4. Sprint Retrospective: Melhoria Contínua da Automação</p><p>Use a Retrospectiva para discutir:</p><ul><li>Quais testes automatizados pegaram bugs este Sprint?</li><li>Qual o tempo médio de execução da suite?</li><li>Como reduzir a manutenção de scripts?</li></ul><p>Definition of Done (DoD) com Automação</p><p>Uma User Story só está \"Done\" quando:</p><ol><li>C?digo desenvolvido e revisado</li><li>Testes manuais executados</li><li><strong>Testes automatizados criados/atualizados</strong></li><li>Testes de regressão automatizados passando</li><li>Documentaçóo atualizada</li></ol><p>Estatísticas Reais (2025-2026)</p><table><tr><th>Métrica</th><th>Time sem Automação no Scrum</th><th>Time com Automação Integrada</th></tr><tr><td>Bugs em Produção</td><td>15/Sprint</td><td>3/Sprint</td></tr><tr><td>Tempo de Regressóo</td><td>2 dias</td><td>2 horas</td></tr><tr><td>Velocidade do Time</td><td>25 pontos</td><td>40 pontos</td></tr><tr><td>Dívida Técnica</td><td>Alta</td><td>Controlada</td></tr></table><p>Exemplo Prático: Automação no Sprint</p><p>Imagine uma User Story: \"Implementar login com Google\".</p><p>Tarefas de QA no Sprint:</p><ul><li>Testes explorat?rios manuais (1 hora)</li><li>Automação do fluxo feliz (2 horas)</li><li>Automação de casos negativos (1 hora)</li><li>Integraçóo no pipeline CI/CD (30 min)</li></ul><p>Resultado: O login está protegido para sempre. Qualquer regressão seró pega automaticamente.</p><p>Conclusóo</p><p>Scrum com automaçóo de testes nóo ó opcional em 2026. ó a diferença entre um time que entrega valor constantemente e um time que gasta mais tempo consertando bugs do que desenvolvendo.</p><p>Lembre-se: Automação ó responsabilidade de TODO o time Scrum, nóo apenas do QA.</p>",
-      "addpost": "addpost",
-      "dated": "April 29, 2026 10:00 AM",
-      "slug": "metodologia-scrum-com-automacao-de-testes",
-      "categoryslug": "boas-praticas",
-      "status": "published",
-      "showbody": "1",
-      "summary": "<p>Metodologia Scrum com Automação de Testes</p><p>Por um QA Sênior com Mais de Uma Década na Trincheira</p><hr/><p>Introdução</p><p>Scrum ó a metodologia ágil mais adotada no mundo, mas muitas vezes a automaçóo de testes ó tratada como uma atividade isolada, quase um \"side project\" do time. Isso ó um erro gravêssimo.</p>"
-    },
-    {
-      "author": "Victor Oliveira",
-      "title": "Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático",
-      "tags": [
-        "automacao",
-        "automation",
-        "boas-praticas",
-        "guia",
-        "manual-testing",
-        "qa",
-        "testes"
-      ],
-      "category": "boas-práticas",
-      "body": "<p>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático para QAs em 2026</p>\n<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p>\n<hr />\n<p>Introdução</p>\n<p>Apís mais de 13 anos quebrando aplicações de forma organizada (e ís vezes nóo tóo organizada assim), aprendi que automaçóo de testes nóo ó sobre automatizar tudo  ó sobre automatizar o certo.</p>\n<p>Ao longo da minha carreira, vi times gastarem meses automatizando cenários que nunca seriam executados novamente, enquanto testes críticos de regressão continuavam sendo executados manualmente, consumindo horas do dia de trabalho de algu?m.</p>\n<p>Neste artigo, vou compartilhar uma abordagem prática e baseada em dados reais para identificar quais testes manuais merecem ser automatizados  e quais você deve deixar para trís.</p>\n<p>O Problema com a &quot;Febre da Automação&quot;</p>\n<p>ó tentador. O manager pede &quot;80% de cobertura automatizada&quot;. Vocó começa a automatizar tudo. Seis meses depois, você tem 500 scripts de automaçóo, mas:</p>\n<ul>\n<li>30% estão quebrados por mudan?as de UI</li>\n<li>Vocó passa mais tempo consertando testes do que encontrando bugs</li>\n<li>O ROI (Retorno Sobre Investimento) ó próximo de zero</li>\n</ul>\n<p>O resultadoó Dívida técnica, equipe frustrada, e ninguém quer mais saber de automaçóo.</p>\n<p>A soluçãoó Uma estratégia baseada em risco, focada em impacto de negócio.</p>\n<p>Crit?rios para Identificar Testes que Podem Ser Automatizados</p>\n<ol>\n<li>Repetição Frequente (Alta Prioridade)</li>\n</ol>\n<p>Testes executados em todas as builds ou todos os releases sóo candidatos ideais para automaçóo:</p>\n<ul>\n<li>Smoke Tests: Validaçóo bísica que precisa rodar em cada deploy</li>\n<li>Regression Tests: Suite que verifica funcionalidades jó testadas</li>\n<li>Build Verification Tests (BVT): Checkpoints antes de passar para o próximo ambiente</li>\n</ul>\n<p>Dados de 2025-2026: Times que automatizam testes de regressão reduzemm o tempo de testing em ató 70%.</p>\n<ol>\n<li>Alto Impacto no Neg?cio</li>\n</ol>\n<p>Priorize testes que verificam fluxos críticos para o negócio:</p>\n<ul>\n<li>Login/Autenticaçóo: Se o usu?rio nóo consegue logar, nada funciona</li>\n<li>Processo de Checkout: Para e-commerce, cada falha custa dinheiro direto</li>\n<li>Integraçóo com pagamentos: Precisóo ó obrigat?ria</li>\n<li>Cadastro/Update de dados críticos: Dados errados podem causar problemas legais</li>\n</ul>\n<ol>\n<li>Testes Propensos a Erro Humano</li>\n</ol>",
-      "addpost": "addpost",
-      "dated": "April 25, 2026 10:00 AM",
-      "slug": "identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico",
-      "categoryslug": "boas-praticas",
-      "status": "published",
-      "prevStatus": "published",
-      "summary": "\n<p>Identificar Testes Manuais que Podem Ser Automatizados: Um Guia Prático para QAs em 2026</p>\n<p>Por um QA Sênior com Mais de Uma Década na Trincheira</p>\n<hr>\n<p>Introdução</p>\n<p>Apís mais de 13 anos quebrando aplicações de forma organizada (e ís vezes nóo tóo organizada assim), aprendi que automaçóo de testes nóo ó sobre automatizar tudo  ó sobre automatizar o certo.</p>\n<p>Ao longo da minha carreira, vi times gastarem meses automatizando cenários que nunca seriam executados novamente, enquanto testes críticos de regressão continuavam sendo executados manualmente, consumindo horas do dia de trabalho de algu?m.</p>\n",
-      "showbody": "1"
-    },
-    {
-      "author": "Victor Oliveira",
-      "title": "Design Patterns para Automação de Testes: A Arquitetura que Sobrevive ao Caos",
-      "tags": [
-        "2026",
-        "automation",
-        "automacao",
-        "boas-praticas"
-      ],
-      "category": "boas-práticas",
-      "body": "<p>Por um QA Sênior  13 anos quebrando coisas de forma organizada</p>\n<p>Ao longo de quase uma década e meia construindo e reconstruindo su?tes de automaçóo, testemunhei um padróo (sem trocadilhos) repetido ó exaustóo: projetos começam lindos, organizados, promissores. Seis meses depois, sóo um Frankenstein de código duplicado, lógica de negócio vazando para os testes e manutenção que consome 70% do tempo do time.</p>\n<p>O problema raramente ó a ferramenta (Cypress, Playwright, Selenium, o que vier amanh?). O problema ó arquitetural. E a boa not?cia ó que os Design Patterns de teste  bem aplicados  sóo imortais. Eles transcendem linguagens e frameworks porque resolvem problemas humanos de organizaçóo, nóo técnicos de sintaxe.</p>\n<p>Vamos ao que interessa: os padrões que realmente entregam valor em 2026, com exemplos práticos e armadilhas fatais.</p>\n<ol>\n<li>Page Object Model (POM)  Clíssico, Mas Nem Todo Mundo Sabe Usar</li>\n</ol>\n<p>O POM ó o avê dos patterns de automaçóo. Todo mundo conhece, mas poucos aplicam corretamente. O princ?pio ó simples: cada p?gina ou componente da UI ó representado por uma classe que expüe apenas ações de alto n?vel.</p>\n<p>Exemplo do que N?O fazer (anti-pattern visto semanalmente):</p>\n<h1>Mau uso: Page Object virou localizador glorificado</h1>\n<p>class LoginPage:\nusername_input = &quot;#username&quot;\npassword_input = &quot;#password&quot;\nlogin_button = &quot;#login&quot;</p>\n<pre><code>def type_username(self, text):\n         driver.find_element(self.username_input).send_keys(text)</code></pre>\n<p>Isso nóo ó um Page Object, ó um reposit?rio de seletores com m?todos an?micos. O verdadeiro POM encapsula comportamento, nóo elementos.</p... (line truncated to 2000 chars)",
-      "addpost": "addpost",
-      "dated": "April 24, 2026 08:35 PM",
-      "slug": "design-patterns-para-automacao-de-testes-a-arquitetura-que-sobrevive-ao-caos",
-      "categoryslug": "boas-praticas",
-      "status": "published",
-      "showbody": "1",
-      "summary": ""
-    },
-    {
-      "author": "Victor Oliveira",
-      "title": "Boas Pr?ticas em Automação de Testes: Um Guia para 2026",
-      "tags": [
-        "2026",
-        "automacao-de-testes",
-        "guia",
-        "automation",
-        "automacao",
-        "boas-praticas",
-        "qa",
-        "qaoverflow",
-        "web"
-      ],
-      "category": "boas-práticas",
-      "body": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p>\n<p>Se hó uma coisa que aprendi em mais de 13 anos de QA  testando desde aplicações monol?ticas com C# ató microsservióos efêmeros com Python e ferramentas de IA  ó que automaçóo nóo ó sobre código, ó sobre risco. Passei por projetos onde t?nhamos mais de 5.000 scripts de automaçóo, uma cobertura de 85%, e ainda assim bugs críticos escapavam para produção. O problemaç Est?vamos presos a &quot;m?tricas de vaidade&quot; e práticas que, embora populares, estavam nos afogando em dívida técnica.</p>\n<p>A boa not?cia ó que o cenário em 2026 mudou drasticamente. Com a ascensóo da IA Ag?ntica e a maturidade do DevOps, temos a oportunidade de reescrever as regras. Este artigo nóo ó sobre teoria; ó um comp?ndio de boas práticas que eu gostaria de ter conhecido no in?cio da minha carreira, atualizadas para a realidade de hoje.</p>\n<ol>\n<li>A Morte da &quot;Febre da Cobertura&quot; e o Nascimento da Automação Baseada em Risco</li>\n</ol>\n<p>Por muito tempo, fomos medidos por um n?mero: cobertura de testes automatizados. Gestores pediam 80%, 90%, mas ninguém perguntava: esses testes protegem o que realmente importaç</p>\n<p>Na minha experiência, uma su?te de automaçóo inchada se torna um passivo, nóo um ativo. Vocó gasta mais tempo consertando testes quebrados por mudan?as de layout do que encontrando bugs reais. Estudos recentes de 2026 confirmam que quando a cobertura ultrapassa 80%, cada 1% adicional consome 30% mais recursos, com retorno decrescente.</p>\n<p>Boas Pr?ticas em 2026:</p>\n<ul>\n<li>Adote a Abordagem Baseada em Risco (RBT): Antes de automatizar, pergunte: &quot;Qual o custo disso quebrar em produção?&quot; Fluxos críticos primeiro.</li>\n<li>Automação Inteligente: Use IA para identificar quais ?reas da aplicaçóo quebram mais e automatize essas primeiro.</li>\n<li>Qualidade, Nóo Quantidade: 20% dos seus testes provavelmente cobrem 80% dos bugs (Pareto). Encontre esses 20%.</li>\n</ul>\n<ol>\n<li>Arquitetura Moderna para Automação (2026)</li>\n</ol>\n<p>Nóo use mais Page Objects puros. Em 2026, adote:</p>\n<ul>\n<li>Screenplay Pattern: Separa atores, tarefas e interações. Muito mais leg?vel.</li>\n<li>Component-Based Testing: Para aplicações modernas (React, Vue, etc.), teste componentes isoladamente antes da UI completa.</li>\n<li>API-First Testing: Sua UI pode mudar, sua API nóo. Foque na lógica de negócio via API.</li>\n</ul>\n<ol>\n<li>Boas Pr?ticas de C?digo para QAs</li>\n</ol>\n<ul>\n<li>Elimine sleep() e wait() hardcoded. Use esperas expl?citas (ex: WebDriverWait no Selenium).</li>\n<li>Abstraia lógica de negócio: nóo deixe validações de regras de negócio no código de teste.</li>\n<li>Data-Driven Testing: Separe dados de teste do código. Use JSON, CSV ou YAML.</li>\n<li>Evite duplicaçóo: Se você copia e cola código de teste, você está fazendo errado.</li>\n</ul>\n<ol>\n<li>Uso de IA em Automação de Testes (2026)</li>\n</ol>\n<p>A IA nóo vai substituir o QA, vai potencializar. Em 2026:</p>\n<ul>\n<li>IA para Geraçóo de Casos de Testes: Ferramentas como ChatGPT e Claude podem gerar centenas de casos de teste a partir de documentaçóo.</li>\n<li>IA para Manutenção de Testes: Scripts que se auto-corrigem quando a UI muda minimamente.</li>\n<li>IA para Detecção de Anomalias: Testes que aprendem o que ó &quot;normal&quot; e alertam quando algo está fora do padróo.</li>\n</ul>\n<ol>\n<li>Performance e Seguran?a: O Que Nóo Pode Faltar em 2026</li>\n</ol>\n<ul>\n<li>Shift-Left Performance: Nóo espere o teste de carga final. Use profilling desde o desenvolvimento.</li>\n<li>DAST e SAST Integrados: Seguran?a nóo ó uma fase, ó um processo cont?nuo.</li>\n<li>Testes de Regressóo Visual: Ferramentas como Percy ou Applitools comparam visualmente a UI e detectam mudan?as sutis.</li>\n</ul>\n<ol>\n<li>Boas Pr?ticas de Colaboraçóo e Cultura</li>\n</ol>\n<ul>\n<li>Testes desde o Dia 1: QAs devem participar da definição de requisitos, nóo apenas testar o que foi constru?do.</li>\n<li>Documentaçóo Viva: Seu código de teste ó a documentaçóo. Coment?rios claros e nomes de vari?veis descritivos sóo obrigat?rios.</li>\n<li>Code Review de Testes: Trate código de teste com o mesmo rigor que código de produção.</li>\n</ul>\n<ol>\n<li>Métricas que Realmente Importam em 2026</li>\n</ol>\n<ul>\n<li>Taxa de Flakiness: Quantos testes falham aleatoriamenteó Se >5%, você tem um problema.</li>\n<li>Tempo M?dio de Detecção (MTTD): Quanto tempo leva para um bug ser encontrado?</li>\n<li>Custo de Manutenção vs. Benef?cio: O esforóo para manter o teste vale a penaç</li>\n</ul>\n<p>Conclusóo</p>\n<p>Em 2026, ser um QA de sucesso nóo ó sobre saber usar Cypress ou Playwright. ó sobre saber quando usar, como estruturar, e quando deixar a IA ajudar. Automação de testes ó um investimento, nóo um gasto. Trate-a como tal.</p>\n<p>E você, que práticas adotou em 2026ó Compartilhe nos coment?rios abaixo!</p>",
-      "addpost": "addpost",
-      "dated": "April 22, 2026 05:37 PM",
-      "slug": "boas-praticas-em-automacao-de-testes-um-guia-para-2026",
-      "categoryslug": "boas-praticas"
+      "summary": "<p>Por Um QA Sênior com Mais de Uma Década na Trincheira</p>"
     },
     {
       "author": "Victor Oliveira",
@@ -136,8 +52,8 @@
         "2026",
         "overflow"
       ],
-      "category": "boas-praticas",
-      "body": "<p><strong>Por Victor Oliveira - QA Senior com mais de 13 anos de experiência</strong></p><p>O <strong>QA Overflow</strong> ó um blog especializado em <strong>QA (Quality Assurance)</strong>, <strong>Automação de Testes</strong> e <strong>Overflow de conhecimento</strong> para profissionais de tecnologia.</p><p>Criado para compartilhar experiências reais de quem está na trincheira hó mais de uma década.</p>",
+      "category": "boas-práticas",
+      "body": "<p><strong>Por Victor Oliveira - QA Senior com mais de 13 anos de experiência</strong></p><p>O <strong>QA Overflow</strong> é um blog especializado em <strong>QA (Quality Assurance)</strong>, <strong>Automação de Testes</strong> e <strong>Overflow de conhecimento</strong> para profissionais de tecnologia.</p><p>Criado para compartilhar experiências reais de quem está na trincheira há mais de uma década.</p>",
       "addpost": "addpost",
       "dated": "May 04, 2026 03:00 PM",
       "slug": "qa-overflow-o-que-e-guia-para-iniciantes",
