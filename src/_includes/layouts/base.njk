@@ -65,7 +65,7 @@
         "description": "{{ site.tagline }}",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "{{ site.url }}/posts.html?q={search_term_string}",
+            "target": "{{ site.url }}/?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -114,7 +114,7 @@
                         </a>
                     </li>
                 </ul>
-                <form class="d-flex" action="/posts.html" method="get">
+                <form class="d-flex" action="/" method="get">
                     <div class="input-group">
                         <input class="form-control" type="search" name="q" placeholder="Pesquisar..." aria-label="Pesquisar">
                         <button class="btn btn-outline-primary" type="submit">
