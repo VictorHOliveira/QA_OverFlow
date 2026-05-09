@@ -1,0 +1,236 @@
+---
+layout: layouts/base.njk
+title: Todos os Posts
+description: "Lista completa de posts sobre QA, automação de testes e melhores práticas."
+---
+
+{% set publishedPosts = posts | filter("status", "published") | sort(false, "datePublished") | reverse %}
+
+{% set allCategories = publishedPosts | map("category") | unique | sort %}
+{% set allTags = [] %}
+{% for p in publishedPosts %}
+    {% for t in p.tags %}
+        {% if allTags.indexOf(t) === -1 %}
+            {% set allTags = allTags.concat([t]) %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% set allTags = allTags | sort %}
+
+{% set filteredPosts = publishedPosts %}
+
+<div class="row g-5">
+    <div class="col-lg-8">
+        <div class="mb-5">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="bi bi-file-earmark-text text-primary me-3"></i>
+                Todos os Posts
+            </h1>
+            <p class="lead text-muted">
+                {{ publishedPosts.length }} posts sobre QA, automação de testes e melhores práticas.
+            </p>
+        </div>
+
+        <div class="mb-4 p-4 bg-body-tertiary rounded">
+            <form action="/posts.html" method="get" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold">Buscar</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q" placeholder="Pesquisar posts..." id="searchInput">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small fw-semibold">Categoria</label>
+                    <select class="form-select" name="category" id="categoryFilter">
+                        <option value="">Todas</option>
+                        {% for cat in allCategories %}
+                        <option value="{{ cat }}">{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small fw-semibold">Tag</label>
+                    <select class="form-select" name="tag" id="tagFilter">
+                        <option value="">Todas</option>
+                        {% for tag in allTags %}
+                        <option value="{{ tag }}">{{ tag }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div id="postsContainer">
+            <div class="row g-4">
+                {% for post in filteredPosts %}
+                <div class="col-12" data-post-title="{{ post.title | lower }}" data-post-category="{{ post.category }}" data-post-tags="{{ post.tags | join(' ') }}">
+                    <article class="card border-0 shadow-sm hover-shadow transition-all">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                                <span class="badge bg-primary-subtle text-primary">
+                                    <i class="bi bi-folder me-1"></i>{{ post.category }}
+                                </span>
+                                <span class="text-muted small">
+                                    <i class="bi bi-calendar3 me-1"></i>{{ post.dated }}
+                                </span>
+                            </div>
+                            
+                            <h2 class="h4 fw-bold mb-3">
+                                <a href="/post/{{ post.slug }}/" class="text-decoration-none text-reset stretched-link">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
+                            
+                            <p class="text-muted mb-3">
+                                {{ post.summary | safe | striptags | truncate(200, " ...") }}
+                            </p>
+                            
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for tag in post.tags | head(5) %}
+                                <a href="/posts.html?tag={{ tag }}" class="badge bg-secondary-subtle text-secondary text-decoration-none">
+                                    #{{ tag }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="sticky-top" style="top: 5rem;">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-stats text-primary me-2"></i>
+                        Estatísticas
+                    </h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <i class="bi bi-file-text text-secondary me-2"></i>
+                            <strong>{{ publishedPosts.length }}</strong> posts publicados
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-folder text-secondary me-2"></i>
+                            <strong>{{ allCategories.length }}</strong> categorias
+                        </li>
+                        <li class="mb-0">
+                            <i class="bi bi-tags text-secondary me-2"></i>
+                            <strong>{{ allTags.length }}</strong> tags
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-folder text-primary me-2"></i>
+                        Categorias
+                    </h5>
+                    <ul class="list-unstyled mb-0">
+                        {% for category in allCategories %}
+                        {% set count = publishedPosts | filter("category", category) | length %}
+                        <li class="mb-2">
+                            <a href="/posts.html?category={{ category }}" class="text-decoration-none d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-folder text-secondary me-2"></i>{{ category }}</span>
+                                <span class="badge bg-primary rounded-pill">{{ count }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-tags text-primary me-2"></i>
+                        Tags Populares
+                    </h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for tag in allTags | head(15) %}
+                        {% set count = publishedPosts | filter("tags", tag) | length %}
+                        <a href="/posts.html?tag={{ tag }}" class="badge bg-secondary-subtle text-secondary text-decoration-none">
+                            #{{ tag }} <span class="opacity-75">({{ count }})</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-2">
+                        <i class="bi bi-rss me-2"></i>
+                        RSS Feed
+                    </h5>
+                    <p class="small mb-3 opacity-75">
+                        Receba atualizações de novos posts diretamente no seu leitor.
+                    </p>
+                    <a href="/rss.xml" class="btn btn-light text-primary w-100 fw-semibold">
+                        <i class="bi bi-rss me-2"></i>
+                        Assinar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const postCards = document.querySelectorAll('[data-post-title]');
+    
+    function parseQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            q: params.get('q') || '',
+            category: params.get('category') || '',
+            tag: params.get('tag') || ''
+        };
+    }
+    
+    const params = parseQueryParams();
+    if (params.q) searchInput.value = params.q;
+    if (params.category) categoryFilter.value = params.category;
+    if (params.tag) tagFilter.value = params.tag;
+    
+    function filterPosts() {
+        const query = searchInput.value.toLowerCase();
+        const category = categoryFilter.value;
+        const tag = tagFilter.value;
+        
+        postCards.forEach(card => {
+            const title = card.dataset.postTitle;
+            const postCategory = card.dataset.postCategory;
+            const postTags = card.dataset.postTags;
+            
+            const matchesQuery = !query || title.includes(query);
+            const matchesCategory = !category || postCategory === category;
+            const matchesTag = !tag || postTags.includes(tag);
+            
+            card.style.display = matchesQuery && matchesCategory && matchesTag ? '' : 'none';
+        });
+    }
+    
+    filterPosts();
+    
+    searchInput.addEventListener('input', filterPosts);
+    categoryFilter.addEventListener('change', function() {
+        window.location.href = '/posts.html?category=' + encodeURIComponent(this.value);
+    });
+    tagFilter.addEventListener('change', function() {
+        window.location.href = '/posts.html?tag=' + encodeURIComponent(this.value);
+    });
+});
+</script>

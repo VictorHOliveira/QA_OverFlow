@@ -1,0 +1,142 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: posts
+  size: 1
+  alias: post
+permalink: "post/{{ post.slug }}/"
+eleventyComputed:
+  title: "{{ post.title }}"
+  description: "{{ post.description or (post.summary | striptags) }}"
+  ogType: "article"
+---
+
+{% set postIndex = posts | findIndex("slug", post.slug) %}
+{% set prevPost = null %}
+{% set nextPost = null %}
+{% if postIndex > 0 %}{% set prevPost = posts[postIndex - 1] %}{% endif %}
+{% if postIndex < (posts.length - 1) %}{% set nextPost = posts[postIndex + 1] %}{% endif %}
+
+<div class="row">
+    <div class="col-lg-8">
+        <article class="blog-post">
+            <header class="mb-4">
+                <div class="d-flex align-items-center text-muted mb-3 small">
+                    <span class="badge bg-primary me-2">{{ post.category | upper }}</span>
+                    <time datetime="{{ post.datePublished }}">
+                        <i class="bi bi-calendar3 me-1"></i>{{ post.datePublished }}
+                    </time>
+                </div>
+                
+                <h1 class="display-5 fw-bold mb-3">{{ post.title }}</h1>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <i class="bi bi-person-circle text-primary fs-1 me-3"></i>
+                    <div>
+                        <p class="fw-semibold mb-0">{{ post.author }}</p>
+                        <small class="text-muted">
+                            {% if post.readTime %}{{ post.readTime }} de leitura{% endif %}
+                        </small>
+                    </div>
+                </div>
+                
+                {% if post.coverImage %}
+                <img src="{{ post.coverImage }}" alt="{{ post.title }}" class="img-fluid rounded mb-4">
+                {% endif %}
+            </header>
+            
+            <div class="post-content mb-5">
+                {{ post.content | safe }}
+            </div>
+            
+            <footer class="border-top pt-4">
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    {% for tag in post.tags %}
+                    <a href="/posts.html?tag={{ tag | urlEncode }}" class="badge bg-secondary text-decoration-none">
+                        <i class="bi bi-tag me-1"></i>{{ tag }}
+                    </a>
+                    {% endfor %}
+                </div>
+                
+                <div class="share-links mb-4">
+                    <span class="text-muted me-3">Compartilhar:</span>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ (site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ (site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}&text={{ post.title | urlEncode }}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?text={{ (post.title ~ ' - ' ~ site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}" class="btn btn-outline-success btn-sm" target="_blank">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                </div>
+            </footer>
+        </article>
+        
+        {% if prevPost or nextPost %}
+        <nav class="border-top border-bottom py-4 my-5" aria-label="Navegação de posts">
+            <div class="row">
+                <div class="col-md-6">
+                    {% if prevPost %}
+                    <a href="/post/{{ prevPost.slug }}/" class="text-decoration-none">
+                        <div class="d-flex align-items-center text-muted mb-2 small">
+                            <i class="bi bi-arrow-left me-1"></i> Post anterior
+                        </div>
+                        <h6 class="fw-semibold">{{ prevPost.title }}</h6>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 text-md-end">
+                    {% if nextPost %}
+                    <a href="/post/{{ nextPost.slug }}/" class="text-decoration-none">
+                        <div class="d-flex align-items-center justify-content-md-end text-muted mb-2 small">
+                            Próximo post <i class="bi bi-arrow-right ms-1"></i>
+                        </div>
+                        <h6 class="fw-semibold">{{ nextPost.title }}</h6>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        {% endif %}
+    </div>
+    
+    <div class="col-lg-4">
+        <aside class="sticky-top" style="top: 5rem;">
+            <div class="card mb-4">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="bi bi-person-badge text-primary me-2"></i>Sobre o Autor
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-person-circle text-primary fs-1 me-3"></i>
+                        <div>
+                            <h6 class="fw-semibold mb-0">{{ site.author }}</h6>
+                            <small class="text-muted">QA Senior</small>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">Com mais de 13 anos de experiência em Qualidade de Software e Automação de Testes.</p>
+                    <a href="https://github.com/VictorHOliveira" class="btn btn-outline-primary btn-sm w-100" target="_blank">
+                        <i class="bi bi-github me-1"></i> Ver Perfil
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="bi bi-rss text-primary me-2"></i>Assine o RSS
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted small mb-3">Receba novos posts diretamente no seu leitor RSS favorito.</p>
+                    <a href="/rss.xml" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-rss me-1"></i> Assinar Feed
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
