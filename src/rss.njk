@@ -1,0 +1,35 @@
+---
+layout: false
+permalink: "rss.xml"
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ site.title }}</title>
+        <link>{{ site.url }}</link>
+        <description>{{ site.tagline }}</description>
+        <language>pt-BR</language>
+        <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml"/>
+        
+        {% for post in posts %}
+        {% if post.status == "published" %}
+        <item>
+            <title>{{ post.title }}</title>
+            <link>{{ site.url }}/post/{{ post.slug }}/</link>
+            <description>
+                <![CDATA[
+                    {{ post.summary | safe }}
+                    <p><a href="{{ site.url }}/post/{{ post.slug }}/">Leia mais...</a></p>
+                ]]>
+            </description>
+            <guid isPermaLink="true">{{ site.url }}/post/{{ post.slug }}/</guid>
+            <category>{{ post.category }}</category>
+            {% for tag in post.tags %}
+            <category>{{ tag }}</category>
+            {% endfor %}
+        </item>
+        {% endif %}
+        {% endfor %}
+    </channel>
+</rss>

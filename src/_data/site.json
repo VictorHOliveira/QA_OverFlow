@@ -1,0 +1,15 @@
+{
+  "url": "https://qaoverflow.com",
+  "title": "QA Overflow",
+  "tagline": "Informações e reviews sobre Qualidade de Software e Automação de Testes",
+  "author": "Victor Oliveira",
+  "analytics": "G-F9NWQEL01S",
+  "isDarkTheme": true,
+  "ogImage": "/images/og-image-1200x630.png",
+  "giscus": {
+    "repo": "VictorHOliveira/QA_OverFlow",
+    "repoId": "",
+    "category": "",
+    "categoryId": ""
+  }
+}
