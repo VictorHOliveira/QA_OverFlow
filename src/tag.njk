@@ -1,0 +1,88 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.allTags
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+permalink: /tag/{{ tag | slugify }}/index.html
+eleventyComputed:
+  title: "Tag: {{ tag }}"
+  ogType: website
+---
+
+{% set publishedPosts = posts | filter("status", "published") %}
+{% set filteredPosts = publishedPosts | filter("tags", tag) %}
+
+<div class="row g-5">
+    <div class="col-lg-8">
+        <div class="mb-5">
+            <h1 class="display-5 fw-bold mb-3">
+                <i class="bi bi-tag text-primary me-2"></i> {{ tag }}
+            </h1>
+            <p class="lead text-muted">
+                {{ filteredPosts.length }} {% if filteredPosts.length === 1 %}post{% else %}posts{% endif %} com esta tag
+            </p>
+        </div>
+
+        <div id="postsContainer">
+            <div class="row g-4">
+                {% for post in filteredPosts %}
+                <div class="col-12">
+                    <article class="card border-0 shadow-sm hover-shadow transition-all">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                                <span class="badge bg-primary-subtle text-primary">
+                                    <i class="bi bi-folder me-1"></i>{{ post.category }}
+                                </span>
+                                <span class="text-muted small">
+                                    <i class="bi bi-calendar3 me-1"></i>{{ post.dated }}
+                                </span>
+                                {% if post.readTime %}
+                                <span class="text-muted small">
+                                    <i class="bi bi-clock me-1"></i>{{ post.readTime }}
+                                </span>
+                                {% endif %}
+                            </div>
+                            
+                            <h2 class="h4 fw-bold mb-3">
+                                <a href="/post/{{ post.slug }}/" class="text-decoration-none text-reset stretched-link">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
+                            
+                            <p class="text-muted mb-3">
+                                {{ post.summary | safe | striptags | truncate(200, " ...") }}
+                            </p>
+                            
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for t in post.tags | head(5) %}
+                                <a href="/tag/{{ t | slugify }}/" class="badge bg-secondary-subtle text-secondary text-decoration-none">
+                                    #{{ t }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="sticky-top" style="top: 5rem;">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-arrow-left text-primary me-2"></i>
+                        Voltar
+                    </h5>
+                    <a href="/" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-house me-1"></i> Página Inicial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

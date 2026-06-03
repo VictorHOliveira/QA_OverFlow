@@ -17,6 +17,9 @@ eleventyComputed:
 {% if postIndex > 0 %}{% set prevPost = posts[postIndex - 1] %}{% endif %}
 {% if postIndex < (posts.length - 1) %}{% set nextPost = posts[postIndex + 1] %}{% endif %}
 
+{% set contentHtml = post.content | addAnchors %}
+{% set tocItems = contentHtml | toc %}
+
 <div class="row">
     <div class="col-lg-8">
         <article class="blog-post">
@@ -26,6 +29,11 @@ eleventyComputed:
                     <time datetime="{{ post.datePublished }}">
                         <i class="bi bi-calendar3 me-1"></i>{{ post.datePublished }}
                     </time>
+                    {% if post.dateModified and post.dateModified !== post.datePublished %}
+                    <span class="ms-2 text-info-emphasis small">
+                        <i class="bi bi-pencil-square me-1"></i>Atualizado em {{ post.dateModified }}
+                    </span>
+                    {% endif %}
                 </div>
                 
                 <h1 class="display-5 fw-bold mb-3">{{ post.title }}</h1>
@@ -35,18 +43,35 @@ eleventyComputed:
                     <div>
                         <p class="fw-semibold mb-0">{{ post.author }}</p>
                         <small class="text-muted">
-                            {% if post.readTime %}{{ post.readTime }} de leitura{% endif %}
+                            {% if post.readTime %}<i class="bi bi-clock me-1"></i>{{ post.readTime }}{% endif %}
                         </small>
                     </div>
                 </div>
                 
                 {% if post.coverImage %}
-                <img src="{{ post.coverImage }}" alt="{{ post.title }}" class="img-fluid rounded mb-4">
+                <img src="{{ post.coverImage }}" alt="{{ post.title }}" class="img-fluid rounded mb-4" loading="lazy">
                 {% endif %}
             </header>
+
+            {% if tocItems.length > 1 %}
+            <div class="card border-0 bg-body-tertiary mb-4 d-lg-none">
+                <div class="card-body p-3">
+                    <h6 class="fw-bold mb-2">
+                        <i class="bi bi-list-ol text-primary me-1"></i>Neste artigo
+                    </h6>
+                    <ul class="list-unstyled mb-0 small">
+                        {% for item in tocItems %}
+                        <li class="{% if item.level === 3 %}ps-3{% endif %}">
+                            <a href="#{{ item.id }}" class="text-decoration-none">{{ item.text }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
             
             <div class="post-content mb-5">
-                {{ post.content | safe }}
+                {{ contentHtml | safe }}
             </div>
             
             <footer class="border-top pt-4">
@@ -127,9 +152,10 @@ eleventyComputed:
         {% endif %}
 
         {% if site.giscus.repoId %}
-        <section class="my-5 pt-3 border-top">
+        <section class="my-5 pt-3 border-top" id="comments-section">
             <h5 class="fw-bold mb-4">
                 <i class="bi bi-chat-dots text-primary me-2"></i>Comentários
+                <span class="badge bg-secondary comment-count-badge ms-2" id="comment-count">0</span>
             </h5>
             <div class="giscus"></div>
             <script
@@ -154,6 +180,25 @@ eleventyComputed:
     
     <div class="col-lg-4">
         <aside class="sticky-top" style="top: 5rem;">
+            {% if tocItems.length > 1 %}
+            <div class="card mb-4 d-none d-lg-block">
+                <div class="card-header bg-transparent border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="bi bi-list-ol text-primary me-2"></i>Neste artigo
+                    </h6>
+                </div>
+                <div class="card-body py-2">
+                    <nav class="toc-container">
+                        {% for item in tocItems %}
+                        <a href="#{{ item.id }}" class="nav-link d-block {% if item.level === 3 %}toc-h3{% endif %}">
+                            {{ item.text }}
+                        </a>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="card mb-4">
                 <div class="card-header bg-transparent border-0">
                     <h5 class="card-title mb-0">
@@ -177,3 +222,61 @@ eleventyComputed:
          </aside>
     </div>
 </div>
+
+<script>
+(function() {
+    var pathname = window.location.pathname;
+    var countEl = document.getElementById('comment-count');
+
+    var giscusObserver = new MutationObserver(function() {
+        var giscusFrame = document.querySelector('giscus-widget');
+        if (giscusFrame && giscusFrame.shadowRoot) {
+            var countText = giscusFrame.shadowRoot.querySelector('.giscus-comment-count');
+            if (countText && countText.textContent) {
+                var match = countText.textContent.match(/\d+/);
+                if (match) {
+                    countEl.textContent = match[0];
+                }
+                giscusObserver.disconnect();
+            }
+        }
+    });
+
+    var giscusEl = document.querySelector('giscus-widget');
+    if (giscusEl) {
+        giscusObserver.observe(giscusEl, { childList: true, subtree: true, attributes: true });
+    }
+
+    document.querySelectorAll('.post-content pre').forEach(function(pre) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.textContent = 'Copiar';
+        btn.setAttribute('type', 'button');
+        wrapper.appendChild(btn);
+
+        btn.addEventListener('click', function() {
+            var code = pre.querySelector('code');
+            var text = code ? code.textContent : pre.textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                btn.textContent = 'Copiado!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = 'Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    });
+
+    document.querySelectorAll('.post-content img').forEach(function(img) {
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+})();
+</script>

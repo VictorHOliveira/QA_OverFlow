@@ -7,8 +7,28 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("ads.txt");
   eleventyConfig.addPassthroughCopy("sitemap.xml");
   eleventyConfig.addPassthroughCopy(".nojekyll");
+  eleventyConfig.addPassthroughCopy("manifest.json");
+  eleventyConfig.addPassthroughCopy("sw.js");
 
   eleventyConfig.addDataExtension("json", (contents) => JSON.parse(contents));
+
+  const posts = require('./src/_data/posts.json');
+
+  eleventyConfig.addCollection("allTags", function() {
+    const tags = new Set();
+    posts.filter(p => p.status === 'published').forEach(p => {
+      (p.tags || []).forEach(t => tags.add(t));
+    });
+    return [...tags].sort();
+  });
+
+  eleventyConfig.addCollection("allCategories", function() {
+    const cats = new Set();
+    posts.filter(p => p.status === 'published').forEach(p => {
+      if (p.category) cats.add(p.category);
+    });
+    return [...cats].sort();
+  });
 
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
 
@@ -57,6 +77,28 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, n || 1);
   });
 
+  eleventyConfig.addFilter("toc", function(html) {
+    if (!html) return [];
+    const toc = [];
+    let index = 0;
+    html.replace(/<h([23])[^>]*>(.*?)<\/h[23]>/gi, (match, level, text) => {
+      const cleanText = text.replace(/<[^>]*>/g, '').trim();
+      toc.push({ id: "heading-" + index, text: cleanText, level: parseInt(level) });
+      index++;
+    });
+    return toc;
+  });
+
+  eleventyConfig.addFilter("addAnchors", function(html) {
+    if (!html) return "";
+    let index = 0;
+    return html.replace(/<h([23])([^>]*)>(.*?)<\/h[23]>/gi, (match, level, attrs, text) => {
+      const id = "heading-" + index;
+      index++;
+      return `<h${level}${attrs} id="${id}">${text}</h${level}>`;
+    });
+  });
+
   eleventyConfig.addFilter("relatedPosts", function(currentPost, allPosts, limit = 3) {
     if (!currentPost || !Array.isArray(allPosts)) return [];
     const currentTags = currentPost.tags || [];
@@ -91,6 +133,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("urlEncode", function(str) {
     if (!str) return "";
     return encodeURIComponent(str);
+  });
+
+  eleventyConfig.addFilter("slugify", function(str) {
+    if (!str) return "";
+    return str.toString()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_]+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-+|-+$/g, '');
   });
 
   return {

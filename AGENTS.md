@@ -14,6 +14,7 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 | Install JS deps | `npm install` |
 | Run Eleventy (dev) | `npx @11ty/eleventy --serve` |
 | Run Eleventy (build) | `npx @11ty/eleventy` |
+| Build + search index | `npm run build:search` |
 | Run Jest tests | `npm test` |
 
 ## Project - Eleventy Build
@@ -21,7 +22,7 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 - **Output**: `_site/` (deployed to GitHub Pages)
 - **Content source**: `src/_data/posts.json` (9 posts), `src/_data/site.json` (site config)
 - **Layout**: `src/_includes/layouts/base.njk` (Bootstrap 5, dark theme)
-- **Passthrough copies**: `css/`, `images/`, `favicon.ico`, `CNAME`, `robots.txt`, `ads.txt`, `sitemap.xml`, `.nojekyll`
+- **Passthrough copies**: `css/`, `images/`, `favicon.ico`, `CNAME`, `robots.txt`, `ads.txt`, `sitemap.xml`, `.nojekyll`, `manifest.json`, `sw.js`
 
 ## Features
 - **Giscus comments** — via GitHub Discussions, config in `site.json.giscus`
@@ -29,7 +30,15 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 - **Newsletter CTA** — Substack link in footer (`base.njk`)
 - **Social links** — GitHub + LinkedIn in footer
 - **Search + filters** — by category and tag (client-side JS in `index.njk`)
-- **SEO** — Open Graph, Twitter Cards, JSON-LD structured data, RSS feed, sitemap
+- **Full-text search** — Pagefind (`npm run build:search`)
+- **Comment counter** — reads count from Giscus widget
+- **Copy button** — on code blocks (`post.njk`)
+- **Auto TOC** — sidebar + mobile table of contents from h2/h3
+- **Cover images** — per-post hero image from Unsplash
+- **Tag/category pages** — auto-generated pages (`/tag/*`, `/categoria/*`)
+- **Read time** — estimated reading time per post
+- **PWA** — manifest.json + service worker (`sw.js`)
+- **SEO** — Open Graph, Twitter Cards, JSON-LD structured data (WebSite, Article, BlogPosting), RSS feed, sitemap
 - **Analytics** — Google Analytics (`G-F9NWQEL01S`) + Google AdSense
 
 ## Adding a Post
@@ -51,18 +60,22 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 | `striptags(html)` | Strip HTML tags |
 | `truncate(str, len, suffix)` | Truncate string |
 | `urlEncode(str)` | URL encode string |
+| `slugify(str)` | Convert string to URL-friendly slug |
 | `relatedPosts(current, all, limit)` | Related posts by shared tags |
+| `toc(html)` | Extract h2/h3 headings as TOC items |
+| `addAnchors(html)` | Add anchor IDs to h2/h3 tags |
 
 ## Testing
 - Jest tests in `tests/`: `homepage.test.js`, `blogdata.test.js`, `posts.test.js`
 - All tests target the Eleventy output (`_site/`)
 - CommonJS (`require()`), no TypeScript/Babel
-- 49 tests total
+- 49 tests total (all targeting Eleventy output)
 
 ## Quirks
 - UTF-8 critical for Portuguese
 - `.nojekyll` present to bypass Jekyll
 - CI deploys only `_site/` — legacy root files (`index.html`, `post/`, `data/`) are NOT deployed
+- Eleventy 3.1.5 pinned for Node 25 compat (use `npm install @11ty/eleventy@3.1.5` if upgrading)
 - Eleventy 3.1.5 pinned for Node 25 compat (use `npm install @11ty/eleventy@3.1.5` if upgrading)
 
 ## CI

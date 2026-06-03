@@ -179,6 +179,55 @@ ogType: website
     </div>
 </div>
 
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "{{ site.url }}/#website",
+            "url": "{{ site.url }}",
+            "name": "{{ site.title }}",
+            "description": "{{ site.description }}",
+            "publisher": {
+                "@id": "{{ site.url }}/#person"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "{{ site.url }}/#person",
+            "name": "{{ site.author }}",
+            "url": "{{ site.url }}",
+            "sameAs": [
+                "https://github.com/VictorHOliveira",
+                "https://www.linkedin.com/in/victor-oliveira-48958340/"
+            ]
+        },
+        {% for post in publishedPosts %}
+        {
+            "@type": "Article",
+            "@id": "{{ site.url }}/post/{{ post.slug }}/#article",
+            "url": "{{ site.url }}/post/{{ post.slug }}/",
+            "headline": "{{ post.title }}",
+            "description": "{{ post.description | default(post.summary | striptags) | trim | truncate(300) | replace('"', '') }}",
+            "datePublished": "{{ post.datePublished }}",
+            "dateModified": "{{ post.dateModified | default(post.datePublished) }}",
+            "author": {
+                "@id": "{{ site.url }}/#person"
+            },
+            "publisher": {
+                "@id": "{{ site.url }}/#person"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ site.url }}/post/{{ post.slug }}/"
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
