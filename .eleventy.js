@@ -57,6 +57,20 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, n || 1);
   });
 
+  eleventyConfig.addFilter("relatedPosts", function(currentPost, allPosts, limit = 3) {
+    if (!currentPost || !Array.isArray(allPosts)) return [];
+    const currentTags = currentPost.tags || [];
+    return allPosts
+      .filter(p => p.slug !== currentPost.slug && p.status === "published")
+      .map(p => ({
+        ...p,
+        sharedCount: (p.tags || []).filter(t => currentTags.includes(t)).length
+      }))
+      .filter(p => p.sharedCount > 0)
+      .sort((a, b) => b.sharedCount - a.sharedCount)
+      .slice(0, limit);
+  });
+
   eleventyConfig.addFilter("findIndex", function(array, prop, value) {
     if (!Array.isArray(array)) return -1;
     return array.findIndex(item => item[prop] === value);
