@@ -21,8 +21,12 @@ eleventyComputed:
             <h1 class="display-5 fw-bold mb-3">
                 <i class="bi bi-folder text-primary me-2"></i> {{ category }}
             </h1>
-            <p class="lead text-muted">
-                {{ filteredPosts.length }} {% if filteredPosts.length === 1 %}post{% else %}posts{% endif %} nesta categoria
+            {% set catDesc = site.categoryDescriptions[category] %}
+            {% if catDesc %}
+            <p class="lead text-muted">{{ catDesc }}</p>
+            {% endif %}
+            <p class="text-muted">
+                <i class="bi bi-file-text me-1"></i>{{ filteredPosts.length }} {% if filteredPosts.length === 1 %}post{% else %}posts{% endif %} nesta categoria
             </p>
         </div>
 

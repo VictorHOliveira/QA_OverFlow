@@ -91,9 +91,12 @@ eleventyComputed:
                     <a href="https://twitter.com/intent/tweet?url={{ (site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}&text={{ post.title | urlEncode }}" class="btn btn-outline-primary btn-sm me-2" target="_blank">
                         <i class="bi bi-twitter-x"></i>
                     </a>
-                    <a href="https://api.whatsapp.com/send?text={{ (post.title ~ ' - ' ~ site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}" class="btn btn-outline-success btn-sm" target="_blank">
+                    <a href="https://api.whatsapp.com/send?text={{ (post.title ~ ' - ' ~ site.url ~ '/post/' ~ post.slug ~ '/') | urlEncode }}" class="btn btn-outline-success btn-sm me-2" target="_blank">
                         <i class="bi bi-whatsapp"></i>
                     </a>
+                    <button class="btn btn-outline-secondary btn-sm" id="copyLinkBtn" data-url="{{ site.url }}/post/{{ post.slug }}/">
+                        <i class="bi bi-link-45deg"></i>
+                    </button>
                 </div>
             </footer>
         </article>
@@ -278,6 +281,19 @@ eleventyComputed:
             img.setAttribute('loading', 'lazy');
         }
     });
+
+    var copyLinkBtn = document.getElementById('copyLinkBtn');
+    if (copyLinkBtn) {
+        copyLinkBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(this.getAttribute('data-url')).then(function() {
+                var orig = copyLinkBtn.innerHTML;
+                copyLinkBtn.innerHTML = '<i class="bi bi-check-lg"></i>';
+                setTimeout(function() {
+                    copyLinkBtn.innerHTML = orig;
+                }, 2000);
+            });
+        });
+    }
 
     var tocLinks = document.querySelectorAll('.toc-container .nav-link');
     var headings = [];

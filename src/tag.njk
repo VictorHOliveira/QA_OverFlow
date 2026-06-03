@@ -21,8 +21,12 @@ eleventyComputed:
             <h1 class="display-5 fw-bold mb-3">
                 <i class="bi bi-tag text-primary me-2"></i> {{ tag }}
             </h1>
-            <p class="lead text-muted">
-                {{ filteredPosts.length }} {% if filteredPosts.length === 1 %}post{% else %}posts{% endif %} com esta tag
+            {% set tagDesc = site.tagDescriptions[tag] %}
+            {% if tagDesc %}
+            <p class="lead text-muted">{{ tagDesc }}</p>
+            {% endif %}
+            <p class="text-muted">
+                <i class="bi bi-file-text me-1"></i>{{ filteredPosts.length }} {% if filteredPosts.length === 1 %}post{% else %}posts{% endif %} com esta tag
             </p>
         </div>
 

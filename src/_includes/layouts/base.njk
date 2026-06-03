@@ -25,6 +25,13 @@
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:locale" content="pt_BR">
     
+    {% if post %}
+    <meta property="article:published_time" content="{{ post.datePublished }}">
+    <meta property="article:author" content="{{ site.author }}">
+    <meta property="article:section" content="{{ post.category }}">
+    {% for tag in post.tags %}<meta property="article:tag" content="{{ tag }}">{% endfor %}
+    {% endif %}
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ title or site.title }}">
     <meta name="twitter:description" content="{{ description or site.tagline }}">
@@ -105,18 +112,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
     
-    <link href="/css/style.css" rel="stylesheet">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ site.analytics }}');
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8346007198132292" crossorigin="anonymous"></script>
+    <link href="/css/style.css?v={{ site.cacheVersion }}" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link visually-hidden-focusable">Pular para o conteúdo principal</a>
+    
+    <div id="cookieConsent" class="cookie-consent" role="alert" aria-live="polite">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <p class="mb-0 small">
+                <i class="bi bi-shield-check text-primary me-1"></i>
+                Este site utiliza cookies para analytics e anúncios. Ao continuar, você aceita o uso de cookies.
+            </p>
+            <div class="d-flex gap-2">
+                <button id="acceptCookies" class="btn btn-primary btn-sm">Aceitar</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" aria-label="Menu principal">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/">
@@ -129,21 +141,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/' %} active{% endif %}" href="/">
+                        <a class="nav-link{% if page.url == '/' %} active{% endif %}" href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>
                             <i class="bi bi-house me-1"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/sobre/' %} active{% endif %}" href="/sobre/">
+                        <a class="nav-link{% if page.url == '/sobre/' %} active{% endif %}" href="/sobre/"{% if page.url == '/sobre/' %} aria-current="page"{% endif %}>
                             <i class="bi bi-info-circle me-1"></i> Sobre
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/tutoriais/' %} active{% endif %}" href="/tutoriais/">
+                        <a class="nav-link{% if page.url == '/tutoriais/' %} active{% endif %}" href="/tutoriais/"{% if page.url == '/tutoriais/' %} aria-current="page"{% endif %}>
                             <i class="bi bi-book me-1"></i> Tutoriais
                         </a>
                     </li>
                 </ul>
+                <button class="btn btn-outline-secondary btn-sm me-2" type="button" id="themeToggle" aria-label="Alternar tema">
+                    <i class="bi bi-moon-stars" id="themeIcon"></i>
+                </button>
                 <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" aria-label="Buscar">
                     <i class="bi bi-search"></i>
                 </button>
@@ -167,7 +182,7 @@
         </div>
     </div>
 
-    <main class="py-5">
+    <main id="main-content" class="py-5">
         <div class="container">
             {{ content | safe }}
         </div>
@@ -221,7 +236,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>if(document.querySelector('pre code')){hljs.highlightAll();}</script>
     
     <script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showSubResults: true, showImages: false });"></script>
 
@@ -233,6 +248,93 @@
     }
     </script>
     
+    <script>
+    (function(){
+        var COOKIE_KEY = 'qaoverflow_cookies_accepted';
+        var accepted = localStorage.getItem(COOKIE_KEY);
+
+        function loadScript(src, attrs) {
+            var s = document.createElement('script');
+            s.src = src;
+            s.async = true;
+            if (attrs) {
+                Object.keys(attrs).forEach(function(k) { s.setAttribute(k, attrs[k]); });
+            }
+            document.head.appendChild(s);
+        }
+
+        function loadTracking() {
+            loadScript('https://www.googletagmanager.com/gtag/js?id={{ site.analytics }}');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ site.analytics }}');
+            loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8346007198132292', { 'crossorigin': 'anonymous' });
+        }
+
+        if (accepted === 'true') {
+            loadTracking();
+        } else {
+            var banner = document.getElementById('cookieConsent');
+            if (banner) {
+                banner.classList.add('show');
+                document.getElementById('acceptCookies').addEventListener('click', function() {
+                    localStorage.setItem(COOKIE_KEY, 'true');
+                    banner.classList.remove('show');
+                    loadTracking();
+                });
+            }
+        }
+    })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+    (function(){
+        var btn = document.getElementById('backToTop');
+        if (btn) {
+            window.addEventListener('scroll', function() {
+                btn.classList.toggle('visible', window.scrollY > 400);
+            });
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    })();
+    </script>
+
+    <script>
+    (function(){
+        var toggle = document.getElementById('themeToggle');
+        var icon = document.getElementById('themeIcon');
+        var html = document.documentElement;
+        var key = 'qaoverflow_theme';
+
+        function setTheme(theme) {
+            html.setAttribute('data-bs-theme', theme);
+            if (icon) {
+                icon.className = theme === 'dark' ? 'bi bi-moon-stars' : 'bi bi-sun';
+            }
+            localStorage.setItem(key, theme);
+        }
+
+        var saved = localStorage.getItem(key);
+        if (saved === 'light' || saved === 'dark') {
+            setTheme(saved);
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                var current = html.getAttribute('data-bs-theme');
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        }
+    })();
+    </script>
+
     {% if customJs %}
     <script src="{{ customJs }}"></script>
     {% endif %}

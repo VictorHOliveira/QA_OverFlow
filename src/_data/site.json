@@ -5,7 +5,23 @@
   "author": "Victor Oliveira",
   "analytics": "G-F9NWQEL01S",
   "isDarkTheme": true,
+  "cacheVersion": "1",
   "ogImage": "/images/og-image-1200x630.png",
+  "categoryDescriptions": {
+    "boas-praticas": "Artigos sobre boas práticas, padrões e estratégias em Qualidade de Software e Automação de Testes.",
+    "tutoriais": "Guias práticos e passo a passo para configurar ferramentas, escrever testes e estruturar projetos de automação."
+  },
+  "tagDescriptions": {
+    "qa": "Tudo sobre Quality Assurance, fundamentos e carreira.",
+    "automacao": "Automação de Testes: frameworks, estratégias e boas práticas.",
+    "playwright": "Tutoriais e dicas sobre Playwright para automação de testes.",
+    "robot-framework": "Conteúdo sobre Robot Framework: do básico ao avançado.",
+    "scrum": "Metodologia ágil Scrum aplicada a QA e automação.",
+    "boas-praticas": "Boas práticas, padrões de projeto e arquitetura de automação.",
+    "design-patterns": "Design Patterns para automação de testes e Quality Engineering.",
+    "shift-left": "Estratégia Shift-Left: testar mais cedo no ciclo de desenvolvimento.",
+    "shift-right": "Estratégia Shift-Right: monitoramento e testes em produção."
+  },
   "giscus": {
     "repo": "VictorHOliveira/QA_OverFlow",
     "repoId": "R_kgDOSERSTg",
