@@ -55,7 +55,7 @@ ogType: website
         <div id="postsContainer">
             <div class="row g-4">
                 {% for post in tutorialPosts %}
-                <div class="col-12" data-post-title="{{ post.title | lower }}" data-post-tags="{{ post.tags | join(' ') }}">
+                <div class="col-12" data-post-title="{{ post.title | lower }}" data-post-tags="{{ post.tags | join(' ') }}" data-post-summary="{{ (post.summary | safe | striptags | truncate(300)) | lower }}">
                     <article class="card border-0 shadow-sm hover-shadow transition-all">
                         <div class="card-body p-4">
                             <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
@@ -184,9 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         postCards.forEach(card => {
             const title = card.dataset.postTitle;
+            const summary = card.dataset.postSummary || '';
             const postTags = card.dataset.postTags;
             
-            const matchesQuery = !query || title.includes(query);
+            const searchable = title + ' ' + summary;
+            const matchesQuery = !query || searchable.includes(query);
             const matchesTag = !tag || postTags.includes(tag);
             
             card.style.display = matchesQuery && matchesTag ? '' : 'none';

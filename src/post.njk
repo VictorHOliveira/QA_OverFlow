@@ -278,5 +278,28 @@ eleventyComputed:
             img.setAttribute('loading', 'lazy');
         }
     });
+
+    var tocLinks = document.querySelectorAll('.toc-container .nav-link');
+    var headings = [];
+    tocLinks.forEach(function(link) {
+        var id = link.getAttribute('href').slice(1);
+        var h = document.getElementById(id);
+        if (h) headings.push(h);
+    });
+    if (headings.length > 0 && 'IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+            var visible = [];
+            entries.forEach(function(e) {
+                if (e.isIntersecting) visible.push(e.target);
+            });
+            if (visible.length > 0) {
+                var top = visible.sort(function(a, b) { return a.offsetTop - b.offsetTop; })[0];
+                tocLinks.forEach(function(l) {
+                    l.classList.toggle('active', l.getAttribute('href') === '#' + top.id);
+                });
+            }
+        }, { rootMargin: '-80px 0px -70% 0px' });
+        headings.forEach(function(h) { observer.observe(h); });
+    }
 })();
 </script>

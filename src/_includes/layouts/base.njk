@@ -18,7 +18,7 @@
     
     <meta property="og:title" content="{{ title or site.title }}">
     <meta property="og:description" content="{{ description or site.tagline }}">
-    <meta property="og:image" content="{{ site.url }}{{ site.ogImage }}">
+    <meta property="og:image" content="{% if post and post.coverImage %}{{ post.coverImage }}{% else %}{{ site.url }}{{ site.ogImage }}{% endif %}">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:type" content="{{ ogType or 'website' }}">
     <meta property="og:site_name" content="{{ site.title }}">
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ title or site.title }}">
     <meta name="twitter:description" content="{{ description or site.tagline }}">
-    <meta name="twitter:image" content="{{ site.url }}{{ site.ogImage }}">
+    <meta name="twitter:image" content="{% if post and post.coverImage %}{{ post.coverImage }}{% else %}{{ site.url }}{{ site.ogImage }}{% endif %}">
     
     {% if post %}
     <script type="application/ld+json">
@@ -52,13 +52,24 @@
         "url": "{{ site.url }}{{ page.url }}",
         "image": {
             "@type": "ImageObject",
-            "url": "{{ site.url }}{{ site.ogImage }}",
+            "url": "{% if post.coverImage %}{{ post.coverImage }}{% else %}{{ site.url }}{{ site.ogImage }}{% endif %}",
             "width": "1200",
             "height": "630"
         },
         "description": "{{ post.description or (post.summary | striptags) }}",
         "articleSection": "{{ post.category }}",
         "keywords": "{{ post.tags | join(', ') }}"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Início", "item": "{{ site.url }}/" },
+            { "@type": "ListItem", "position": 2, "name": "{{ post.category }}", "item": "{{ site.url }}/categoria/{{ post.category | slugify }}/" },
+            { "@type": "ListItem", "position": 3, "name": "{{ post.title }}", "item": "{{ site.url }}{{ page.url }}" }
+        ]
     }
     </script>
     {% endif %}
@@ -84,7 +95,6 @@
     
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/rss.xml">
     

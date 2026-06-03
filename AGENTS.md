@@ -66,10 +66,10 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 | `addAnchors(html)` | Add anchor IDs to h2/h3 tags |
 
 ## Testing
-- Jest tests in `tests/`: `homepage.test.js`, `blogdata.test.js`, `posts.test.js`
+- Jest tests in `tests/`: `homepage.test.js`, `blogdata.test.js`, `posts.test.js`, `features.test.js`
 - All tests target the Eleventy output (`_site/`)
 - CommonJS (`require()`), no TypeScript/Babel
-- 49 tests total (all targeting Eleventy output)
+- 49+ tests total (all targeting Eleventy output)
 
 ## Quirks
 - UTF-8 critical for Portuguese
