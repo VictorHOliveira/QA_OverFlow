@@ -23,10 +23,41 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 - **Layout**: `src/_includes/layouts/base.njk` (Bootstrap 5, dark theme)
 - **Passthrough copies**: `css/`, `images/`, `favicon.ico`, `CNAME`, `robots.txt`, `ads.txt`, `sitemap.xml`, `.nojekyll`
 
+## Features
+- **Giscus comments** — via GitHub Discussions, config in `site.json.giscus`
+- **Related posts** — auto-suggested by shared tags (`relatedPosts` filter in `.eleventy.js`)
+- **Newsletter CTA** — Substack link in footer (`base.njk`)
+- **Social links** — GitHub + LinkedIn in footer
+- **Search + filters** — by category and tag (client-side JS in `index.njk`)
+- **SEO** — Open Graph, Twitter Cards, JSON-LD structured data, RSS feed, sitemap
+- **Analytics** — Google Analytics (`G-F9NWQEL01S`) + Google AdSense
+
+## Adding a Post
+1. Add a new object to `src/_data/posts.json`
+2. Required fields: `slug`, `title`, `author`, `category`, `tags`, `datePublished`, `content`, `status`
+3. Run `npx @11ty/eleventy` to generate the page
+4. Run `npm test` to verify
+
+## Custom Eleventy Filters (`.eleventy.js`)
+| Filter | Purpose |
+|--------|---------|
+| `filter(array, prop, value)` | Filter array by property |
+| `map(array, prop)` | Extract property values |
+| `unique(array)` | Deduplicate array |
+| `sortBy(array, prop, desc)` | Sort array by property |
+| `reverse(array)` | Reverse array |
+| `head(array, n)` | First N items |
+| `findIndex(array, prop, value)` | Find index by property |
+| `striptags(html)` | Strip HTML tags |
+| `truncate(str, len, suffix)` | Truncate string |
+| `urlEncode(str)` | URL encode string |
+| `relatedPosts(current, all, limit)` | Related posts by shared tags |
+
 ## Testing
 - Jest tests in `tests/`: `homepage.test.js`, `blogdata.test.js`, `posts.test.js`
 - All tests target the Eleventy output (`_site/`)
 - CommonJS (`require()`), no TypeScript/Babel
+- 49 tests total
 
 ## Quirks
 - UTF-8 critical for Portuguese
