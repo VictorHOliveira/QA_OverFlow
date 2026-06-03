@@ -2,21 +2,20 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const indexPath = path.join(__dirname, '..', 'index.html');
+const indexPath = path.join(__dirname, '..', '_site', 'index.html');
 const html = fs.readFileSync(indexPath, 'utf-8');
 const $ = cheerio.load(html);
 
-describe('Homepage Regression Tests', () => {
-  
+describe('Homepage Regression Tests (Eleventy _site)', () => {
+
   test('1. Homepage should have a valid HTML structure', () => {
     expect($('html').length).toBe(1);
     expect($('head').length).toBe(1);
     expect($('body').length).toBe(1);
   });
 
-  test('2. Homepage should have a title tag', () => {
+  test('2. Homepage should have correct title', () => {
     const title = $('title').text();
-    expect(title).toBeTruthy();
     expect(title).toContain('QA Overflow');
   });
 
@@ -30,93 +29,99 @@ describe('Homepage Regression Tests', () => {
     expect(viewport).toContain('width=device-width');
   });
 
-  test('5. Homepage should have exactly 4 articles in main content', () => {
-    const articles = $('.main-content article');
-    expect(articles.length).toBe(4);
+  test('5. Homepage should have meta description with tagline', () => {
+    const desc = $('meta[name="description"]').attr('content');
+    expect(desc).toContain('Qualidade de Software');
   });
 
-  test('6. Homepage should contain Scrum post link in main content', () => {
-    const scrumLink = $('.main-content a[href*="metodologia-scrum"]');
+  test('6. Homepage should have 9 published post cards', () => {
+    const cards = $('#postsContainer .card');
+    expect(cards.length).toBe(9);
+  });
+
+  test('7. Homepage should contain Scrum post link', () => {
+    const scrumLink = $('a[href*="metodologia-scrum"]');
     expect(scrumLink.length).toBeGreaterThan(0);
     expect(scrumLink.text()).toContain('Metodologia Scrum');
   });
 
-  test('7. Homepage should contain Identificar Testes post link', () => {
-    const link = $('.main-content a[href*="identificar-testes-manuais"]');
-    expect(link.length).toBeGreaterThan(0);
-  });
-
   test('8. Homepage should contain Design Patterns post link', () => {
-    const link = $('.main-content a[href*="design-patterns"]');
+    const link = $('a[href*="design-patterns"]');
     expect(link.length).toBeGreaterThan(0);
   });
 
   test('9. Homepage should contain Boas Práticas post link', () => {
-    const link = $('.main-content a[href*="boas-pr"]');
+    const link = $('a[href*="boas-pr"]');
     expect(link.length).toBeGreaterThan(0);
   });
 
-  test('10. Sidebar should have Postagens Recentes section', () => {
-    const sidebarTitle = $('.sidebar .panel-heading:contains("Postagens Recentes")');
-    expect(sidebarTitle.length).toBeGreaterThan(0);
+  test('10. Homepage should contain Shift-Left post link', () => {
+    const link = $('a[href*="shift-left"]');
+    expect(link.length).toBeGreaterThan(0);
   });
 
-  test('11. Sidebar should have Scrum post in recent posts', () => {
-    const links = $('.sidebar .list-group-item a[href*="metodologia-scrum"]');
-    expect(links.length).toBeGreaterThan(0);
-  });
-
-  test('12. Sidebar should have exactly 3 recent posts', () => {
-    const items = $('.sidebar .panel:contains("Postagens Recentes") .list-group-item');
-    expect(items.length).toBe(3);
-  });
-
-  test('13. Homepage should have header navigation', () => {
+  test('11. Homepage should have header navigation', () => {
     const nav = $('.navbar-nav');
     expect(nav.length).toBeGreaterThan(0);
   });
 
-  test('14. Homepage should have search input', () => {
-    const searchInput = $('.searchQuery');
-    expect(searchInput.length).toBeGreaterThan(0);
+  test('12. Homepage sidebar should show post count', () => {
+    const stats = $('.card:contains("Estatísticas")');
+    expect(stats.length).toBeGreaterThan(0);
+    expect(stats.text()).toContain('posts publicados');
   });
 
-  test('15. Homepage should load Bootstrap CSS', () => {
-    const bootstrap = $('link[href*="bootstrap"]');
+  test('13. Homepage sidebar should list categories', () => {
+    const categories = $('.card:contains("Categorias")');
+    expect(categories.length).toBeGreaterThan(0);
+  });
+
+  test('14. Homepage sidebar should list tags', () => {
+    const tags = $('.card:contains("Tags Populares")');
+    expect(tags.length).toBeGreaterThan(0);
+  });
+
+  test('15. Homepage should load Bootstrap 5 CSS', () => {
+    const bootstrap = $('link[href*="bootstrap@5"]');
     expect(bootstrap.length).toBeGreaterThan(0);
   });
 
-  test('16. Homepage should load jQuery', () => {
-    const jquery = $('script[src*="jquery"]');
-    expect(jquery.length).toBeGreaterThan(0);
+  test('16. Homepage should have Open Graph meta tags', () => {
+    const ogTitle = $('meta[property="og:title"]');
+    expect(ogTitle.length).toBeGreaterThan(0);
+    expect($('meta[property="og:description"]').attr('content')).toBeTruthy();
+    expect($('meta[property="og:image"]').attr('content')).toBeTruthy();
   });
 
-  test('17. Footer should contain QA Overflow reference', () => {
+  test('17. Homepage should have Twitter Card meta tags', () => {
+    expect($('meta[name="twitter:card"]').attr('content')).toBe('summary_large_image');
+  });
+
+  test('18. Footer should contain QA Overflow reference', () => {
     const footer = $('footer').text();
     expect(footer).toContain('QA Overflow');
   });
 
-  test('18. All article links should have valid href attributes', () => {
-    const links = $('.main-content article a[href]');
-    links.each((i, el) => {
-      const href = $(el).attr('href');
-      expect(href).toBeTruthy();
-      expect(href).toMatch(/^https?:\/\//);
-    });
+  test('19. Homepage should have JSON-LD WebSite schema', () => {
+    const jsonLd = $('script[type="application/ld+json"]').html();
+    expect(jsonLd).toBeTruthy();
+    const data = JSON.parse(jsonLd);
+    expect(data['@type']).toBe('WebSite');
+    expect(data.name).toBe('QA Overflow');
   });
 
-  test('19. Homepage should have Open Graph meta tags', () => {
-    const ogTitle = $('meta[property="og:title"]');
-    expect(ogTitle.length).toBeGreaterThan(0);
-  });
-
-  test('20. Homepage should not have duplicate articles', () => {
+  test('20. Homepage should not have duplicate post cards', () => {
     const titles = [];
-    $('.main-content article h3 a').each((i, el) => {
+    $('#postsContainer h2 a').each((i, el) => {
       const title = $(el).text();
       expect(titles).not.toContain(title);
       titles.push(title);
     });
+  });
+
+  test('21. Homepage should have canonical link', () => {
+    const canonical = $('link[rel="canonical"]').attr('href');
+    expect(canonical).toBe('https://qaoverflow.com/');
   });
 
 });
