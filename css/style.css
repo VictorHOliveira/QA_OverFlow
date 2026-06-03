@@ -238,3 +238,39 @@ main {
         right: -20rem;
     }
 }
+
+#searchModal .pagefind-ui {
+    --pagefind-ui-text: #ffffff;
+    --pagefind-ui-primary: #0d6efd;
+    --pagefind-ui-background: transparent;
+    --pagefind-ui-border: #495057;
+    --pagefind-ui-tag: #2a2a2a;
+}
+
+#searchModal .pagefind-ui__search-input {
+    background-color: #2b3035;
+    color: #ffffff;
+    border-color: #495057;
+}
+
+#searchModal .pagefind-ui__search-input::placeholder {
+    color: #6c757d;
+    opacity: 0.6;
+}
+
+#searchModal .pagefind-ui__search-clear {
+    color: #adb5bd;
+    background-color: #2b3035;
+}
+
+#searchModal .pagefind-ui__result-title .pagefind-ui__result-link {
+    color: #ffffff !important;
+}
+
+#searchModal .pagefind-ui__result-excerpt {
+    color: #adb5bd !important;
+}
+
+#searchModal .pagefind-ui__result-tag {
+    color: #adb5bd;
+}
