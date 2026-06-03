@@ -9,6 +9,7 @@ permalink: /categoria/{{ category | slugify }}/index.html
 eleventyComputed:
   title: "Categoria: {{ category }}"
   ogType: website
+  robots: noindex, follow
 ---
 
 {% set publishedPosts = posts | filter("status", "published") %}

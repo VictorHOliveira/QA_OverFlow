@@ -1,3 +1,5 @@
+const CleanCSS = require("clean-css");
+
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("images");
@@ -126,7 +128,12 @@ module.exports = function(eleventyConfig) {
     if (!str) return "";
     str = str.toString();
     if (str.length <= length) return str;
-    return str.substring(0, length).trim() + (suffix || "");
+    var truncated = str.substring(0, length);
+    var lastSpace = truncated.lastIndexOf(" ");
+    if (lastSpace > length * 0.7) {
+      truncated = truncated.substring(0, lastSpace);
+    }
+    return truncated.trim() + (suffix || "");
   });
 
   eleventyConfig.addFilter("urlEncode", function(str) {
@@ -142,6 +149,27 @@ module.exports = function(eleventyConfig) {
       .replace(/[\s_]+/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-+|-+$/g, '');
+  });
+
+  eleventyConfig.on('eleventy.after', function() {
+    var path = require('path');
+    var fs = require('fs');
+    var outputDir = '_site';
+    function minifyCSS(dir) {
+      fs.readdirSync(dir).forEach(function(entry) {
+        var full = path.join(dir, entry);
+        if (fs.statSync(full).isDirectory()) {
+          minifyCSS(full);
+        } else if (entry.endsWith('.css') && !entry.endsWith('.min.css')) {
+          var src = fs.readFileSync(full, 'utf-8');
+          var min = new CleanCSS({ level: 2 }).minify(src);
+          if (!min.errors.length) {
+            fs.writeFileSync(full, min.styles, 'utf-8');
+          }
+        }
+      });
+    }
+    minifyCSS(outputDir);
   });
 
   return {
