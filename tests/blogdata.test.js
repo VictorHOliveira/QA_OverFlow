@@ -21,8 +21,8 @@ describe('Blog Data (src/_data/posts.json) Regression Tests', () => {
     expect(posts.length).toBeGreaterThanOrEqual(4);
   });
 
-  test('33. posts.json should have exactly 9 posts', () => {
-    expect(posts.length).toBe(9);
+  test('33. posts.json should have exactly 10 posts', () => {
+    expect(posts.length).toBe(10);
   });
 
   test('34. Scrum post should be in posts.json', () => {
