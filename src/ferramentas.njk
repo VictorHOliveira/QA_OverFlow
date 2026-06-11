@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: Utilidades
+description: Ferramentas e utilidades para QA
+ogType: website
+---
+
+<div class="container py-5">
+  <div class="row mb-5">
+    <div class="col-12">
+      <h1 class="display-5 fw-bold mb-3">
+        <i class="bi bi-tools me-2"></i>Utilidades
+      </h1>
+      <p class="text-muted lead">Ferramentas e recursos criados para facilitar o dia a dia de QA.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for ferramenta in ferramentas %}
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100 hover-shadow transition-all position-relative">
+        <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+          <div class="mb-3">
+            <i class="bi {{ ferramenta.icone }} fs-1 text-{{ ferramenta.cor }}"></i>
+          </div>
+          <h5 class="fw-bold mb-2">{{ ferramenta.nome }}</h5>
+          <p class="text-muted small mb-3">{{ ferramenta.descricao }}</p>
+          <a href="{{ ferramenta.url }}" class="btn btn-{{ ferramenta.cor }} stretched-link" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-box-arrow-up-right me-1"></i>Acessar
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,16 @@
+[
+  {
+    "nome": "QAOverFlowReport",
+    "descricao": "Library para geração de relatórios de teste automatizados.",
+    "url": "https://github.com/VictorHOliveira/QAOverFlowReport",
+    "icone": "bi-box",
+    "cor": "primary"
+  },
+  {
+    "nome": "Extensão QA Overflow",
+    "descricao": "Extensão Chrome para auxiliar em tarefas de QA diretamente do navegador.",
+    "url": "https://chromewebstore.google.com/detail/bbfncahdnkhfmakifaakpgbpjkpdgefj?utm_source=item-share-cb",
+    "icone": "bi-plugin",
+    "cor": "success"
+  }
+]
