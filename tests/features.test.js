@@ -92,7 +92,7 @@ describe('Sitemap', () => {
     expect(fileExists('sitemap.xml')).toBe(true);
   });
 
-  test('sitemap.xml should contain all 9 posts', () => {
+  test('sitemap.xml should contain all 10 posts', () => {
     const xml = readFile('sitemap.xml');
     expect(xml).toContain('qaoverflow.com/post/shift-left-shift-right-qa-automation-senior-2026');
     expect(xml).toContain('qaoverflow.com/post/playwright-para-iniciantes');
@@ -103,6 +103,7 @@ describe('Sitemap', () => {
     expect(xml).toContain('qaoverflow.com/post/metodologia-scrum-com-automacao-de-testes');
     expect(xml).toContain('qaoverflow.com/post/qa-overflow-combinando-ia-e-blog-para-aprender-e-ensinar-qa');
     expect(xml).toContain('qaoverflow.com/post/identificar-testes-manuais-que-podem-ser-automatizados-um-guia-pratico');
+    expect(xml).toContain('qaoverflow.com/post/qa-overflow-picker-google-chrome-extension');
   });
 
   test('sitemap.xml should contain static pages', () => {
