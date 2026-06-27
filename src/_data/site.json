@@ -24,7 +24,10 @@
     "shift-right": "Estratégia Shift-Right: monitoramento e testes em produção.",
     "portugal": "Mercado de QA e Automação de Testes em Portugal: vagas, skills e tendências.",
     "carreira": "Guias de carreira e desenvolvimento profissional em Qualidade de Software.",
-    "tendencias": "Tendências e inovações no mercado de QA e Automação de Testes."
+    "tendencias": "Tendências e inovações no mercado de QA e Automação de Testes.",
+    "brasil": "Mercado de QA e Automação de Testes no Brasil: linguagens, frameworks e tendências.",
+    "linguagens": "Linguagens de programação mais usadas em QA e Automação de Testes: TypeScript, Python, Java, JavaScript.",
+    "frameworks": "Frameworks de automação de testes: Playwright, Cypress, Selenium, Robot Framework, Vitest."
   },
   "giscus": {
     "repo": "VictorHOliveira/QA_OverFlow",
