@@ -16,9 +16,23 @@ module.exports = function(eleventyConfig) {
 
   const posts = require('./src/_data/posts.json');
 
+  function isPublished(post) {
+    if (!post || post.status !== "published") return false;
+    if (!post.datePublished) return true;
+    var postDate = new Date(post.datePublished + "T23:59:59");
+    return postDate <= new Date();
+  }
+
+  eleventyConfig.addFilter("isPublished", isPublished);
+
+  eleventyConfig.addFilter("published", function(array) {
+    if (!Array.isArray(array)) return [];
+    return array.filter(isPublished);
+  });
+
   eleventyConfig.addCollection("allTags", function() {
     const tags = new Set();
-    posts.filter(p => p.status === 'published').forEach(p => {
+    posts.filter(isPublished).forEach(p => {
       (p.tags || []).forEach(t => tags.add(t));
     });
     return [...tags].sort();
@@ -26,7 +40,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("allCategories", function() {
     const cats = new Set();
-    posts.filter(p => p.status === 'published').forEach(p => {
+    posts.filter(isPublished).forEach(p => {
       if (p.category) cats.add(p.category);
     });
     return [...cats].sort();
@@ -105,7 +119,7 @@ module.exports = function(eleventyConfig) {
     if (!currentPost || !Array.isArray(allPosts)) return [];
     const currentTags = currentPost.tags || [];
     return allPosts
-      .filter(p => p.slug !== currentPost.slug && p.status === "published")
+      .filter(p => p.slug !== currentPost.slug && isPublished(p))
       .map(p => ({
         ...p,
         sharedCount: (p.tags || []).filter(t => currentTags.includes(t)).length

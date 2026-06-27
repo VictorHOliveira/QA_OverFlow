@@ -5,7 +5,7 @@ description: Tutoriais práticos de QA, Automação de Testes e Robot Framework.
 ogType: website
 ---
 
-{% set publishedPosts = posts | filter("status", "published") | sort(false, "datePublished") | reverse %}
+{% set publishedPosts = posts | published | sort(false, "datePublished") | reverse %}
 {% set tutorialPosts = publishedPosts | filter("category", "tutoriais") %}
 
 {% set allTags = [] %}

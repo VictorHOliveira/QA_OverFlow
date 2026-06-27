@@ -12,8 +12,7 @@ eleventyExcludeFromCollections: true
         <language>pt-BR</language>
         <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml"/>
         
-        {% for post in posts %}
-        {% if post.status == "published" %}
+        {% for post in posts | published %}
         <item>
             <title>{{ post.title }}</title>
             <link>{{ site.url }}/post/{{ post.slug }}/</link>
@@ -29,7 +28,6 @@ eleventyExcludeFromCollections: true
             <category>{{ tag }}</category>
             {% endfor %}
         </item>
-        {% endif %}
         {% endfor %}
     </channel>
 </rss>

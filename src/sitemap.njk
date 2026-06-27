@@ -24,7 +24,7 @@ eleventyExcludeFromCollections: true
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
-{%- for post in posts | filter("status", "published") %}
+{%- for post in posts | published %}
   <url>
     <loc>{{ site.url }}/post/{{ post.slug }}/</loc>
     <lastmod>{{ post.dateModified or post.datePublished }}</lastmod>

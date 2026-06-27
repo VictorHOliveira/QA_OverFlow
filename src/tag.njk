@@ -12,7 +12,7 @@ eleventyComputed:
   robots: noindex, follow
 ---
 
-{% set publishedPosts = posts | filter("status", "published") %}
+{% set publishedPosts = posts | published %}
 {% set filteredPosts = publishedPosts | filter("tags", tag) %}
 
 <div class="row g-5">

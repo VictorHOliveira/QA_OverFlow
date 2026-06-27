@@ -9,7 +9,8 @@
   "ogImage": "/images/og-image-1200x630.png",
   "categoryDescriptions": {
     "boas-praticas": "Artigos sobre boas práticas, padrões e estratégias em Qualidade de Software e Automação de Testes.",
-    "tutoriais": "Guias práticos e passo a passo para configurar ferramentas, escrever testes e estruturar projetos de automação."
+    "tutoriais": "Guias práticos e passo a passo para configurar ferramentas, escrever testes e estruturar projetos de automação.",
+    "carreira": "Análises de mercado, tendências de carreira e guias sobre o mercado de trabalho em QA e Automação de Testes."
   },
   "tagDescriptions": {
     "qa": "Tudo sobre Quality Assurance, fundamentos e carreira.",
@@ -20,7 +21,10 @@
     "boas-praticas": "Boas práticas, padrões de projeto e arquitetura de automação.",
     "design-patterns": "Design Patterns para automação de testes e Quality Engineering.",
     "shift-left": "Estratégia Shift-Left: testar mais cedo no ciclo de desenvolvimento.",
-    "shift-right": "Estratégia Shift-Right: monitoramento e testes em produção."
+    "shift-right": "Estratégia Shift-Right: monitoramento e testes em produção.",
+    "portugal": "Mercado de QA e Automação de Testes em Portugal: vagas, skills e tendências.",
+    "carreira": "Guias de carreira e desenvolvimento profissional em Qualidade de Software.",
+    "tendencias": "Tendências e inovações no mercado de QA e Automação de Testes."
   },
   "giscus": {
     "repo": "VictorHOliveira/QA_OverFlow",

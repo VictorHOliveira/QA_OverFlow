@@ -4,7 +4,7 @@ title: Início
 ogType: website
 ---
 
-{% set publishedPosts = posts | filter("status", "published") | sort(false, "datePublished") | reverse %}
+{% set publishedPosts = posts | published | sort(false, "datePublished") | reverse %}
 
 {% set allCategories = publishedPosts | map("category") | unique | sort %}
 {% set allTags = [] %}
