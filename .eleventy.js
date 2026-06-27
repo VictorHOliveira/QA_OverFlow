@@ -19,7 +19,12 @@ module.exports = function(eleventyConfig) {
   function isPublished(post) {
     if (!post || post.status !== "published") return false;
     if (!post.datePublished) return true;
-    var postDate = new Date(post.datePublished + "T23:59:59");
+    var postDate;
+    if (post.datePublished.indexOf("T") !== -1) {
+      postDate = new Date(post.datePublished);
+    } else {
+      postDate = new Date(post.datePublished + "T23:59:59");
+    }
     return postDate <= new Date();
   }
 
