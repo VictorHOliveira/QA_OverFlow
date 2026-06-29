@@ -27,7 +27,10 @@
     "tendencias": "Tendências e inovações no mercado de QA e Automação de Testes.",
     "brasil": "Mercado de QA e Automação de Testes no Brasil: linguagens, frameworks e tendências.",
     "linguagens": "Linguagens de programação mais usadas em QA e Automação de Testes: TypeScript, Python, Java, JavaScript.",
-    "frameworks": "Frameworks de automação de testes: Playwright, Cypress, Selenium, Robot Framework, Vitest."
+    "frameworks": "Frameworks de automação de testes: Playwright, Cypress, Selenium, Robot Framework, Vitest.",
+    "dicionarios": "Uso de dicionários em automação de testes: Robot Framework, Python, TypeScript, Java e boas práticas.",
+    "typescript": "TypeScript para automação de testes com Playwright, Cypress e Vitest.",
+    "java": "Java para automação de testes com Selenium, REST Assured e JUnit."
   },
   "giscus": {
     "repo": "VictorHOliveira/QA_OverFlow",
