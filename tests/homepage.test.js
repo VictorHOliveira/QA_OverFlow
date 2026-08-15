@@ -34,9 +34,9 @@ describe('Homepage Regression Tests (Eleventy _site)', () => {
     expect(desc).toContain('Qualidade de Software');
   });
 
-    test('6. Homepage should have 14 published post cards', () => {
+    test('6. Homepage should have 16 published post cards', () => {
         const cards = $('#postsContainer .card');
-        expect(cards.length).toBe(14);
+        expect(cards.length).toBe(16);
   });
 
   test('7. Homepage should contain Scrum post link', () => {
