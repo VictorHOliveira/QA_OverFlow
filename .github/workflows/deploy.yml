@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'api/**'
+      - 'INTEGRACAO-N8N.md'
+      - '.github/workflows/api.yml'
   schedule:
     - cron: '0 14 * * *'
   workflow_dispatch:
