@@ -5,7 +5,7 @@ Microserviço Node/Express que expõe CRUD + fluxo editorial dos posts do blog p
 ## Como funciona
 
 - O **repositório GitHub é a fonte da verdade**: cada post é um arquivo `content/posts/<slug>.json` + `_manifest.json` (ordem canônica).
-- **Produção (Railway)**: leituras vêm de cache em memória (TTL 30s) alimentado pela GitHub Contents API; escritas geram commits atômicos no `main` via Git Data API → o push dispara o `deploy.yml` existente → site atualizado em ~2-3 min.
+- **Produção** (com `GITHUB_TOKEN`, local ou nuvem): leituras vêm de cache em memória (TTL 30s) alimentado pela GitHub Contents API; escritas geram commits atômicos no `main` via Git Data API → o push dispara o `deploy.yml` existente → site atualizado em ~2-3 min.
 - **Dev local** (sem `GITHUB_TOKEN`): lê/escreve diretamente em `content/posts/` do repo, sem commitar.
 - **Testes**: store em memória, zero rede.
 
@@ -90,7 +90,20 @@ curl -X POST https://<host>/api/v1/posts \
 | `ALLOWED_ORIGINS` | não | `https://qaoverflow.com,...` |
 | `CACHE_TTL_MS` / `MAX_UPLOAD_MB` | não | `30000` / `5` |
 
-## Deploy no Railway
+## Rodar no servidor local Windows (setup atual)
+
+Setup automatizado na mesma máquina do N8N — `http://localhost:3000`, auto-start no boot, restart automático e logs em `api/logs/`:
+
+```powershell
+# dentro do repo, na pasta api\deploy
+.\setup-local.ps1                # interativo (Enter gera API_KEY forte)
+# ou não-interativo:
+.\setup-local.ps1 -ApiKey "..." -GithubToken "github_pat_..." -RegisterTask
+```
+
+Operação: tarefa agendada `QAOverFlow-API` (`Start/Stop-ScheduledTask`). Runbook completo: [`SETUP-SERVIDOR.md`](../SETUP-SERVIDOR.md).
+
+## Deploy no Railway (alternativa em nuvem)
 
 1. New Project → Deploy from GitHub repo `VictorHOliveira/QA_OverFlow`
 2. Settings → **Root Directory**: `api`

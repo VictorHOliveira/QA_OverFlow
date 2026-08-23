@@ -7,7 +7,7 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 |--------|------------|
 | qaoverflow.com | https://github.com/VictorHOliveira/QA_OverFlow |
 | admin.qaoverflow.com | https://github.com/VictorHOliveira/GestaoFinanceiraAdmin |
-| api.qaoverflow.com (Railway) | same repo, root directory `api/` |
+| Content-API | same repo, folder `api/`, runs on the local server next to N8N (`http://localhost:3000`); cloud alternative: Railway root dir `api/` |
 
 ## Commands
 | Action | Command |
@@ -20,6 +20,7 @@ Static blog powered by [Eleventy (11ty)](https://www.11ty.dev/), hosted on GitHu
 | Install API deps | `npm install` inside `api/` |
 | Run API (dev, local store) | `npm run dev` inside `api/` |
 | Run Jest tests (API) | `npm test` inside `api/` |
+| Setup local server (Windows) | `api/deploy/setup-local.ps1` (see `SETUP-SERVIDOR.md`) |
 
 ## Project - Eleventy Build
 - **Input**: `src/` (Nunjucks templates, `_data/`)
