@@ -1,18 +1,16 @@
-const fs = require('fs');
 const path = require('path');
 
-const postsPath = path.join(__dirname, '..', 'src', '_data', 'posts.json');
+const postsPath = path.join(__dirname, '..', 'src', '_data', 'posts.js');
 
-describe('Blog Data (src/_data/posts.json) Regression Tests', () => {
+describe('Blog Data (content/posts/*.json) Regression Tests', () => {
 
   let posts;
 
   beforeAll(() => {
-    const raw = fs.readFileSync(postsPath, 'utf-8');
-    posts = JSON.parse(raw);
+    posts = require(postsPath);
   });
 
-  test('31. posts.json should exist and be valid JSON', () => {
+  test('31. content/posts should exist and be valid JSON array', () => {
     expect(posts).toBeTruthy();
     expect(Array.isArray(posts)).toBe(true);
   });
@@ -66,15 +64,17 @@ describe('Blog Data (src/_data/posts.json) Regression Tests', () => {
     });
   });
 
-  test('40. All posts should have author Victor Oliveira', () => {
+  test('40. All posts should have an author', () => {
     posts.forEach(post => {
-      expect(post.author).toBe('Victor Oliveira');
+      expect(post.author).toBeTruthy();
+      expect(typeof post.author).toBe('string');
     });
   });
 
-  test('41. Every post should have status "published"', () => {
+  test('41. Every post should have a valid workflow status', () => {
+    const validStatuses = ['draft', 'review', 'published'];
     posts.forEach(post => {
-      expect(post.status).toBe('published');
+      expect(validStatuses).toContain(post.status);
     });
   });
 

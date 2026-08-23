@@ -1,0 +1,24 @@
+{
+  "author": "Victor Oliveira",
+  "title": "Design Patterns para Automação de Testes: Guia Prático com Playwright e Cypress",
+  "tags": [
+    "qa",
+    "testing",
+    "automation",
+    "playwright",
+    "cypress"
+  ],
+  "category": "boas-praticas",
+  "body": "Aprenda os principais design patterns que tornam suas suites de automação de testes mais maintáveis, escaláveis e robustas. Exemplos práticos com Playwright e Cypress.",
+  "datePublished": "2026-08-19T00:00:00",
+  "dateModified": "2026-08-19",
+  "dated": "August 19, 2026 05:47 PM",
+  "coverImage": "Minimalist illustration of code blocks organizing into clean architectural patterns, blue and purple gradient, modern tech style",
+  "readTime": "1 min",
+  "slug": "design-patterns-automacao-testes",
+  "categorySlug": "boas-praticas",
+  "status": "published",
+  "summary": "Aprenda os principais design patterns que tornam suas suites de automação de testes mais maintáveis, escaláveis e robustas. Exemplos práticos com Playwright e Cypress.",
+  "description": "Aprenda os principais design patterns que tornam suas suites de automação de testes mais maintáveis, escaláveis e robustas. Exemplos práticos com Playwright e Cypress.",
+  "content": "<h1>Design Patterns para Automação de Testes: Guia Prático</h1>\n<p>Se você já escreveu automação de testes, provavelmente já enfrentou aquele momento em que os testes ficam tão acoplados que qualquer mudança quebram dezenas de scripts. É aí que os <strong>Design Patterns</strong> entram.</p>\n<p>Neste artigo, vamos ver os padrões mais usados na indústria, com exemplos práticos em <strong>Playwright</strong> e <strong>Cypress</strong>.</p>\n<h2>1. Page Object Model (POM)</h2>\n<p>O mais clássico e amplamente adotado. Separa a lógica de localização dos elementos da lógica dos testes.</p>\n<pre><code class=\"language-typescript\">// Playwright - Page Object\nclass LoginPage {\n  constructor(private page: Page) {}\n<p>private emailInput = () => this.page.locator('#email');\n  private passwordInput = () => this.page.locator('#password');\n  private submitButton = () => this.page.locator('button[type=submit]');</p>\n<p>async login(email: string, password: string) {\n    await this.emailInput().fill(email);\n    await this.passwordInput().fill(password);\n    await this.submitButton().click();\n  }\n}\n</code></pre></p>\n<strong>Vantagens:</strong> Manutenção centralizada, reutilizabilidade, código limpo nos testes.\n<h2>2. Screenplay Pattern</h2>\n<p>Mais avançado, modela testes como <strong>atores realizando ações em um cenário</strong>. Excelente para testes complexos com múltiplos usuários.</p>\n<h2>3. Data-Driven Testing</h2>\n<p>Separa os dados dos testes da lógica. Ideal para validar múltiplas entradas no mesmo fluxo.</p>\n<pre><code class=\"language-typescript\">const testCases = [\n  { user: 'admin', expected: 'Dashboard' },\n  { user: 'viewer', expected: 'Read Only' },\n];\n<p>for (const tc of testCases) {\n  test(<code>Login as ${tc.user}</code>, async ({ page }) => {\n    await loginAs(page, tc.user);\n    await expect(page).toHaveTitle(tc.expected);\n  });\n}\n</code></pre></p>\n<h2>4. Fixture Pattern (Cypress)</h2>\n<p>No Cypress, fixtures são nativos e permitem setup/teardown elegante:</p>\n<pre><code class=\"language-typescript\">test.use({\n  storageState: 'auth.json',\n});\n<p>test('access dashboard', async ({ page }) => {\n  await page.goto('/dashboard');\n  await expect(page.locator('.stats')).toBeVisible();\n});\n</code></pre></p>\n<h2>Conclusão</h2>\n<p>Não existe um pattern perfeito para todos os casos. O ideal é <strong>combinar</strong> POM com Data-Driven e ajustar conforme a complexidade do projeto.</p>\n<p>Quer aprender mais? Visite <a href=\"https://qaoverflow.com\">QA Overflow</a> para tutoriais completos.</p>\n<p>---\n<em>Artigo por Victor Oliveira - QA Senior com 13+ anos de experiência</em></p>"
+}

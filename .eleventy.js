@@ -14,7 +14,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addDataExtension("json", (contents) => JSON.parse(contents));
 
-  const posts = require('./src/_data/posts.json');
+  const posts = require('./src/_data/posts.js');
 
   function isPublished(post) {
     if (!post || post.status !== "published") return false;
