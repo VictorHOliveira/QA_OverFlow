@@ -6,6 +6,32 @@ const indexPath = path.join(__dirname, '..', '_site', 'index.html');
 const html = fs.readFileSync(indexPath, 'utf-8');
 const $ = cheerio.load(html);
 
+function isPublishedLike(post) {
+    if (!post || post.status !== 'published') return false;
+    if (!post.datePublished) return true;
+    let postDate;
+    if (post.datePublished.indexOf('T') !== -1) {
+        postDate = new Date(post.datePublished);
+    } else {
+        postDate = new Date(post.datePublished + 'T23:59:59');
+    }
+    return postDate <= new Date();
+}
+
+function countPublishedPosts() {
+    const postsDir = path.join(__dirname, '..', 'content', 'posts');
+    return fs.readdirSync(postsDir)
+        .filter((f) => f.endsWith('.json') && f !== '_manifest.json')
+        .map((f) => {
+            try {
+                return JSON.parse(fs.readFileSync(path.join(postsDir, f), 'utf-8'));
+            } catch (e) {
+                return null;
+            }
+        })
+        .filter(isPublishedLike).length;
+}
+
 describe('Homepage Regression Tests (Eleventy _site)', () => {
 
   test('1. Homepage should have a valid HTML structure', () => {
@@ -34,9 +60,9 @@ describe('Homepage Regression Tests (Eleventy _site)', () => {
     expect(desc).toContain('Qualidade de Software');
   });
 
-    test('6. Homepage should have 18 published post cards', () => {
-        const cards = $('#postsContainer .card');
-        expect(cards.length).toBe(18);
+  test('6. Homepage post card count matches published posts', () => {
+    const cards = $('#postsContainer .card');
+    expect(cards.length).toBe(countPublishedPosts());
   });
 
   test('7. Homepage should contain Scrum post link', () => {
