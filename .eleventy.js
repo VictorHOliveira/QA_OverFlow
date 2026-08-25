@@ -23,7 +23,7 @@ module.exports = function(eleventyConfig) {
     if (post.datePublished.indexOf("T") !== -1) {
       postDate = new Date(post.datePublished);
     } else {
-      postDate = new Date(post.datePublished + "T23:59:59");
+      postDate = new Date(post.datePublished + "T00:00:00");
     }
     return postDate <= new Date();
   }
