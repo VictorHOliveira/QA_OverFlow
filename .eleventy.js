@@ -17,15 +17,7 @@ module.exports = function(eleventyConfig) {
   const posts = require('./src/_data/posts.js');
 
   function isPublished(post) {
-    if (!post || post.status !== "published") return false;
-    if (!post.datePublished) return true;
-    var postDate;
-    if (post.datePublished.indexOf("T") !== -1) {
-      postDate = new Date(post.datePublished);
-    } else {
-      postDate = new Date(post.datePublished + "T00:00:00");
-    }
-    return postDate <= new Date();
+    return !!post && post.status === "published";
   }
 
   eleventyConfig.addFilter("isPublished", isPublished);

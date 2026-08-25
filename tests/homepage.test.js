@@ -7,15 +7,7 @@ const html = fs.readFileSync(indexPath, 'utf-8');
 const $ = cheerio.load(html);
 
 function isPublishedLike(post) {
-    if (!post || post.status !== 'published') return false;
-    if (!post.datePublished) return true;
-    let postDate;
-    if (post.datePublished.indexOf('T') !== -1) {
-        postDate = new Date(post.datePublished);
-    } else {
-        postDate = new Date(post.datePublished + 'T00:00:00');
-    }
-    return postDate <= new Date();
+    return !!post && post.status === 'published';
 }
 
 function countPublishedPosts() {
